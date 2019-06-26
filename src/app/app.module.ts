@@ -9,19 +9,24 @@ import { LayoutModule } from '@angular/cdk/layout';
 // tslint:disable-next-line:max-line-length
 import { MatToolbarModule, MatSidenavModule, MatIconModule, MatSortModule, MatListModule, MatCardModule, MatInputModule, MatTableModule, MatButtonModule, MatPaginatorModule } from '@angular/material';
 import { FlexLayoutModule } from '@angular/flex-layout';
-
+import { ToastrModule } from 'ngx-toastr';
+ 
 
 import { CardsComponent } from './cards/cards.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { BookListComponent } from './book-list/book-list.component';
 import { CheckoutBooksComponent } from './checkout-books/checkout-books.component';
+import { LoginComponent } from './login/login.component';
+import { FormsModule } from '@angular/forms';
+import { HttpClientModule } from '@angular/common/http';
 @NgModule({
   declarations: [
     AppComponent,
     DashboardComponent,
     CardsComponent,
     BookListComponent,
-    CheckoutBooksComponent
+    CheckoutBooksComponent,
+    LoginComponent
   ],
   imports: [
     BrowserModule,
@@ -40,7 +45,14 @@ import { CheckoutBooksComponent } from './checkout-books/checkout-books.componen
     MatButtonModule,
     FlexLayoutModule,
     MatSortModule,
-    AngularFontAwesomeModule
+    AngularFontAwesomeModule,
+    FormsModule,
+    HttpClientModule,
+    ToastrModule.forRoot(
+      {
+        preventDuplicates: true,
+        timeOut: 1500,
+      }),
   ],
   providers: [],
   bootstrap: [AppComponent]
