@@ -15,13 +15,15 @@ import { CardsComponent } from './cards/cards.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { BookListComponent } from './book-list/book-list.component';
 import { CheckoutBooksComponent } from './checkout-books/checkout-books.component';
+import { AddUserComponent } from './add-user/add-user.component';
 @NgModule({
   declarations: [
     AppComponent,
     DashboardComponent,
     CardsComponent,
     BookListComponent,
-    CheckoutBooksComponent
+    CheckoutBooksComponent,
+    AddUserComponent
   ],
   imports: [
     BrowserModule,
