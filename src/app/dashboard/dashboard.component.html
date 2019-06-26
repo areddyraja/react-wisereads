@@ -1,0 +1,37 @@
+<mat-sidenav-container class="sidenav-container">
+  <mat-sidenav #drawer class="sidenav" fixedInViewport
+      [attr.role]="(isHandset$ | async) ? 'dialog' : 'navigation'"
+      [mode]="(isHandset$ | async) ? 'over' : 'side'"
+      [opened]="(isHandset$ | async) === false">
+    <mat-toolbar class="main-name">WiseReads</mat-toolbar>
+    <mat-nav-list class="menu-items">
+      <a mat-list-item style="cursor: pointer" routerLink="/cards" [routerLinkActive]="['is-active']">Dashboard</a>
+      <a mat-list-item style="cursor: pointer" routerLink="/book_list" [routerLinkActive]="['is-active']">Book List</a>
+      <a mat-list-item >Recommended Books</a>
+      <a mat-list-item >Inventory</a>
+      <a mat-list-item style="cursor: pointer" routerLink="/checkout-books" [routerLinkActive]="['is-active']">Checkout Books List</a>
+      <a mat-list-item >Checkin Books List</a>
+      <a mat-list-item >Owners</a>
+      <a mat-list-item >Users</a>
+    </mat-nav-list>
+  </mat-sidenav>
+  <mat-sidenav-content>
+    <mat-toolbar class="menu-bar">
+      <button
+        type="button"
+        aria-label="Toggle sidenav"
+        mat-icon-button
+        (click)="drawer.toggle()"
+        *ngIf="isHandset$ | async">
+        <mat-icon aria-label="Side nav toggle icon">menu</mat-icon>
+      </button>
+      <i class="fal fa-search"></i>
+      <div class="search">
+          <input matInput placeholder="Search Book / User / Genre / Author">
+      </div>
+    </mat-toolbar>
+    <div class="p-5">
+      <router-outlet></router-outlet>
+    </div>
+  </mat-sidenav-content>
+</mat-sidenav-container>

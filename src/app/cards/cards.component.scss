@@ -1,0 +1,72 @@
+
+
+  .cards{
+    display: flex; 
+    -webkit-flex-flow: row wrap;
+    justify-content: space-around;
+  }
+
+  .cards-heading{
+    display: flex; 
+    margin-left:13px;
+    h1{
+      font-size: 24px;
+      font-weight: 600;
+      margin: 10px 16px;
+      color: #707070
+    }
+  }
+
+  @mixin card-color($background) {
+    width: 450.7px;
+    height: 320.1px;
+    border-radius: 13px;
+    margin-top: 45px;
+    background-image: $background;
+    padding:54px 49px;
+  }
+  
+  .total-books {
+    @include card-color(linear-gradient(91deg, #c694f9, #ab64f4));
+  }
+
+  .checkout-book{
+    @include card-color(linear-gradient(to right, #6aa5e3, #6866e9));
+  }
+
+  .users{
+    @include card-color(linear-gradient(to right, #feb683, #ff8993));
+  }
+
+  .books{
+    width: 37.9px;
+    height: 37.9px;
+    color:#fff;
+  }
+
+.dashboard-img{
+  width: 49px;
+  height: 45.6px;
+}
+
+.mat-card-subtitle{
+  font-size: 24px;
+  font-weight: 600;
+  color: #ffffff;
+  margin: 0px !important;
+  padding-top:3px;
+}
+ 
+.mat-card-content{
+  font-size: 36px;
+  font-weight: 600;
+  color: #ffffff;
+  margin:0px;
+}
+
+.mat-card-footer{
+  font-size: 24px;
+  font-weight: 600;
+  color: #ffffff;
+  padding-top:40px;
+}

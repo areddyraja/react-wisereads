@@ -1,0 +1,138 @@
+/* You can add global styles to this file, and also import other style files */
+@import url('https://fonts.googleapis.com/css?family=Montserrat&display=swap');
+
+
+@import '~@angular/material/theming';
+
+$custom-typography: mat-typography-config($font-family: '"Montserrat", sans-serif;');
+@include mat-core($custom-typography);
+
+
+html, body { height: 100%; }
+body { margin: 0; font-family: 'Montserrat', sans-serif; }
+
+.mat-toolbar{
+    font-family:'SF Compact Display Medium';
+}
+
+.mat-card-header-text {
+    margin: 0px !important; 
+}
+
+.mat-card-footer {
+    display: block;
+     margin: 0px !important;
+}
+
+a:hover,a.active,a.selected
+  {
+    background-color: transparent !important;
+  }
+
+
+
+  .div:focus,.div.active{
+    background-color: transparent !important;
+  }  
+  
+
+  table {
+    width: 100%;
+  }
+
+  .edit-button{
+    width: 91px;
+    height: 31px;
+    background-image: linear-gradient(to bottom, #c694f9, #ab64f4);
+    color:#fff;
+  }
+
+  .item{
+    display: flex; 
+    margin-left:13px;
+    margin-bottom: 40px;
+    h1{
+      font-size: 24px;
+      font-weight: 600;
+      margin: 10px 16px;
+      color: #707070
+    }
+  }
+
+  .item.item-2 {
+    justify-content: flex-end;
+}
+
+.action-button{
+  width: 265px;
+  height: 57px;
+  border-radius: 5px;
+  background-image: linear-gradient(to bottom, #6fe3ff, #2fc7f5);
+  color: #fff;
+  font-size: 18px;
+  font-weight: 500;
+}
+
+.mat-header-cell{
+  font-size: 16px;
+  font-weight: 600;
+  color: #707070;
+}
+.mat-cell{
+  font-size: 15px;
+  font-weight: 300;
+  color: #4b4b4b;
+}
+
+@media(max-width: 600px) {
+  .mobile-label {
+    width: 80px;
+    display: inline-block;
+        font-weight: bold;
+  }
+
+  .mat-header-row {
+    display: none;
+  }
+
+  .mat-row { 
+    flex-direction: column;
+    align-items: start;
+    padding: 8px 24px;
+  }
+}
+
+
+.example-container {
+  display: flex;
+  flex-direction: column;
+  max-height: 500px;
+  min-width: 300px;
+}
+
+.mat-table {
+  overflow: auto;
+  max-height: 500px;
+}
+
+.mobile-label {
+  display: none;
+}
+
+@media(max-width: 1024px) {
+  .mobile-label {
+    width: 80px;
+    display: inline-block;
+        font-weight: bold;
+  }
+
+  .mat-header-row {
+    display: none;
+  }
+
+  .mat-row { 
+    flex-direction: column;
+    align-items: start;
+    padding: 8px 24px;
+  }
+}
