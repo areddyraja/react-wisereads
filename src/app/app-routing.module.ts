@@ -1,4 +1,4 @@
-import { AuthGuard } from './guard/auth.guard';
+
 import { NgModule, Component } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { DashboardComponent } from './dashboard/dashboard.component';
@@ -14,7 +14,7 @@ const routes: Routes = [
   {
     path: '',
     component: HomeLayoutComponent,
-    canActivate: [AuthGuard],
+    canActivate: [SigninService],
     children: [
       {
         path: '', component: CardsComponent

@@ -24,7 +24,7 @@ import { HomeLayoutComponent } from './layout/home-layout.component';
 import { LoginLayoutComponent } from './layout/login-layout.component';
 import { LoginComponent } from './login/login.component';
 
-import { AuthGuard } from './guard/auth.guard';
+
 
 @NgModule({
   declarations: [
@@ -73,7 +73,7 @@ import { AuthGuard } from './guard/auth.guard';
       }),
   ],
   providers: [
-    MatDatepickerModule, AuthGuard,
+    MatDatepickerModule
   ],
   bootstrap: [AppComponent]
 })

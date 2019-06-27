@@ -12,12 +12,6 @@ import { BehaviorSubject } from 'rxjs';
 
 export class LoginService {
 
-  private loggedIn: BehaviorSubject<boolean> = new BehaviorSubject<boolean>(false);
-
-  get isLoggedIn() {
-    return this.loggedIn.asObservable();
-  }
-
   constructor(
     private httpClient: HttpClient, private router: Router
   ) { }
@@ -30,14 +24,12 @@ export class LoginService {
     const httpOptions = {
       headers: new HttpHeaders({
         'Content-Type': 'application/json',
+        // tslint:disable-next-line:object-literal-key-quotes
         'Authorization': 'Basic ' + usercredentials,
       })
     };
     return this.httpClient.post(AppSettings.URL + 'login', user, httpOptions).pipe(map((res: Response) => {
-      if (usercredentials !== '' ) {
-        this.loggedIn.next(true);
-        this.router.navigate(['/']);
-      }
+
       return res;
     }));
   }
