@@ -13,6 +13,9 @@
       <a mat-list-item >Checkin Books List</a>
       <a mat-list-item >Owners</a>
       <a mat-list-item >Users</a>
+      <a mat-list-item class="mt-4" style="cursor: pointer" routerLink="/add-book" [routerLinkActive]="['is-active']">
+        <button class="add-bookbtn" mat-button mat-raised-button >Add Books</button>
+      </a>
     </mat-nav-list>
   </mat-sidenav>
   <mat-sidenav-content>

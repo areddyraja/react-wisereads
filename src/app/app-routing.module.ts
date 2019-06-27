@@ -5,6 +5,7 @@ import { CardsComponent } from './cards/cards.component';
 import { BookListComponent } from './book-list/book-list.component';
 import { CheckoutBooksComponent } from './checkout-books/checkout-books.component';
 
+
 const routes: Routes = [
   {
     path: '', component: CardsComponent
@@ -17,7 +18,10 @@ const routes: Routes = [
   },
   {
     path: 'checkout-books', component: CheckoutBooksComponent
-  }
+  },
+  {
+    path: 'add-book', loadChildren: './books/books.module#BooksModule'
+  },
 ];
 
 @NgModule({
