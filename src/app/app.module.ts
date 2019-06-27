@@ -12,13 +12,19 @@ import { MatToolbarModule, MatSidenavModule, MatNativeDateModule, MatSelectModul
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { FormsModule } from '@angular/forms';
 import { ReactiveFormsModule } from '@angular/forms';
+import { ToastrModule } from 'ngx-toastr';
+
 
 import { CardsComponent } from './cards/cards.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { BookListComponent } from './book-list/book-list.component';
 import { CheckoutBooksComponent } from './checkout-books/checkout-books.component';
 import { AddUserComponent } from './add-user/add-user.component';
+import { HomeLayoutComponent } from './layout/home-layout.component';
+import { LoginLayoutComponent } from './layout/login-layout.component';
+import { LoginComponent } from './login/login.component';
 
+import { AuthGuard } from './guard/auth.guard';
 
 @NgModule({
   declarations: [
@@ -28,6 +34,9 @@ import { AddUserComponent } from './add-user/add-user.component';
     BookListComponent,
     CheckoutBooksComponent,
     AddUserComponent,
+    LoginComponent,
+    HomeLayoutComponent,
+    LoginLayoutComponent
   ],
   imports: [
     BrowserModule,
@@ -53,10 +62,18 @@ import { AddUserComponent } from './add-user/add-user.component';
     MatDatepickerModule,
     MatNativeDateModule,
     AngularFontAwesomeModule,
-    HttpClientModule
+    HttpClientModule,
+    AngularFontAwesomeModule,
+    FormsModule,
+    HttpClientModule,
+    ToastrModule.forRoot(
+      {
+        preventDuplicates: true,
+        timeOut: 1500,
+      }),
   ],
   providers: [
-    MatDatepickerModule
+    MatDatepickerModule, AuthGuard,
   ],
   bootstrap: [AppComponent]
 })

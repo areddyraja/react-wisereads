@@ -1,0 +1,83 @@
+<!-- <button (click)="logIn()">LogIn</button> -->
+<div class="split left">
+  
+          <!-- <img mat-card-image src="./../../assets/images/Group.png" alt="Photo of a Shiba Inu"> -->
+
+    <p class="About-WiseReads">About WiseReads</p>
+    <div class="content-box">
+    <p class="content">Lorem ipsum, or lipsum as it is sometimes known, is dummy text used in laying out print, graphic or web designs. The passage is attributed to an unknown typesetter in the 15th century who is thought to have scrambled parts of Cicero’s De Finibus Bonorum et Malorum for use in a type specimen book.
+    </p>
+
+    <mat-card class="example-card">
+        <mat-card-header>
+          <mat-card-title style="color: #6868e9">Support</mat-card-title>
+          <!-- <mat-card-subtitle>Dog Breed</mat-card-subtitle> -->
+        </mat-card-header>
+        <div mat-card-avatar class="example-header-image"></div>
+
+        <mat-card-content>
+          <div class="cnt-spt">
+              Call: 9354533923 <br>
+              Email: support@wisereads.com  
+          </div>
+        </mat-card-content>
+        <!-- <mat-card-actions>
+          <button mat-button>LIKE</button>
+          <button mat-button>SHARE</button>
+        </mat-card-actions> -->
+      </mat-card>
+  </div>
+
+  
+</div>
+
+<div class="split right">
+  <div class="centered">
+
+<div class="wiseReads-box">
+          <!-- <img mat-card-image src="https://material.angular.io/assets/img/examples/shiba2.jpg" alt="Photo of a Shiba Inu"> -->
+
+    <p class="WiseReads">WiseReads</p>
+    <p class="Login">Login</p>
+    <form class="form1" #LoginForm="ngForm">
+        <!-- <div class="field1"> -->
+          <mat-form-field >
+              <input matInput placeholder="User Name" name="email" [(ngModel)]="user.email"
+                  [(value)] ="user.email" #email="ngModel" required autofocus>
+          </mat-form-field>
+          <mat-form-field >
+              <input matInput placeholder="Password" type="password" name="password"
+                  [(value)] ="user.password" [(ngModel)]="user.password" #password="ngModel" required>
+          </mat-form-field>
+        <!-- </div> -->
+      </form>
+<div class="login-btn">
+      <button [disabled]="!LoginForm.form.valid" mat-raised-button
+                                (click)="signIn()" style="background-color: #2fc7f5 ;color: #ffffff">LOGIN <i class="fal fa-sign-in"></i></button>
+                              </div>
+</div>
+<!-- <div class="login-box">
+    <p class="Login">Login</p>
+</div>
+
+
+    <form class="" #LoginForm="ngForm">
+      <div class="field1">
+        <mat-form-field >
+            <input matInput placeholder="User Name" name="email" [(ngModel)]="user.email"
+                #email="ngModel" required autofocus>
+        </mat-form-field>
+        <mat-form-field >
+            <input matInput placeholder="Password" type="password" name="password"
+                [(ngModel)]="user.password" #password="ngModel" required>
+        </mat-form-field>
+      </div>
+    </form> -->
+
+
+    <!-- <button class="login-btn" [disabled]="!LoginForm.form.valid" mat-raised-button
+                                (click)="logIn()" color="primary">Sign In <i class="fal fa-sign-in"></i></button> -->
+
+</div>
+</div>
+

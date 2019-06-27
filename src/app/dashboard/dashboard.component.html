@@ -32,6 +32,14 @@
       <div class="search">
           <input matInput placeholder="Search Book / User / Genre / Author">
       </div>
+
+      <div class="logo-set">
+          
+          <a  class="logout float-right" (click)="logOut()" mat-list-item
+              routerLinkActive="active">
+              <i class="fal fa-sign-out"></i> <span>Logout</span>
+          </a>
+      </div>
     </mat-toolbar>
     <div class="p-5">
       <router-outlet></router-outlet>

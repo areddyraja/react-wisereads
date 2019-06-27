@@ -92,3 +92,15 @@ textarea:focus, input:focus{
   font-size: 18px;
   font-weight: 500;
 }
+.logo-set {
+  display: flex;
+  width: 100%;
+  .logout {
+      font-size: 16px;
+      cursor: pointer;
+      i {
+          margin-right: 7px;
+      }
+      padding-left: 88%;
+  }
+}
