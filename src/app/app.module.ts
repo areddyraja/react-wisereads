@@ -7,7 +7,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { AngularFontAwesomeModule } from 'angular-font-awesome';
 import { LayoutModule } from '@angular/cdk/layout';
 // tslint:disable-next-line:max-line-length
-import { MatToolbarModule, MatSidenavModule, MatIconModule, MatSortModule, MatListModule, MatCardModule, MatInputModule, MatTableModule, MatButtonModule, MatPaginatorModule } from '@angular/material';
+import { MatToolbarModule, MatSidenavModule, MatIconModule, MatSortModule, MatListModule, MatCardModule, MatInputModule, MatTableModule, MatButtonModule, MatPaginatorModule, MatSelectModule, MatDatepickerModule, MatNativeDateModule, MatExpansionModule } from '@angular/material';
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { ToastrModule } from 'ngx-toastr';
  
@@ -19,6 +19,7 @@ import { CheckoutBooksComponent } from './checkout-books/checkout-books.componen
 import { LoginComponent } from './login/login.component';
 import { FormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
+import { AddUserComponent } from './add-user/add-user.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -26,7 +27,8 @@ import { HttpClientModule } from '@angular/common/http';
     CardsComponent,
     BookListComponent,
     CheckoutBooksComponent,
-    LoginComponent
+    LoginComponent,
+    AddUserComponent
   ],
   imports: [
     BrowserModule,
@@ -53,6 +55,10 @@ import { HttpClientModule } from '@angular/common/http';
         preventDuplicates: true,
         timeOut: 1500,
       }),
+      MatSelectModule,
+      MatDatepickerModule,
+      MatNativeDateModule,
+      MatExpansionModule
   ],
   providers: [],
   bootstrap: [AppComponent]
