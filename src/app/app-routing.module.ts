@@ -9,6 +9,7 @@ import { LoginComponent } from './login/login.component';
 import { SigninService } from './services/authGuard.service';
 import { HomeLayoutComponent } from './layout/home-layout.component';
 import { LoginLayoutComponent } from './layout/login-layout.component';
+import { AddUserComponent } from './add-user/add-user.component';
 
 const routes: Routes = [
   {
@@ -31,6 +32,9 @@ const routes: Routes = [
       {
         path: 'checkout-books', component: CheckoutBooksComponent
       },
+      {
+        path: 'app-add-user', component: AddUserComponent
+      }
     ]
   },
   {

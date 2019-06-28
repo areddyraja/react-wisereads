@@ -12,10 +12,11 @@
       <a mat-list-item style="cursor: pointer" routerLink="/checkout-books" [routerLinkActive]="['is-active']">Checkout Books List</a>
       <a mat-list-item >Checkin Books List</a>
       <a mat-list-item >Owners</a>
-      <a mat-list-item >Users</a>
+      <a mat-list-item routerLink="/app-add-user" [routerLinkActive]="['is-active']">Users</a>
       <a mat-list-item class="mt-4" style="cursor: pointer" routerLink="/add-book" [routerLinkActive]="['is-active']">
         <button class="add-bookbtn" mat-button mat-raised-button >Add Books</button>
       </a>
+      
     </mat-nav-list>
   </mat-sidenav>
   <mat-sidenav-content>
@@ -43,6 +44,7 @@
     </mat-toolbar>
     <div class="p-5">
       <router-outlet></router-outlet>
+     
     </div>
   </mat-sidenav-content>
 </mat-sidenav-container>

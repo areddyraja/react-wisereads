@@ -30,10 +30,11 @@ user:Object={
   signIn(): void {
     this.loginService.logIn(this.user).subscribe((data: any) => {
       console.log(data,data.success);
+      localStorage.setItem("name",data.resultsMap.userDetails.firstName)
      
       if (data.success==true) {
           this.router.navigateByUrl('/app-dashboard');
-
+        // location.assign('/app-dashboard')
         
       } else {
         this.toastr.error("Invalid credentials");

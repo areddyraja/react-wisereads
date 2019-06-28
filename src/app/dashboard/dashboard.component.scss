@@ -104,3 +104,15 @@ textarea:focus, input:focus{
       padding-left: 88%;
   }
 }
+
+.profile-userpic {
+  img {
+      float: none;
+      margin: 0 auto;
+      width: 50%;
+      height: 70%;
+      -webkit-border-radius: 20% !important;
+      -moz-border-radius: 20% !important;
+      border-radius: 20% !important;
+  }
+}

@@ -1,0 +1,51 @@
+
+
+  .body-container {
+    padding: 20px 24px;
+    height: calc(100vh - 148px);
+}
+
+.container-box {
+    background-color: #fff;
+    padding: 40px;
+    border-radius: 5px;
+    box-shadow: 0 2px 4px -1px rgba(0, 0, 0, 0.2), 0 4px 5px 0 rgba(0, 0, 0, 0.14), 0 1px 10px 0 rgba(0, 0, 0, 0.12);
+    height: calc(100vh - 186px);
+    overflow: auto;
+    margin-top: -40px;
+    margin-left: -16px;
+}
+
+.flex-container {
+    display: flex;
+    .card-container {
+        flex-direction: row;
+        .fuse-card {
+            width: 33%;
+        }
+    }
+}
+
+.flex-wrap {
+    -ms-flex-wrap: wrap!important;
+    flex-wrap: wrap!important;
+    height: 92%;
+}
+
+.column {
+    float: left;
+    width: 50%;
+    padding: 10px;
+    height: 300px; /* Should be removed. Only for demonstration */
+  }
+  
+  /* Clear floats after the columns */
+  .row:after {
+    content: "";
+    display: table;
+    clear: both;
+  }
+
+  mat-form-field{
+      width:450px
+  }
