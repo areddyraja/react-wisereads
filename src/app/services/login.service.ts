@@ -34,7 +34,7 @@ export class LoginService {
       // headers: new HttpHeaders().getAll('Authorization')
       };
     return this.httpClient.post(AppSettings.URL + 'login', user, httpOptions).pipe(map((res: Response) => {
-      console.log('response',res.headers)
+      console.log('response', res.headers);
       return res;
     }));
 

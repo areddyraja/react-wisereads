@@ -10,6 +10,7 @@ import { SigninService } from './services/authGuard.service';
 import { HomeLayoutComponent } from './layout/home-layout.component';
 import { LoginLayoutComponent } from './layout/login-layout.component';
 import { AddUserComponent } from './add-user/add-user.component';
+import { InventoryComponent } from './inventory/inventory.component';
 
 const routes: Routes = [
   {
@@ -34,6 +35,9 @@ const routes: Routes = [
       },
       {
         path: 'app-add-user', component: AddUserComponent
+      },
+      {
+        path: 'inventory', component: InventoryComponent
       }
     ]
   },

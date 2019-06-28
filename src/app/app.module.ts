@@ -13,6 +13,7 @@ import { FlexLayoutModule } from '@angular/flex-layout';
 import { FormsModule } from '@angular/forms';
 import { ReactiveFormsModule } from '@angular/forms';
 import { ToastrModule } from 'ngx-toastr';
+import { NgxDatatableModule } from '@swimlane/ngx-datatable';
 
 
 import { CardsComponent } from './cards/cards.component';
@@ -24,6 +25,7 @@ import { HomeLayoutComponent } from './layout/home-layout.component';
 import { LoginLayoutComponent } from './layout/login-layout.component';
 import { LoginComponent } from './login/login.component';
 import { AuthorizationInterceptor } from './auth/authorization.interceptors';
+import { InventoryComponent } from './inventory/inventory.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -34,7 +36,8 @@ import { AuthorizationInterceptor } from './auth/authorization.interceptors';
     AddUserComponent,
     LoginComponent,
     HomeLayoutComponent,
-    LoginLayoutComponent
+    LoginLayoutComponent,
+    InventoryComponent
   ],
   imports: [
     BrowserModule,
@@ -63,6 +66,7 @@ import { AuthorizationInterceptor } from './auth/authorization.interceptors';
     HttpClientModule,
     AngularFontAwesomeModule,
     FormsModule,
+    NgxDatatableModule,
     HttpClientModule,
     ToastrModule.forRoot(
       {

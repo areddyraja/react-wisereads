@@ -4,6 +4,7 @@ import { LoginService } from '../services/login.service';
 import { ToastrService } from 'ngx-toastr';
 
 @Component({
+  // tslint:disable-next-line:component-selector
   selector: 'login',
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.scss']
@@ -13,7 +14,7 @@ export class LoginComponent implements OnInit {
 //   email: 'sai@omniwyse.com',
 //   password: 'sai'
 // };
-user:Object={}
+user: object = {};
   constructor(
     private router: Router,
     private toastr: ToastrService,
@@ -24,15 +25,15 @@ user:Object={}
   ngOnInit() {
   }
 
-  logIn(){
+  logIn() {
     this.router.navigateByUrl('/app-dashboard');
   }
 
   signIn(): void {
     this.loginService.logIn(this.user).subscribe((data: any) => {
-      console.log(data,data.success);
+      console.log(data, data.success);
       // localStorage.setItem('name', data.resultsMap.userDetails.firstName)
-      localStorage.setItem('Token', data.resultsMap.sessionToken)
+      localStorage.setItem('Token', data.resultsMap.sessionToken);
 
       if (data.success === true) {
           this.router.navigateByUrl('/app-dashboard');
