@@ -38,4 +38,29 @@ export class SaveUserService {
       return res;
     }));
   }
+
+
+  usersList(){
+    const httpOptions = {
+      headers: new HttpHeaders({
+        'Content-Type': 'application/json',
+        'Authorization': 'Bearer ' + localStorage.getItem('Token'),
+      }),
+    };
+    return this.httpClient.get(AppSettings.URL + 'api/users', httpOptions).pipe(map((res: Response) => {
+      return res;
+    }));
+  }
+
+  checkOutBooksList(){
+    const httpOptions = {
+      headers: new HttpHeaders({
+        'Content-Type': 'application/json',
+        'Authorization': 'Bearer ' + localStorage.getItem('Token'),
+      }),
+    };
+    return this.httpClient.get(AppSettings.URL + 'api/checked-out-books', httpOptions).pipe(map((res: Response) => {
+      return res;
+    }));
+  }
 }

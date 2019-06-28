@@ -24,6 +24,8 @@ import { HomeLayoutComponent } from './layout/home-layout.component';
 import { LoginLayoutComponent } from './layout/login-layout.component';
 import { LoginComponent } from './login/login.component';
 import { AuthorizationInterceptor } from './auth/authorization.interceptors';
+import { UsersListComponent } from './users-list/users-list.component';
+import { CheckOutBooksComponent } from './check-out-books/check-out-books.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -34,7 +36,9 @@ import { AuthorizationInterceptor } from './auth/authorization.interceptors';
     AddUserComponent,
     LoginComponent,
     HomeLayoutComponent,
-    LoginLayoutComponent
+    LoginLayoutComponent,
+    UsersListComponent,
+    CheckOutBooksComponent
   ],
   imports: [
     BrowserModule,
