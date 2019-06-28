@@ -9,10 +9,11 @@ import { ToastrService } from 'ngx-toastr';
   styleUrls: ['./login.component.scss']
 })
 export class LoginComponent implements OnInit {
-user:Object={
-  email:'sai@omniwyse.com',
-  password:'sai'
-};
+// user: object = {
+//   email: 'sai@omniwyse.com',
+//   password: 'sai'
+// };
+user:Object={}
   constructor(
     private router: Router,
     private toastr: ToastrService,
@@ -30,18 +31,19 @@ user:Object={
   signIn(): void {
     this.loginService.logIn(this.user).subscribe((data: any) => {
       console.log(data,data.success);
-      localStorage.setItem("name",data.resultsMap.userDetails.firstName)
-     
-      if (data.success==true) {
+      // localStorage.setItem('name', data.resultsMap.userDetails.firstName)
+      localStorage.setItem('Token', data.resultsMap.sessionToken)
+
+      if (data.success === true) {
           this.router.navigateByUrl('/app-dashboard');
         // location.assign('/app-dashboard')
-        
       } else {
-        this.toastr.error("Invalid credentials");
+        this.toastr.error('Invalid credentials');
       }
     },
       error => {
-        this.toastr.error(error.error.message);
+        // this.toastr.error(error.error.message);
+        console.log(error);
       });
   }
 

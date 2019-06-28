@@ -8,7 +8,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { AngularFontAwesomeModule } from 'angular-font-awesome';
 import { LayoutModule } from '@angular/cdk/layout';
 // tslint:disable-next-line:max-line-length
-import { MatToolbarModule, MatSidenavModule, MatNativeDateModule, MatSelectModule, MatDatepickerModule, MatFormFieldModule, MatIconModule, MatSortModule, MatListModule, MatCardModule, MatInputModule, MatTableModule, MatButtonModule, MatPaginatorModule,MatExpansionModule } from '@angular/material';
+import { MatToolbarModule, MatSidenavModule, MatNativeDateModule, MatSelectModule, MatDatepickerModule, MatFormFieldModule, MatIconModule, MatSortModule, MatListModule, MatCardModule, MatInputModule, MatTableModule, MatButtonModule, MatPaginatorModule, MatExpansionModule } from '@angular/material';
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { FormsModule } from '@angular/forms';
 import { ReactiveFormsModule } from '@angular/forms';
@@ -23,6 +23,7 @@ import { AddUserComponent } from './add-user/add-user.component';
 import { HomeLayoutComponent } from './layout/home-layout.component';
 import { LoginLayoutComponent } from './layout/login-layout.component';
 import { LoginComponent } from './login/login.component';
+import { AuthorizationInterceptor } from './auth/authorization.interceptors';
 @NgModule({
   declarations: [
     AppComponent,
@@ -71,10 +72,15 @@ import { LoginComponent } from './login/login.component';
       MatSelectModule,
       MatDatepickerModule,
       MatNativeDateModule,
-      MatExpansionModule
+      MatExpansionModule,
   ],
   providers: [
-    MatDatepickerModule
+    MatDatepickerModule,
+    // {
+    //   provide: HTTP_INTERCEPTORS,
+    //   useClass: AuthorizationInterceptor,
+    //   multi: true
+    // },
   ],
   bootstrap: [AppComponent]
 })
