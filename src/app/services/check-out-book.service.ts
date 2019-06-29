@@ -6,7 +6,8 @@ import { AppSettings } from '../apiUrl';
 @Injectable({
   providedIn: 'root'
 })
-export class SaveUserService {
+
+export class CheckOutBookService {
 
   constructor(private httpClient: HttpClient) { }
   httpOptions = {
@@ -15,29 +16,20 @@ export class SaveUserService {
       'Authorization': 'Bearer ' + localStorage.getItem('Token'),
     }),
   };
-
-
-  loadComboDropDowns(body) {
+  loadComboCheckedStatus(body) {
     return this.httpClient.post(AppSettings.URL + 'api/combo-box-tables', body, this.httpOptions).pipe(map((res: Response) => {
-      return res;
-    }));
-  }
-
-  saveuser(adduser: any) {
-    return this.httpClient.post(AppSettings.URL + 'api/users', adduser, this.httpOptions).pipe(map((res: Response) => {
-      return res;
-    }));
-  }
-
-
-  usersList() {
-    return this.httpClient.get(AppSettings.URL + 'api/users', this.httpOptions).pipe(map((res: Response) => {
       return res;
     }));
   }
 
   checkOutBooksList() {
     return this.httpClient.get(AppSettings.URL + 'api/checked-out-books', this.httpOptions).pipe(map((res: Response) => {
+      return res;
+    }));
+  }
+
+  updateBookStatus(obj) {
+    return this.httpClient.put(AppSettings.URL + 'api/checked-out-books/order-details/book-status', obj, this.httpOptions).pipe(map((res: Response) => {
       return res;
     }));
   }

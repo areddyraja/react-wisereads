@@ -18,7 +18,6 @@ import { ToastrModule } from 'ngx-toastr';
 import { CardsComponent } from './cards/cards.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { BookListComponent } from './book-list/book-list.component';
-import { CheckoutBooksComponent } from './checkout-books/checkout-books.component';
 import { AddUserComponent } from './add-user/add-user.component';
 import { HomeLayoutComponent } from './layout/home-layout.component';
 import { LoginLayoutComponent } from './layout/login-layout.component';
@@ -32,7 +31,6 @@ import { CheckOutBooksComponent } from './check-out-books/check-out-books.compon
     DashboardComponent,
     CardsComponent,
     BookListComponent,
-    CheckoutBooksComponent,
     AddUserComponent,
     LoginComponent,
     HomeLayoutComponent,
