@@ -19,7 +19,6 @@ import { NgxDatatableModule } from '@swimlane/ngx-datatable';
 import { CardsComponent } from './cards/cards.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { BookListComponent } from './book-list/book-list.component';
-import { CheckoutBooksComponent } from './checkout-books/checkout-books.component';
 import { AddUserComponent } from './add-user/add-user.component';
 import { HomeLayoutComponent } from './layout/home-layout.component';
 import { LoginLayoutComponent } from './layout/login-layout.component';
@@ -27,23 +26,24 @@ import { LoginComponent } from './login/login.component';
 import { AuthorizationInterceptor } from './auth/authorization.interceptors';
 import { InventoryComponent } from './inventory/inventory.component';
 import { SearchComponent } from './search/search.component';
-import { TopNavbarComponent } from './top-navbar/top-navbar.component';
 import { SingleBookComponent } from './single-book/single-book.component';
+import { UsersListComponent } from './users-list/users-list.component';
+import { CheckOutBooksComponent } from './check-out-books/check-out-books.component';
 @NgModule({
   declarations: [
     AppComponent,
     DashboardComponent,
     CardsComponent,
     BookListComponent,
-    CheckoutBooksComponent,
     AddUserComponent,
     LoginComponent,
     HomeLayoutComponent,
     LoginLayoutComponent,
     InventoryComponent,
     SearchComponent,
-    TopNavbarComponent,
-    SingleBookComponent
+    SingleBookComponent,
+    UsersListComponent,
+    CheckOutBooksComponent
   ],
   imports: [
     BrowserModule,

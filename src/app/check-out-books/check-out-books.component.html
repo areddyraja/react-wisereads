@@ -1,0 +1,97 @@
+<div fxLayout fxLayout.xs="column" fxLayoutAlign="left" fxLayoutGap="10px" fxLayoutGap.xs="0">
+  <div class="item item-1" fxFlex="50%">
+    <img class="dashboard-img" src="../../assets/images/metrics (1).png">
+    <h1>Checkout Books</h1>
+  </div>
+
+</div>
+
+
+<div class="example-container mat-elevation-z8">
+  <mat-table #table [dataSource]="dataSource" [class.isMobile]="isMobile">
+
+    <ng-container matColumnDef="invId">
+      <mat-header-cell *matHeaderCellDef> Inv ID </mat-header-cell>
+      <mat-cell *matCellDef="let element">
+        {{element.inventoryId}}
+      </mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="orderId">
+      <mat-header-cell *matHeaderCellDef> Order ID</mat-header-cell>
+      <mat-cell *matCellDef="let element">
+        {{element.orderId}}
+      </mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="bookName">
+      <mat-header-cell *matHeaderCellDef> Book Name </mat-header-cell>
+      <mat-cell *matCellDef="let element">
+        {{element.title}}
+      </mat-cell>
+    </ng-container>
+
+
+    <ng-container matColumnDef="userName">
+      <mat-header-cell *matHeaderCellDef> User Name </mat-header-cell>
+      <mat-cell *matCellDef="let element">
+        {{element.userEmail}}
+      </mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="checkOutDate">
+      <mat-header-cell *matHeaderCellDef> CheckOut Date</mat-header-cell>
+      <mat-cell *matCellDef="let element">
+        {{element.checkedOutDate| date:'dd/MM/yyyy'}}
+      </mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="dueDate">
+      <mat-header-cell *matHeaderCellDef> Due Date </mat-header-cell>
+      <mat-cell *matCellDef="let element">
+        <span *ngIf='element.returnedDate!=null'>{{element.returnedDate| date:'dd/MM/yyyy'}}</span>
+        <span *ngIf='element.returnedDate==null'> -</span>
+      </mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="dueAmt">
+      <mat-header-cell *matHeaderCellDef> Due Amt </mat-header-cell>
+      <mat-cell *matCellDef="let element">
+        {{element.totalAmount}}
+      </mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="returnDate">
+      <mat-header-cell *matHeaderCellDef> Return Date </mat-header-cell>
+      <mat-cell *matCellDef="let element">
+        {{element.expReturnDate| date:'dd/MM/yyyy'}}
+      </mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="status">
+      <mat-header-cell *matHeaderCellDef> Status</mat-header-cell>
+      <mat-cell *matCellDef="let element;let i = index">
+
+        <mat-select placeholder="Select Status" name="checked_status_id" id="checked_status_id">
+          <mat-option *ngFor="let id of comboBoxesDataCheckedStatus" [value]="id.checked_status_id" (click)="updateBookStatus(i,element,id.checked_status_id)">{{id.checked_status}}
+          </mat-option>
+        </mat-select>
+
+      </mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="totalAmtPaid">
+      <mat-header-cell *matHeaderCellDef> Total Amt paid </mat-header-cell>
+      <mat-cell *matCellDef="let element; let i = index">
+        <mat-form-field>
+          <input style="text-align: center;" matInput type="number" name="amountPaid" [(ngModel)]="amountPaid[i]"
+            pattern="^[a-zA-Z0-9- ]{1,30}$" required maxlength="40" />
+        </mat-form-field>
+      </mat-cell>
+    </ng-container>
+    <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+    <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+  </mat-table>
+
+  <mat-paginator #paginator [pageSizeOptions]="[5, 10, 20]" showFirstLastButtons></mat-paginator>
+</div>

@@ -10,11 +10,11 @@ import { ToastrService } from 'ngx-toastr';
   styleUrls: ['./login.component.scss']
 })
 export class LoginComponent implements OnInit {
-// user: object = {
-//   email: 'sai@omniwyse.com',
-//   password: 'sai'
-// };
-user: object = {};
+user: object = {
+  email: 'satish@omniwyse.com',
+  password: 'satish'
+};
+// user:Object={}
   constructor(
     private router: Router,
     private toastr: ToastrService,
@@ -32,7 +32,7 @@ user: object = {};
   signIn(): void {
     this.loginService.logIn(this.user).subscribe((data: any) => {
       console.log(data, data.success);
-      // localStorage.setItem('name', data.resultsMap.userDetails.firstName)
+      localStorage.setItem('name', data.resultsMap.userRoles[0].createdBy);
       localStorage.setItem('Token', data.resultsMap.sessionToken);
 
       if (data.success === true) {
