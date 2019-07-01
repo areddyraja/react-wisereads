@@ -26,8 +26,8 @@ export class UsersListComponent implements OnInit {
 
     this.userService.usersList().subscribe((data: any) => {
       this.ELEMENT_DATA = data.results;
-      console.log('elementData', this.ELEMENT_DATA)
-      console.log('data', data)
+      console.log('elementData', this.ELEMENT_DATA);
+      console.log('data', data);
       this.dataSource = new MatTableDataSource(this.ELEMENT_DATA);
       this.dataSource.paginator = this.paginator;
     }),
@@ -35,6 +35,6 @@ export class UsersListComponent implements OnInit {
       err => {
         // this.toastr.error(err.error.message);
         console.log(err);
-      }
+      };
   }
 }

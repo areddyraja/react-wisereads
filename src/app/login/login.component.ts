@@ -30,9 +30,9 @@ user: object = {
 
   signIn(): void {
     this.loginService.logIn(this.user).subscribe((data: any) => {
-      console.log(data,data.success);
-      localStorage.setItem('name', data.resultsMap.userRoles[0].createdBy)
-      localStorage.setItem('Token', data.resultsMap.sessionToken)
+      console.log(data, data.success);
+      localStorage.setItem('name', data.resultsMap.userRoles[0].createdBy);
+      localStorage.setItem('Token', data.resultsMap.sessionToken);
 
       if (data.success === true) {
           this.router.navigateByUrl('/app-dashboard');

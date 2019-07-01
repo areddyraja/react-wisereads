@@ -23,7 +23,7 @@ export class LoginService {
       params: new HttpParams().set(user.email, user.password),
     };
     return this.httpClient.post(AppSettings.URL + 'login', user, httpOptions).pipe(map((res: Response) => {
-      console.log('response', res.headers)
+      console.log('response', res.headers);
       return res;
     }));
   }

@@ -12,10 +12,12 @@ import { CheckOutBookService } from '../services/check-out-book.service';
 export class CheckOutBooksComponent implements OnInit {
   dataSource;
   ELEMENT_DATA = [];
-  displayedColumns: string[] = ['invId', 'orderId', 'bookName', 'userName', 'checkOutDate', 'dueDate', 'dueAmt', 'returnDate', 'status','totalAmtPaid'];
-  checkOut: any ={};
-  public amountPaid : any = [];
+  displayedColumns: string[] = ['invId', 'orderId', 'bookName', 'userName', 'checkOutDate', 'dueDate', 'dueAmt', 'returnDate', 'status',
+  'totalAmtPaid'];
+  checkOut: any = {};
+  public amountPaid: any = [];
   comboBoxesDataCheckedStatus: any;
+  allowedChars = new Set('0123456789'.split('').map(c => c.charCodeAt(0)));
 
   constructor(
     private checkOutBooksSerive: CheckOutBookService,
@@ -32,15 +34,15 @@ export class CheckOutBooksComponent implements OnInit {
 
     this.checkOutBooksSerive.checkOutBooksList().subscribe((data: any) => {
           this.ELEMENT_DATA = data.results;
-          console.log('elementData1',this.ELEMENT_DATA)
-          console.log('data1',data)
+          console.log('elementData1', this.ELEMENT_DATA);
+          console.log('data1', data);
           this.dataSource = new MatTableDataSource(this.ELEMENT_DATA);
           this.dataSource.paginator = this.paginator;
     }),
       err => {
         // this.toastr.error(err.error.message);
       console.log(err);
-      }
+      };
 
   }
 
@@ -62,28 +64,38 @@ export class CheckOutBooksComponent implements OnInit {
     );
   }
 
-  updateBookStatus(index,objData,id): void {
+  updateBookStatus(index, objData, id): void {
 
-    console.log("index",index)
-    var obj={
-      "checkoutId": objData.checkoutId,
-	    "orderId": objData.orderId,
-	    "bookId": objData.bookId,
-      "inventoryId": objData.inventoryId,
-      "userId": objData.userId,
-		  "amountPaid": this.amountPaid[index],
-		  "createdBy":objData.createdBy,
-		  "checkedItatusId": id
+    console.log('index', index);
+    let obj = {
+      'checkoutId': objData.checkoutId,
+	    'orderId': objData.orderId,
+	    'bookId': objData.bookId,
+      'inventoryId': objData.inventoryId,
+      'userId': objData.userId,
+		  'amountPaid': this.amountPaid[index],
+		  'createdBy':objData.createdBy,
+		  'checkedItatusId': id
 
     }
     this.checkOutBooksSerive.updateBookStatus(obj).subscribe((data: any) => {
           this.ELEMENT_DATA = data;
-          console.log('bookStatus',data)
+          console.log('bookStatus', data);
     }),
       err => {
         // this.toastr.error(err.error.message);
       console.log(err);
       }
     
+  }
+
+  check(event: KeyboardEvent): void {
+    // 31 and below are control keys, don't block them.
+    if (event.keyCode > 31 && !this.allowedChars.has(event.keyCode)) {
+      // alert(event.keyCode)
+      if (!((event.keyCode > 95 && event.keyCode < 106) || (event.keyCode === 37) || (event.keyCode === 39))){
+        event.preventDefault();
+      }
+    }
   }
 }
