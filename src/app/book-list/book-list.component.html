@@ -10,10 +10,11 @@
   </div>
   <div class="item item-2" fxFlex="50%">
 
-      <input type="file" (change)="onSelectFile($event)">
-      <button type="button" (click)="onUpload()">Upload</button>
-      
-      <button class="mr-2 action-button" mat-button mat-raised-button>Import Books</button>
+      <!-- <input type="file" (change)="onSelectFile($event)"> -->
+      <div class="input-container">
+        <input type="file" id="real-input" (change)="onSelectFile($event)">
+      </div>
+      <button class="mr-2 action-button" (click)="onUpload()" mat-button mat-raised-button>Import Books</button>
       <button class="action-button" mat-button mat-raised-button>Add Books</button>
   </div>
 </div>
@@ -53,7 +54,7 @@
         <mat-header-cell *matHeaderCellDef> Genre </mat-header-cell>
         <mat-cell *matCellDef="let element"> 
           <span class="mobile-label">Genre:</span>
-          {{element.genreId}} 
+          {{element.genre}} 
         </mat-cell>
       </ng-container>
   
