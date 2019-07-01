@@ -29,6 +29,7 @@ import { SearchComponent } from './search/search.component';
 import { SingleBookComponent } from './single-book/single-book.component';
 import { UsersListComponent } from './users-list/users-list.component';
 import { CheckOutBooksComponent } from './check-out-books/check-out-books.component';
+import { HomeComponent } from './home/home.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -43,7 +44,8 @@ import { CheckOutBooksComponent } from './check-out-books/check-out-books.compon
     SearchComponent,
     SingleBookComponent,
     UsersListComponent,
-    CheckOutBooksComponent
+    CheckOutBooksComponent,
+    HomeComponent
   ],
   imports: [
     BrowserModule,

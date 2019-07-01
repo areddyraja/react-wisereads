@@ -58,7 +58,7 @@ show:any;
   logOut() {
     localStorage.clear();
     sessionStorage.clear();
-    this.router.navigateByUrl('/login');
+    this.router.navigateByUrl('/home');
   }
 
 }

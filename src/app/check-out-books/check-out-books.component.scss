@@ -2,3 +2,11 @@ mat-form-field{
     width: 46px;
     padding-left: 5px
 }
+.ellipses {
+    white-space: nowrap;
+    width: 6em;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    // border: 1px solid #000000;
+    cursor: pointer;
+}

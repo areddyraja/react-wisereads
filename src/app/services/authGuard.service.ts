@@ -17,7 +17,7 @@ export class SigninService implements CanActivate {
     if (localStorage.getItem('Token') != null) {
       return true;
     } else {
-      this.router.navigate(['login']);
+      this.router.navigate(['home']);
     }
   }
 
