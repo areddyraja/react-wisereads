@@ -4,6 +4,9 @@
 
 .sidenav {
   width: 350px;
+  @media(max-width:1440px){
+    width: 300px;
+  }
 }
 
 .sidenav .mat-toolbar {
@@ -20,6 +23,10 @@
 .menu-items{
   margin-left:40px;
   margin-top:70px;
+  @media(max-width:1440px){
+    margin-left:20px;
+    margin-top:40px;
+  }
 }
 
 .main-name{

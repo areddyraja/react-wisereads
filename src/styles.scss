@@ -8,14 +8,22 @@ $custom-typography: mat-typography-config($font-family: '"Montserrat", sans-seri
 @include mat-core($custom-typography);
 
 
-html, body { height: 100%; }
-body { margin: 0; font-family: 'Montserrat', sans-serif; }
+body { 
+  margin: 0; 
+  font-family: 'Montserrat', sans-serif; 
+}
 
 .mat-toolbar{
     font-family:'SF Compact Display Medium';
 }
 
+// cards
 
+.cards-item{
+  .mat-card-header-text {
+    margin: 0 !important;
+  }
+}
 
 a:hover,a.active,a.selected
   {
@@ -42,7 +50,7 @@ a:hover,a.active,a.selected
 
   .item{
     display: flex; 
-    margin-left:13px;
+    // margin-left:13px;
     margin-bottom: 40px;
     h1{
       font-size: 24px;

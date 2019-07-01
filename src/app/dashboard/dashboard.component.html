@@ -37,8 +37,6 @@
             <!-- <input matInput placeholder="Search Book / User / Genre / Author"> -->
             <input matInput placeholder="Search Book / User / Genre / Author" 
             (keyup)="searchTerm$.next($event.target.value)">
-  
-            
                 <div *ngIf="results" [hidden]="!opened" class="search-result" (click)="clickedInside($event)">
                     <mat-card  class="books-search"  *ngFor="let result of results | slice:0:9">
                       <mat-card-header>
@@ -53,12 +51,7 @@
                         {{result.author}}
                       </mat-card-content>
                     </mat-card>
-                  </div>
-            
-            
-         
-            
-          
+                </div>
           
       </div>
 
@@ -71,7 +64,6 @@
     </mat-toolbar>
     <div class="p-5">
       <router-outlet></router-outlet>
-     
     </div>
   </mat-sidenav-content>
 </mat-sidenav-container>
