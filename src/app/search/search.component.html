@@ -1,0 +1,40 @@
+<!-- <hr /> Value from Parent using @Input: <strong>{{searchTerm}}</strong>
+<div *ngIf="results" class="mt-5" style="z-index: 1;">
+  <mat-card class="total-books"  *ngFor="let result of results | slice:0:9">
+    <mat-card-header>
+      <mat-card-title>
+          <img class="books" src="{{result.imgUrl}}">
+      </mat-card-title>
+      <mat-card-subtitle>
+        {{ result.title }}
+      </mat-card-subtitle>
+    </mat-card-header>
+    <mat-card-content>
+      {{result.description}}
+    </mat-card-content>
+  </mat-card>
+</div> -->
+
+      <div class="search">
+          <!-- <input matInput placeholder="Search Book / User / Genre / Author"> -->
+          <input matInput placeholder="Search Book / User / Genre / Author" 
+          (keyup)="searchTerm$.next($event.target.value)">
+
+          <div class="search-result">
+            <mat-card class="books-search"  *ngFor="let result of results | slice:0:9">
+              <mat-card-header>
+                <mat-card-title>
+                    <img class="books" src="{{result.imgUrl}}">
+                </mat-card-title>
+                <mat-card-subtitle>
+                  {{ result.title }}
+                </mat-card-subtitle>
+              </mat-card-header>
+              <mat-card-content>
+                {{result.description}}
+              </mat-card-content>
+            </mat-card>
+          </div>
+          
+         
+      </div>

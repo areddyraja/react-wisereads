@@ -8,11 +8,13 @@
       <a mat-list-item style="cursor: pointer" routerLink="/cards" [routerLinkActive]="['is-active']">Dashboard</a>
       <a mat-list-item style="cursor: pointer" routerLink="/book_list" [routerLinkActive]="['is-active']">Book List</a>
       <a mat-list-item >Recommended Books</a>
-      <a mat-list-item >Inventory</a>
-      <a mat-list-item style="cursor: pointer" routerLink="/checkout-books" [routerLinkActive]="['is-active']">Checkout Books List</a>
-      <a mat-list-item >Checkin Books List</a>
+      <a mat-list-item  style="cursor: pointer" routerLink="/inventory" [routerLinkActive]="['is-active']">Inventory</a>
+      <a mat-list-item style="cursor: pointer" routerLink="/app-check-out-books" [routerLinkActive]="['is-active']">Checkout & Checkin List</a>
+      <!-- <a mat-list-item >Checkin Books List</a> -->
       <a mat-list-item >Owners</a>
-      <a mat-list-item routerLink="/app-add-user" [routerLinkActive]="['is-active']">Users</a>
+      <!-- <a mat-list-item routerLink="/app-add-user" [routerLinkActive]="['is-active']">Users</a> -->
+      <a mat-list-item routerLink="/app-users-list" [routerLinkActive]="['is-active']">Users</a>
+
       <a mat-list-item class="mt-4" style="cursor: pointer" routerLink="/add-book" [routerLinkActive]="['is-active']">
         <button class="add-bookbtn" mat-button mat-raised-button >Add Books</button>
       </a>
@@ -31,11 +33,36 @@
       </button>
       <i class="fal fa-search"></i>
       <div class="search">
-          <input matInput placeholder="Search Book / User / Genre / Author">
+          <!-- <input matInput placeholder="Search Book / User / Genre / Author"> -->
+            <!-- <input matInput placeholder="Search Book / User / Genre / Author"> -->
+            <input matInput placeholder="Search Book / User / Genre / Author" 
+            (keyup)="searchTerm$.next($event.target.value)">
+  
+            
+                <div *ngIf="results" [hidden]="!opened" class="search-result" (click)="clickedInside($event)">
+                    <mat-card  class="books-search"  *ngFor="let result of results | slice:0:9">
+                      <mat-card-header>
+                        <mat-card-subtitle>
+                          <a [routerLink]="['/book-detail', result.bookId]">
+                            <img class="books-img" src="{{result.imagesUrl1}}">
+                            {{ result.title }}
+                          </a>
+                        </mat-card-subtitle>
+                      </mat-card-header>
+                      <mat-card-content>
+                        {{result.author}}
+                      </mat-card-content>
+                    </mat-card>
+                  </div>
+            
+            
+         
+            
+          
+          
       </div>
 
-      <div class="logo-set">
-          
+      <div class="">
           <a  class="logout float-right" (click)="logOut()" mat-list-item
               routerLinkActive="active">
               <i class="fal fa-sign-out"></i> <span>Logout</span>

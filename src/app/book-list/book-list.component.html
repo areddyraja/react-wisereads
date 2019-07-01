@@ -21,29 +21,25 @@
 
 <div class="example-container mat-elevation-z8">
     <mat-table #table [dataSource]="dataSource" [class.isMobile]="isMobile">
-  
-      <!--- Note that these columns can be defined in any order.
-            The actual rendered columns are set as a property on the row definition" -->
-  
-      <!-- Position Column -->
+
       <ng-container matColumnDef="bookid">
         <mat-header-cell *matHeaderCellDef> Book ID </mat-header-cell>
         <mat-cell *matCellDef="let element"> 
           <span class="mobile-label">Book ID:</span>
-          {{element.bookid}} 
+          {{element.bookId}} 
         </mat-cell>
       </ng-container>
   
-      <!-- Name Column -->
+    
       <ng-container matColumnDef="bookname">
         <mat-header-cell *matHeaderCellDef> Book Name </mat-header-cell>
         <mat-cell *matCellDef="let element"> 
           <span class="mobile-label">Book Name:</span>
-          {{element.bookname}} 
+          {{element.title}} 
         </mat-cell>
       </ng-container>
   
-      <!-- Weight Column -->
+     
       <ng-container matColumnDef="author">
         <mat-header-cell *matHeaderCellDef> Author </mat-header-cell>
         <mat-cell *matCellDef="let element"> 
@@ -52,12 +48,12 @@
         </mat-cell>
       </ng-container>
   
-      <!-- Symbol Column -->
+     
       <ng-container matColumnDef="gnere">
         <mat-header-cell *matHeaderCellDef> Genre </mat-header-cell>
         <mat-cell *matCellDef="let element"> 
           <span class="mobile-label">Genre:</span>
-          {{element.gnere}} 
+          {{element.genreId}} 
         </mat-cell>
       </ng-container>
   
