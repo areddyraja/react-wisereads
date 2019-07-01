@@ -30,7 +30,7 @@ export class SingleBookComponent implements OnInit {
   ngOnInit() {
     this.booksservice.getProduct(this.route.snapshot.params['id']).subscribe((data: any) => {
       console.log(data);
-      this.product = data.resultsMap.books;
+      this.product = data.resultsMap.book;
     });
     this.getbooks();
   } 
