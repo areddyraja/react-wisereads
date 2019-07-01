@@ -6,7 +6,8 @@ import { Headers } from '@angular/http';
 import { AppSettings } from '../apiUrl';
 import { GetBooks } from '../models/get-books';
 import { map } from 'rxjs/operators';
-
+import { ActivatedRoute } from '@angular/router';
+import { Observable } from 'rxjs';
 
 
 
@@ -15,7 +16,9 @@ import { map } from 'rxjs/operators';
 })
 export class BooksService {
 
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient,private route: ActivatedRoute) { }
+  id: any;
+  private sub: any;
 
   AddBooks(books: AddBooks) {
     return this.http.post<AddBooks[]>(`http://13.127.158.42/admin/api/books`, books);
@@ -33,7 +36,35 @@ export class BooksService {
       }));
   }
 
+  baseUrl= 'http://13.127.158.42/api/books/'
 
+  getbooksdetails(id){
+    const httpOptions = {
+      headers: new HttpHeaders({
+        'Content-Type': 'application/json',
+        Authorization: 'Bearer ' + localStorage.getItem('Token'),
+        })
+      };
+    return this.http
+    .get<AddBooks[]>(this.baseUrl + id , httpOptions)
+  }
+
+  private extractData(res: Response) {
+    let body = res;
+    return body || { };
+  }
+
+  getProduct(id): Observable<any> {
+    const httpOptions = {
+      headers: new HttpHeaders({
+        'Content-Type': 'application/json',
+        Authorization: 'Bearer ' + localStorage.getItem('Token'),
+        })
+      };
+    return this.http.get(this.baseUrl  + id, httpOptions).pipe(
+      map(this.extractData));
+  }
+  
   // uploadfile(file: any) {
   //   const httpOptions = {
   //     headers: new HttpHeaders({

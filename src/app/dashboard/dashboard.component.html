@@ -31,11 +31,36 @@
       </button>
       <i class="fal fa-search"></i>
       <div class="search">
-          <input matInput placeholder="Search Book / User / Genre / Author">
+          <!-- <input matInput placeholder="Search Book / User / Genre / Author"> -->
+            <!-- <input matInput placeholder="Search Book / User / Genre / Author"> -->
+            <input matInput placeholder="Search Book / User / Genre / Author" 
+            (keyup)="searchTerm$.next($event.target.value)">
+  
+            
+                <div *ngIf="results" [hidden]="!opened" class="search-result" (click)="clickedInside($event)">
+                    <mat-card  class="books-search"  *ngFor="let result of results | slice:0:9">
+                      <mat-card-header>
+                        <mat-card-subtitle>
+                          <a [routerLink]="['/book-detail', result.bookId]">
+                            <img class="books-img" src="{{result.imagesUrl1}}">
+                            {{ result.title }}
+                          </a>
+                        </mat-card-subtitle>
+                      </mat-card-header>
+                      <mat-card-content>
+                        {{result.author}}
+                      </mat-card-content>
+                    </mat-card>
+                  </div>
+            
+            
+         
+            
+          
+          
       </div>
 
-      <div class="logo-set">
-          
+      <div class="">
           <a  class="logout float-right" (click)="logOut()" mat-list-item
               routerLinkActive="active">
               <i class="fal fa-sign-out"></i> <span>Logout</span>

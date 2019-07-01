@@ -116,3 +116,27 @@ textarea:focus, input:focus{
       border-radius: 20% !important;
   }
 }
+
+
+.search-result{
+  position: absolute;
+  z-index: 1;
+  height: 500px;
+  width:500px;
+  background-color: #ffff;
+  overflow-y: scroll;
+  .books-img{
+    width:100px;
+    height: 100px;;
+  }
+  .books-result{
+    margin:20px;
+    width:450px;
+  }
+  .books-img{
+    width:100px;
+    height: 100px;
+    
+  }
+}
+

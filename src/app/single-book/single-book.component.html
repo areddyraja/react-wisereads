@@ -1,0 +1,50 @@
+<div class="container-fluid book-details" *ngIf="product">
+    <h5 class="book-title">{{product.title}}</h5>
+  <div class=" row" >
+    <div class="col-md-4"> 
+        <img src="{{product.imagesUrl1}}">
+    </div>
+    <div class="col-md-8">
+      {{product.bookDescription}}
+    </div>
+    <br>
+    <div class="col-md-6 mt-5">
+      <ul style="list-style: none; margin-left:-20px;">
+        <li>
+          Author: {{product.author}}
+        </li>
+        <li>
+          Genre: {{product.genreId}}
+        </li>
+        <li>
+          Language: English
+        </li>
+        <li>
+          publisher: {{product.publisher}}
+        </li>
+        <li>
+          Edition: 
+        </li>
+        <li>
+          Price: {{product.bookPrice}}
+        </li>
+      </ul>
+    </div>
+    <div class="col-md-6 mt-5">
+      <ul style="list-style: none; margin-left:-20px;">
+        <li>
+          rental Value: {{product.rentPerMonth}}
+        </li>
+        <li>
+          owner: {{product.ownerId}}
+        </li>
+        <li>
+          Publication Date: {{product.publicationDate}}
+        </li>
+        <li>
+          No. of pages: {{product.numberOfPages}}
+        </li>
+      </ul>
+    </div>
+  </div>
+</div>

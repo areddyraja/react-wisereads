@@ -11,6 +11,7 @@ import { HomeLayoutComponent } from './layout/home-layout.component';
 import { LoginLayoutComponent } from './layout/login-layout.component';
 import { AddUserComponent } from './add-user/add-user.component';
 import { InventoryComponent } from './inventory/inventory.component';
+import { SingleBookComponent } from './single-book/single-book.component';
 
 const routes: Routes = [
   {
@@ -38,6 +39,9 @@ const routes: Routes = [
       },
       {
         path: 'inventory', component: InventoryComponent
+      },
+      {
+        path: 'book-detail/:id', component: SingleBookComponent
       }
     ]
   },

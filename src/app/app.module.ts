@@ -1,14 +1,14 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
-
+import { HttpModule } from '@angular/http';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { AngularFontAwesomeModule } from 'angular-font-awesome';
 import { LayoutModule } from '@angular/cdk/layout';
 // tslint:disable-next-line:max-line-length
-import { MatToolbarModule, MatSidenavModule, MatNativeDateModule, MatSelectModule, MatDatepickerModule, MatFormFieldModule, MatIconModule, MatSortModule, MatListModule, MatCardModule, MatInputModule, MatTableModule, MatButtonModule, MatPaginatorModule, MatExpansionModule } from '@angular/material';
+import { MatToolbarModule,MatDialogModule, MatSidenavModule, MatNativeDateModule, MatSelectModule, MatDatepickerModule, MatFormFieldModule, MatIconModule, MatSortModule, MatListModule, MatCardModule, MatInputModule, MatTableModule, MatButtonModule, MatPaginatorModule, MatExpansionModule } from '@angular/material';
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { FormsModule } from '@angular/forms';
 import { ReactiveFormsModule } from '@angular/forms';
@@ -26,6 +26,9 @@ import { LoginLayoutComponent } from './layout/login-layout.component';
 import { LoginComponent } from './login/login.component';
 import { AuthorizationInterceptor } from './auth/authorization.interceptors';
 import { InventoryComponent } from './inventory/inventory.component';
+import { SearchComponent } from './search/search.component';
+import { TopNavbarComponent } from './top-navbar/top-navbar.component';
+import { SingleBookComponent } from './single-book/single-book.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -37,11 +40,15 @@ import { InventoryComponent } from './inventory/inventory.component';
     LoginComponent,
     HomeLayoutComponent,
     LoginLayoutComponent,
-    InventoryComponent
+    InventoryComponent,
+    SearchComponent,
+    TopNavbarComponent,
+    SingleBookComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
+    MatDialogModule,
     BrowserAnimationsModule,
     LayoutModule,
     MatToolbarModule,
@@ -66,6 +73,7 @@ import { InventoryComponent } from './inventory/inventory.component';
     HttpClientModule,
     AngularFontAwesomeModule,
     FormsModule,
+    HttpModule,
     NgxDatatableModule,
     HttpClientModule,
     ToastrModule.forRoot(
