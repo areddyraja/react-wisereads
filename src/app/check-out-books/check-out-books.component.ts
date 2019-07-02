@@ -11,7 +11,8 @@ import { CheckOutBookService } from '../services/check-out-book.service';
 })
 export class CheckOutBooksComponent implements OnInit {
   dataSource;
-  ELEMENT_DATA = [];
+  dropDownSearch;
+  ELEMENT_DATA:any = [];
   displayedColumns: string[] = ['invId', 'orderId', 'bookName', 'userName', 'checkOutDate', 'dueDate', 'dueAmt', 'returnDate', 'status',
   'totalAmtPaid'];
   checkOut: any = {};
@@ -43,6 +44,20 @@ export class CheckOutBooksComponent implements OnInit {
         // this.toastr.error(err.error.message);
       console.log(err);
       };
+
+  }
+
+  loadUsersListSearch(search){
+
+    this.checkOutBooksSerive.checkOutBooksList().subscribe((data: any) => {
+      this.ELEMENT_DATA = data.results;
+      this.dataSource = new MatTableDataSource(search);
+      this.dataSource.paginator = this.paginator;
+}),
+  err => {
+    // this.toastr.error(err.error.message);
+  console.log(err);
+  };
 
   }
 
@@ -98,4 +113,25 @@ export class CheckOutBooksComponent implements OnInit {
       }
     }
   }
+
+  applyFilter(filterValue: string): void {
+  //   const tableFilters = [];
+  //   tableFilters.push({
+  //     id: 'orderId',
+  //     value: filterValue
+  //   });
+
+
+  //   this.dataSource.filter = JSON.stringify(tableFilters);
+  //   if (this.dataSource.paginator) {
+  //     this.dataSource.paginator.firstPage();
+  //   }
+  // }
+// console.log(this.dataSource)
+// this.ELEMENT_DATA.filter = filterValue;
+    
+     this.dropDownSearch = this.ELEMENT_DATA.filter((item) => item.checkedItatusId == filterValue);
+     this.loadUsersListSearch(this.dropDownSearch);
+  }
+
 }

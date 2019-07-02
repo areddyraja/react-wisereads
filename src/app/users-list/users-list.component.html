@@ -29,7 +29,9 @@
     <ng-container matColumnDef="emailId">
       <mat-header-cell *matHeaderCellDef> Email ID </mat-header-cell>
       <mat-cell *matCellDef="let element">
-        {{element.email}}
+          <div class="ellipses" title="{{element.email}}">
+              {{element.email}}
+          </div>
       </mat-cell>
     </ng-container>
 
@@ -69,5 +71,5 @@
     <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
   </mat-table>
 
-  <mat-paginator #paginator [pageSizeOptions]="[1,5, 10, 20]" showFirstLastButtons></mat-paginator>
+  <mat-paginator #paginator [pageSizeOptions]="[5, 10, 20]" showFirstLastButtons></mat-paginator>
 </div>

@@ -88,4 +88,7 @@ export class AddUserComponent implements OnInit {
       this.addUser.userStatusId = id.user_status_id;
     }
   }
+  cancel(){
+    this.router.navigateByUrl('/app-users-list');
+  }
 }

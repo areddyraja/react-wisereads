@@ -3,7 +3,12 @@
     <img class="dashboard-img" src="../../assets/images/metrics (1).png">
     <h1>Checkout Books</h1>
   </div>
+  <mat-select  placeholder="Select Status" name="checked_status_id" id="checked_status_id">
+      <mat-option *ngFor="let id of comboBoxesDataCheckedStatus" [value]="id.checked_status_id" (click)="applyFilter(id.checked_status_id)">{{id.checked_status}}
+      </mat-option>
+      <!-- <input (keyup)="applyFilter($event.target.value)" matInput placeholder="Search"> -->
 
+    </mat-select>
 </div>
 
 
@@ -35,7 +40,9 @@
     <ng-container matColumnDef="userName">
       <mat-header-cell *matHeaderCellDef> User Name </mat-header-cell>
       <mat-cell *matCellDef="let element">
-        {{element.userEmail}}
+          <div class="ellipses" title="{{element.userEmail}}">
+              {{element.userEmail}}
+          </div>
       </mat-cell>
     </ng-container>
 
@@ -72,7 +79,7 @@
       <mat-header-cell *matHeaderCellDef> Status</mat-header-cell>
       <mat-cell *matCellDef="let element;let i = index">
 
-        <mat-select *ngIf="amountPaid[i]" placeholder="Select Status" name="checked_status_id" id="checked_status_id">
+        <mat-select  name="checked_status_id" id="checked_status_id" [value]="element.checkedItatusId">
           <mat-option *ngFor="let id of comboBoxesDataCheckedStatus" [value]="id.checked_status_id" (click)="updateBookStatus(i,element,id.checked_status_id)">{{id.checked_status}}
           </mat-option>
         </mat-select>

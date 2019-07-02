@@ -147,3 +147,11 @@ textarea:focus, input:focus{
   }
 }
 
+mat-select-value {
+  display: list-item;
+  max-width: 0;
+  // width: 100%;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
