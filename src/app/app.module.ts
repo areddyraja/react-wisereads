@@ -15,7 +15,8 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { ToastrModule } from 'ngx-toastr';
 import { NgxDatatableModule } from '@swimlane/ngx-datatable';
 import { NgxMatSelectSearchModule } from 'ngx-mat-select-search';
-
+import { NguCarouselModule } from '@ngu/carousel';
+import { NgxCarouselModule } from 'ngx-carousel';
 
 import { CardsComponent } from './cards/cards.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
@@ -31,6 +32,7 @@ import { SingleBookComponent } from './single-book/single-book.component';
 import { UsersListComponent } from './users-list/users-list.component';
 import { CheckOutBooksComponent } from './check-out-books/check-out-books.component';
 import { HomeComponent } from './home/home.component';
+import { CarouselModule } from 'ngx-bootstrap';
 @NgModule({
   declarations: [
     AppComponent,
@@ -50,6 +52,7 @@ import { HomeComponent } from './home/home.component';
   ],
   imports: [
     BrowserModule,
+    NgxCarouselModule,
     AppRoutingModule,
     MatDialogModule,
     BrowserAnimationsModule,
@@ -80,6 +83,7 @@ import { HomeComponent } from './home/home.component';
     HttpModule,
     MatAutocompleteModule,
     NgxDatatableModule,
+    NguCarouselModule,
     HttpClientModule,
     ToastrModule.forRoot(
       {
@@ -90,6 +94,7 @@ import { HomeComponent } from './home/home.component';
       MatDatepickerModule,
       MatNativeDateModule,
       MatExpansionModule,
+      CarouselModule.forRoot()
   ],
   providers: [
     MatDatepickerModule,

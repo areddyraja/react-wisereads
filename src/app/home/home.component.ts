@@ -1,33 +1,50 @@
 
 
 
-import { Component, OnInit } from '@angular/core';
-
-
-import { trigger, transition, animate, style } from '@angular/animations'
-
+import { Component, OnInit, ViewChild } from '@angular/core';
+// import { NgxCarousel } from 'ngx-carousel';
+import { NguCarousel, NguCarouselConfig } from '@ngu/carousel';
 @Component({
   selector: 'app-home',
   templateUrl: './home.component.html',
   styleUrls: ['./home.component.scss'],
-  animations:[
-    trigger('fade', [
-      transition('void => *', [style({ opacity: 0 }), animate('300ms', style({ opacity: 1 }))]),
-      transition('* => void', [style({ opacity: 1 }), animate('300ms', style({ opacity: 0 }))]),
-    ])
-  ]
 })
 export class HomeComponent implements OnInit {
-  current = 0;
-  img_list = [
-    'https://picsum.photos/600/400/?image=0',
-    'https://picsum.photos/600/400/?image=1',
-    'https://picsum.photos/600/400/?image=2',
-  ];
+
+  public itemList: object[] = [];
+  // public Config: NgxCarousel;
+
+  public carouselTile: NguCarouselConfig = {
+    grid: { xs: 1, sm: 1, md: 1, lg: 1, all: 0 },
+    slide: 1,
+    speed: 250,
+    point: {
+      visible: true
+    },
+    load: 2,
+    velocity: 0,
+    touch: true,
+    easing: 'cubic-bezier(0, 0, 0.2, 1)'
+  };
+
+  carouselItems = [
+    {
+      title: 'Save you shelf space with WiseReads book rentals ',
+      url: '../../assets/images/slider3.jpg'
+    },
+    {
+      title: 'Immersing yourself in the book world',
+      url: '../../assets/images/slider4.jpg'
+    },
+    {
+      title: 'Give your childrens a gift of imagination',
+      url: '../../assets/images/slider5.jpg'
+    }];
+
+  constructor( ) {
+  }
+
 
   ngOnInit() {
-    setInterval(() => {
-      this.current = ++this.current % this.img_list.length;
-    }, 2000);
   }
 }

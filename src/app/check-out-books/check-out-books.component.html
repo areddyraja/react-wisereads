@@ -6,9 +6,7 @@
   <mat-select  placeholder="Select Status" name="checked_status_id" id="checked_status_id">
       <mat-option *ngFor="let id of comboBoxesDataCheckedStatus" [value]="id.checked_status_id" (click)="applyFilter(id.checked_status_id)">{{id.checked_status}}
       </mat-option>
-      <!-- <input (keyup)="applyFilter($event.target.value)" matInput placeholder="Search"> -->
-
-    </mat-select>
+  </mat-select>
 </div>
 
 
