@@ -2,6 +2,11 @@
 
 @import url('https://fonts.googleapis.com/css?family=Montserrat&display=swap');
 @import '~@angular/material/theming';
+
+
+@import '~ngx-toastr/toastr.css';
+
+
 $custom-typography: mat-typography-config($font-family: '"Montserrat", sans-serif;');
 @include mat-core($custom-typography);
 body {
@@ -160,4 +165,18 @@ table {
     margin-top: 100px;
     overflow: auto;
     padding: 40px 20px 0 20px;
+
+}
+#toast-container > div {
+  opacity:3;
+  
+}
+
+.ellipses {
+    white-space: nowrap;
+    width: 6em;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    // border: 1px solid #000000;
+    cursor: pointer;
 }

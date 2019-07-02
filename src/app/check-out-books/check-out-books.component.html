@@ -3,7 +3,7 @@
     <img class="dashboard-img" src="../../assets/images/metrics (1).png">
     <h1>Checkout Books</h1>
   </div>
-  <mat-select  placeholder="Select Status" name="checked_status_id" id="checked_status_id">
+  <mat-select  placeholder="Select Status" name="checked_status_id" id="checked_status_id" class="fliter-box">
       <mat-option *ngFor="let id of comboBoxesDataCheckedStatus" [value]="id.checked_status_id" (click)="applyFilter(id.checked_status_id)">{{id.checked_status}}
       </mat-option>
   </mat-select>
@@ -30,7 +30,10 @@
     <ng-container matColumnDef="bookName">
       <mat-header-cell *matHeaderCellDef> Book Name </mat-header-cell>
       <mat-cell *matCellDef="let element">
-        {{element.title}}
+          <div class="ellipses" title="{{element.title }}">
+              {{element.title }}
+          </div>
+        
       </mat-cell>
     </ng-container>
 
@@ -77,7 +80,7 @@
       <mat-header-cell *matHeaderCellDef> Status</mat-header-cell>
       <mat-cell *matCellDef="let element;let i = index">
 
-        <mat-select  name="checked_status_id" id="checked_status_id" [value]="element.checkedItatusId">
+        <mat-select [disabled]="element.checkedItatusId=='4'" name="checked_status_id" id="checked_status_id" [value]="element.checkedItatusId">
           <mat-option *ngFor="let id of comboBoxesDataCheckedStatus" [value]="id.checked_status_id" (click)="updateBookStatus(i,element,id.checked_status_id)">{{id.checked_status}}
           </mat-option>
         </mat-select>
@@ -98,5 +101,5 @@
     <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
   </mat-table>
 
-  <mat-paginator #paginator [pageSizeOptions]="[5, 10, 20]" showFirstLastButtons></mat-paginator>
+  <mat-paginator #paginator [pageSize]="[5]" showFirstLastButtons></mat-paginator>
 </div>

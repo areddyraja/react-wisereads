@@ -12,7 +12,7 @@ import { HttpClientModule} from '@angular/common/http';
 })
 export class InventoryComponent implements OnInit {
 
-  displayedColumns: string[] = ['invid', 'bookid', 'bookname', 'owner', 'bookvalue', 'rantalvalue', 'availability', 'influencer', 'action'];
+  displayedColumns: string[] = ['invid', 'bookid', 'bookname', 'owner', 'bookvalue', 'rantalvalue', 'availability', 'influencer'];
 
   dataSource;
   ELEMENT_DATA = [];

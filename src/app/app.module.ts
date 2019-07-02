@@ -48,7 +48,7 @@ import { CarouselModule } from 'ngx-bootstrap';
     SingleBookComponent,
     UsersListComponent,
     CheckOutBooksComponent,
-    HomeComponent
+    HomeComponent,
   ],
   imports: [
     BrowserModule,

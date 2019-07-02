@@ -16,7 +16,7 @@ import { BehaviorSubject } from 'rxjs';
 
 export class BookListComponent implements OnInit {
 
-  displayedColumns: string[] = ['bookid', 'bookname', 'author', 'gnere', 'publisher', 'owner', 'action'];
+  displayedColumns: string[] = ['bookid', 'bookname', 'author', 'gnere', 'publisher', 'owner'];
 
   dataSource;
   ELEMENT_DATA = [];

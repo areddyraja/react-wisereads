@@ -12,7 +12,7 @@ import { CheckOutBookService } from '../services/check-out-book.service';
 export class CheckOutBooksComponent implements OnInit {
   dataSource;
   dropDownSearch;
-  ELEMENT_DATA: any = [];
+  ELEMENT_DATA: any;
   displayedColumns: string[] = ['invId', 'orderId', 'bookName', 'userName', 'checkOutDate', 'dueDate', 'dueAmt', 'returnDate', 'status',
   'totalAmtPaid'];
   checkOut: any = {};
@@ -70,7 +70,6 @@ export class CheckOutBooksComponent implements OnInit {
   }
 
   updateBookStatus(index, objData, id): void {
-
     console.log('index', index);
     const obj = {
       checkoutId: objData.checkoutId, orderId: objData.orderId, bookId: objData.bookId,
@@ -79,8 +78,15 @@ export class CheckOutBooksComponent implements OnInit {
     };
     this.checkOutBooksSerive.updateBookStatus(obj).subscribe((data: any) => {
           this.ELEMENT_DATA = data;
+          // alert(data.message)
+          this.toastr.success('Status Updated Successfully');
           console.log('bookStatus', data);
-    });
+          this.loadUsersList();
+    }),
+      // tslint:disable-next-line:no-unused-expression
+      err => {
+        this.toastr.error(err.error.message);
+      };
   }
 
   check(event: KeyboardEvent): void {
