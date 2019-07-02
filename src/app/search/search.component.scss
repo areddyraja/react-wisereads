@@ -1,0 +1,22 @@
+.search-result{
+    position: absolute;
+    z-index: 1;
+    height: 500px;
+    width:500px;
+    background-color: #ffff;
+    overflow-y: scroll;
+    .books-result{
+      margin:20px;
+      width:450px;
+    }
+    .books-img{
+      width:100px;
+      height: 100px;
+      
+    }
+  }
+
+
+  p{
+      font-size:18px;
+  }

@@ -4,6 +4,7 @@ import { LoginService } from '../services/login.service';
 import { ToastrService } from 'ngx-toastr';
 
 @Component({
+  // tslint:disable-next-line:component-selector
   selector: 'login',
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.scss']
@@ -24,7 +25,7 @@ user: object = {
   ngOnInit() {
   }
 
-  logIn(){
+  logIn() {
     this.router.navigateByUrl('/app-dashboard');
   }
 

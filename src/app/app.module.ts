@@ -1,18 +1,20 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
-
+import { HttpModule } from '@angular/http';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { AngularFontAwesomeModule } from 'angular-font-awesome';
 import { LayoutModule } from '@angular/cdk/layout';
 // tslint:disable-next-line:max-line-length
-import { MatToolbarModule, MatSidenavModule, MatNativeDateModule, MatSelectModule, MatDatepickerModule, MatFormFieldModule, MatIconModule, MatSortModule, MatListModule, MatCardModule, MatInputModule, MatTableModule, MatButtonModule, MatPaginatorModule, MatExpansionModule } from '@angular/material';
+import { MatToolbarModule,MatAutocompleteModule, MatDialogModule, MatSidenavModule, MatNativeDateModule, MatSelectModule, MatDatepickerModule, MatFormFieldModule, MatIconModule, MatSortModule, MatListModule, MatCardModule, MatInputModule, MatTableModule, MatButtonModule, MatPaginatorModule, MatExpansionModule } from '@angular/material';
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { FormsModule } from '@angular/forms';
 import { ReactiveFormsModule } from '@angular/forms';
 import { ToastrModule } from 'ngx-toastr';
+import { NgxDatatableModule } from '@swimlane/ngx-datatable';
+import { NgxMatSelectSearchModule } from 'ngx-mat-select-search';
 
 
 import { CardsComponent } from './cards/cards.component';
@@ -23,6 +25,9 @@ import { HomeLayoutComponent } from './layout/home-layout.component';
 import { LoginLayoutComponent } from './layout/login-layout.component';
 import { LoginComponent } from './login/login.component';
 import { AuthorizationInterceptor } from './auth/authorization.interceptors';
+import { InventoryComponent } from './inventory/inventory.component';
+import { SearchComponent } from './search/search.component';
+import { SingleBookComponent } from './single-book/single-book.component';
 import { UsersListComponent } from './users-list/users-list.component';
 import { CheckOutBooksComponent } from './check-out-books/check-out-books.component';
 @NgModule({
@@ -35,12 +40,16 @@ import { CheckOutBooksComponent } from './check-out-books/check-out-books.compon
     LoginComponent,
     HomeLayoutComponent,
     LoginLayoutComponent,
+    InventoryComponent,
+    SearchComponent,
+    SingleBookComponent,
     UsersListComponent,
     CheckOutBooksComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
+    MatDialogModule,
     BrowserAnimationsModule,
     LayoutModule,
     MatToolbarModule,
@@ -65,6 +74,10 @@ import { CheckOutBooksComponent } from './check-out-books/check-out-books.compon
     HttpClientModule,
     AngularFontAwesomeModule,
     FormsModule,
+    NgxMatSelectSearchModule,
+    HttpModule,
+    MatAutocompleteModule,
+    NgxDatatableModule,
     HttpClientModule,
     ToastrModule.forRoot(
       {
