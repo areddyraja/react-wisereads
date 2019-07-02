@@ -45,7 +45,7 @@ import { HomeComponent } from './home/home.component';
     SingleBookComponent,
     UsersListComponent,
     CheckOutBooksComponent,
-    HomeComponent
+    HomeComponent,
   ],
   imports: [
     BrowserModule,

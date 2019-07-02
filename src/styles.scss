@@ -4,6 +4,10 @@
 
 @import '~@angular/material/theming';
 
+
+@import '~ngx-toastr/toastr.css';
+
+
 $custom-typography: mat-typography-config($font-family: '"Montserrat", sans-serif;');
 @include mat-core($custom-typography);
 
@@ -128,4 +132,8 @@ a:hover,a.active,a.selected
     align-items: start;
     padding: 8px 24px;
   }
+}
+#toast-container > div {
+  opacity:3;
+  
 }
