@@ -4,6 +4,7 @@ import { Observable, Subject } from 'rxjs';
 import { map } from 'rxjs/operators';
 import { Router } from '@angular/router';
 import { SearchService } from '../services/search.service';
+import { FormControl, FormGroup } from '@angular/forms';
 
 @Component({
   selector: 'app-dashboard',
@@ -11,50 +12,48 @@ import { SearchService } from '../services/search.service';
   styleUrls: ['./dashboard.component.scss']
 })
 export class DashboardComponent implements OnInit {
+
+  constructor(  private breakpointObserver: BreakpointObserver,
+                private router: Router,
+                private searchService: SearchService,
+            ) {}
 name: any;
-show:any;
+show: any;
+
+  searchTerm: FormControl = new FormControl();
+  myBooks = [] as any;
+  angForm: FormGroup;
+
   isHandset$: Observable<boolean> = this.breakpointObserver.observe(Breakpoints.Handset)
     .pipe(
       map(result => result.matches)
     );
 
-  results: Object;
-  myTextVal: string;
-  searchTerm$ = new Subject<string>();
-      
-  constructor(private breakpointObserver: BreakpointObserver, private router: Router, private searchService: SearchService ) {
-    this.searchService.search(this.searchTerm$)
-      .subscribe((results :any) => {
-        console.log('search:',results);
-        this.results = results.resultsMap.books;
-      });
-  }
 
+
+  opened = false;
+
+  onKeyUp(boxInput: HTMLInputElement) {
+    const length = boxInput.value.length ;
+    console.log(length);
+  }
   ngOnInit() {
    this.name = localStorage.getItem('name');
-   console.log('search keyup:',this.searchTerm$);
+   this.searchTerm.valueChanges.subscribe(
+      term => {
+        if (term !== '' && term.length >= 3) {
+          this.searchService.search(term).subscribe(
+            (data: any) => {
+              this.myBooks = data.resultsMap.books as any[];
+              // console.log(data[0].BookName);
+          });
+        } else {
+          this.myBooks = [];
+        }
+
+    });
   }
 
-  onSelectBook(event, newValue){
-    console.log(newValue.bookId);
-    alert('clicked');
-    this.router.navigateByUrl('/book-detail');
-  }
-
-  opened: boolean = false;
-  
-  clickedInside($event: Event){
-    $event.preventDefault();
-    $event.stopPropagation();  // <- that will stop propagation on lower layers
-    // console.log("CLICKED INSIDE, MENU WON'T HIDE");
-  }
-
-  @HostListener('document:click', ['$event']) clickedOutside($event){
-    // here you can hide your menu
-    this.opened = !this.opened;
-    // console.log("CLICKED OUTSIDE");
-  }
-  
   logOut() {
     localStorage.clear();
     sessionStorage.clear();

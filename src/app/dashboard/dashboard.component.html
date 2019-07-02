@@ -15,70 +15,62 @@
       <!-- <a mat-list-item routerLink="/app-add-user" [routerLinkActive]="['is-active']">Users</a> -->
       <a mat-list-item routerLink="/app-users-list" [routerLinkActive]="['is-active']">Users</a>
 
-      <a mat-list-item class="mt-4" style="cursor: pointer" routerLink="/add-book" [routerLinkActive]="['is-active']">
-        <button class="add-bookbtn" mat-button mat-raised-button >Add Books</button>
-      </a>
-      
-    </mat-nav-list>
-  </mat-sidenav>
-  <mat-sidenav-content>
-    <mat-toolbar class="menu-bar">
-      <button
-        type="button"
-        aria-label="Toggle sidenav"
-        mat-icon-button
-        (click)="drawer.toggle()"
-        *ngIf="isHandset$ | async">
+            <a mat-list-item class="mt-4" style="cursor: pointer" routerLink="/add-book" [routerLinkActive]="['is-active']">
+                <button class="add-bookbtn" mat-button mat-raised-button>Add Books</button>
+            </a>
+
+        </mat-nav-list>
+    </mat-sidenav>
+    <mat-sidenav-content>
+        <mat-toolbar class="menu-bar">
+            <button type="button" aria-label="Toggle sidenav" mat-icon-button (click)="drawer.toggle()" *ngIf="isHandset$ | async">
         <mat-icon aria-label="Side nav toggle icon">menu</mat-icon>
       </button>
-      <i class="fal fa-search"></i>
-      <div class="search">
-          <!-- <input matInput placeholder="Search Book / User / Genre / Author"> -->
-            <!-- <input matInput placeholder="Search Book / User / Genre / Author"> -->
-            <input matInput placeholder="Search Book / User / Genre / Author" 
-            (keyup)="searchTerm$.next($event.target.value)">
-  
-            
-                <div *ngIf="results" [hidden]="!opened" class="search-result" (click)="clickedInside($event)">
-                    <mat-card  class="books-search"  *ngFor="let result of results | slice:0:9">
-                      <mat-card-header>
-                        <mat-card-subtitle>
-                          <a [routerLink]="['/book-detail', result.bookId]">
-                            <img class="books-img" src="{{result.imagesUrl1}}">
-                            {{ result.title }}
-                          </a>
-                        </mat-card-subtitle>
-                      </mat-card-header>
-                      <mat-card-content>
-                        {{result.author}}
-                      </mat-card-content>
-                    </mat-card>
-                  </div>
-            
-            
-         
-            
-          
-          
-      </div>
-      <!-- <mat-select style="display: inline-block">
-          <mat-option >
-              <a   (click)="logOut()" mat-list-item
-              routerLinkActive="active">
-              <i class="fal fa-sign-out"></i> <span>Logout</span>
-          </a>
-          </mat-option>
-        </mat-select> -->
-      <div class="logo-set">
-          <a  class="logout float-right" (click)="logOut()" mat-list-item
-              routerLinkActive="active">
-              <i class="fal fa-sign-out"></i> <span>Logout</span>
-          </a>
-      </div>
-    </mat-toolbar>
-    <div class="p-5">
-      <router-outlet></router-outlet>
      
+      <div class="top-header">
+            
+            <i class="fal fa-search"></i>
+            <div class="search">
+                <form>
+                    <div class="container">
+              
+    
+                        <input class="search-input" type="text" placeholder="Search Book / User / Genre / Author"
+                            [formControl]="searchTerm" 
+                            #box (keyup)="onKeyUp(box)"
+                            [matAutocomplete]="auto" 
+                        >  
+                        <mat-autocomplete #auto="matAutocomplete">
+                                
+                                <ng-container *ngIf="myBooks.length > 0">
+                                    <mat-option *ngFor="let books of myBooks" [value]="books.value">
+                                        <a [routerLink]="['/book-detail', books.bookId]" >
+                                            {{ books.title }}
+                                        </a>
+                                    </mat-option>
+                                    
+                                </ng-container>
+                                <ng-container *ngIf="myBooks.length == 0 && box.value.length >= 3" >
+                                        <mat-option class="option-result">
+                                           <p class="noresult">No Reuslt Found</p>
+                                        </mat-option> 
+                                </ng-container>
+                                
+                        </mat-autocomplete>
+              
+                    </div>
+                </form>
+            </div>
+
+            <div class="logo-set">
+                <a class="logout float-right" (click)="logOut()" mat-list-item routerLinkActive="active">
+                    <i class="fal fa-sign-out"></i> <span>Logout</span>
+                </a>
+            </div>
     </div>
-  </mat-sidenav-content>
+        </mat-toolbar>
+        <div class="p-5" class="main-container">
+            <router-outlet></router-outlet>
+        </div>
+    </mat-sidenav-content>
 </mat-sidenav-container>

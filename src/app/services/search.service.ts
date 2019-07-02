@@ -8,7 +8,7 @@ import 'rxjs/add/operator/distinctUntilChanged';
 import 'rxjs/add/operator/switchMap';
 import { HttpHeaders, HttpClient } from '@angular/common/http';
 import { map } from 'rxjs/operators';
-
+import { debounceTime } from 'rxjs/internal/operators/debounceTime';
 
 @Injectable({
   providedIn: 'root'
@@ -16,29 +16,30 @@ import { map } from 'rxjs/operators';
 export class SearchService {
 
 
-  baseUrl: string = 'http://13.127.158.42/api/books/search/';
+  baseUrl = 'http://13.127.158.42/api/books/search/';
 
   constructor(private http: HttpClient) { }
 
-  search(terms: Observable<string>) {
-    return terms.debounceTime(400)
-      .distinctUntilChanged()
-      .switchMap(term => this.searchEntries(term));
-  }
+  search(term) {
 
-  searchEntries(term) {
     const httpOptions = {
-      headers: new HttpHeaders({
-        'Content-Type': 'application/json',
-        Authorization: 'Bearer ' + localStorage.getItem('Token'),
-        })
-      };
-    return this.http
-        .get(this.baseUrl + term, httpOptions)
-        .map((res: Response) => {
-          console.log('response',res)
-          return res;
-        });
-  }
+          headers: new HttpHeaders({
+            'Content-Type': 'application/json',
+            Authorization: 'Bearer ' + localStorage.getItem('Token'),
+            })
+          };
+    const listOfBooks = this.http.get(this.baseUrl + term, httpOptions)
+    .pipe(
+        debounceTime(500),  // WAIT FOR 500 MILISECONDS ATER EACH KEY STROKE.
+        map(
+            (data: any) => {
+                return (
+                  data
+                    // data.resultsMap.books.length! = 0 ? data as any[] : [{"tilte": "No Record Found"} as any]
+                );
+            }
+    ));
 
+    return listOfBooks;
+}
 }

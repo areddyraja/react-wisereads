@@ -8,12 +8,13 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { AngularFontAwesomeModule } from 'angular-font-awesome';
 import { LayoutModule } from '@angular/cdk/layout';
 // tslint:disable-next-line:max-line-length
-import { MatToolbarModule,MatDialogModule, MatSidenavModule, MatNativeDateModule, MatSelectModule, MatDatepickerModule, MatFormFieldModule, MatIconModule, MatSortModule, MatListModule, MatCardModule, MatInputModule, MatTableModule, MatButtonModule, MatPaginatorModule, MatExpansionModule } from '@angular/material';
+import { MatToolbarModule, MatAutocompleteModule, MatDialogModule, MatSidenavModule, MatNativeDateModule, MatSelectModule, MatDatepickerModule, MatFormFieldModule, MatIconModule, MatSortModule, MatListModule, MatCardModule, MatInputModule, MatTableModule, MatButtonModule, MatPaginatorModule, MatExpansionModule } from '@angular/material';
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { FormsModule } from '@angular/forms';
 import { ReactiveFormsModule } from '@angular/forms';
 import { ToastrModule } from 'ngx-toastr';
 import { NgxDatatableModule } from '@swimlane/ngx-datatable';
+import { NgxMatSelectSearchModule } from 'ngx-mat-select-search';
 
 
 import { CardsComponent } from './cards/cards.component';
@@ -75,7 +76,9 @@ import { HomeComponent } from './home/home.component';
     HttpClientModule,
     AngularFontAwesomeModule,
     FormsModule,
+    NgxMatSelectSearchModule,
     HttpModule,
+    MatAutocompleteModule,
     NgxDatatableModule,
     HttpClientModule,
     ToastrModule.forRoot(

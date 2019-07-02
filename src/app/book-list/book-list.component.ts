@@ -30,28 +30,28 @@ export class BookListComponent implements OnInit {
 
   onSelectFile(event) {
     this.selectedFile = event.target.files[0];
-    console.log(this.selectedFile.name);
+    // console.log(this.selectedFile.name);
   }
 
 
   onUpload() {
-    // const httpOptions = {
-    //   headers: new HttpHeaders({
-    //     'Content-Type': undefined,
-    //     Authorization: 'Bearer ' + localStorage.getItem('Token'),
-    //     })
-    //   };
-    // const fd = new FormData();
-    // fd.append('file', this.selectedFile, this.selectedFile.name);
-    // this.http.post('http://13.127.158.42/api/books/upload-books-file', fd, httpOptions). subscribe((data => {
-    //   console.log(data);
-    // }));
+    const httpOptions = {
+      headers: new HttpHeaders({
+        // 'Content-Type': undefined,
+        Authorization: 'Bearer ' + localStorage.getItem('Token'),
+        })
+      };
+    const fd = new FormData();
+    fd.append('file', this.selectedFile, this.selectedFile.name);
+    this.http.post('http://13.127.158.42/api/books/upload-books-file', fd, httpOptions). subscribe((data => {
+      // console.log(data);
+    }));
   }
 
 
   getbooks() {
     this.bookservice.getbooks().subscribe((data: any) => {
-      console.log(data);
+      // console.log(data);
       this.ELEMENT_DATA = data.resultsMap.books;
       console.log('elementData', this.ELEMENT_DATA);
       this.dataSource = new MatTableDataSource(this.ELEMENT_DATA);

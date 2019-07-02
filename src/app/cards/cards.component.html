@@ -1,55 +1,62 @@
-
-   <div class="cards-heading">
-      <img class="dashboard-img" src="../../assets/images/metrics (1).png">
-      <h1>Dashboard</h1>
-   </div>
-        
-    <div class="cards">
+<section class="container-fluid card-dashboard">
+  <div class="cards-heading">
+    <img class="dashboard-img" src="../../assets/images/metrics (1).png">
+    <h1>Dashboard</h1>
+ </div>
       
-        <mat-card class="total-books">
+  <div class="cards-item"  fxLayout="row wrap"  fxLayout.lt-sm="column" fxLayoutGap="32px" fxLayoutAlign="flex-start">
+      <mat-card class="total-books" fxFlex="0 1 calc(33.3% - 32px)"
+      fxFlex.lt-md="0 1 calc(50% - 32px)"
+      fxFlex.lt-sm="100%">
+          <mat-card-header>
+            <mat-card-title>
+                <img class="books" src="../../assets/images/books.png">
+            </mat-card-title>
+            <mat-card-subtitle>Total Books</mat-card-subtitle>
+          </mat-card-header>
+          <mat-card-content>
+            6345
+          </mat-card-content>
+          <mat-card-footer>
+            <p>Increased by 60% </p>
+          </mat-card-footer>
+        </mat-card>
+
+        <mat-card class="checkout-book" fxFlex="0 1 calc(33.3% - 32px)"
+        fxFlex.lt-md="0 1 calc(50% - 32px)"
+        fxFlex.lt-sm="100%">
             <mat-card-header>
-              <mat-card-title>
-                  <img class="books" src="../../assets/images/books.png">
-              </mat-card-title>
-              <mat-card-subtitle>Total Books</mat-card-subtitle>
-            </mat-card-header>
-            <mat-card-content>
-              6345
-            </mat-card-content>
-            <mat-card-footer>
-              <p>Increased by 60% </p>
-            </mat-card-footer>
-          </mat-card>
+                <mat-card-title>
+                    <img class="books" src="../../assets/images/checkout.png">
+                </mat-card-title>
+                <mat-card-subtitle>Checkout Books List</mat-card-subtitle>
+              </mat-card-header>
+              <mat-card-content>
+                2345
+              </mat-card-content>
+              <mat-card-footer>
+                <p>Increased by 30% </p>
+              </mat-card-footer>
+        </mat-card>
 
-          <mat-card class="checkout-book">
-              <mat-card-header>
-                  <mat-card-title>
-                      <img class="books" src="../../assets/images/checkout.png">
-                  </mat-card-title>
-                  <mat-card-subtitle>Checkout Books List</mat-card-subtitle>
-                </mat-card-header>
-                <mat-card-content>
-                  2345
-                </mat-card-content>
-                <mat-card-footer>
-                  <p>Increased by 30% </p>
-                </mat-card-footer>
-          </mat-card>
-
-          <mat-card class="users">
-             <mat-card-header>
-              <mat-card-title>
-                  <img class="books" src="../../assets/images/team.png">
-              </mat-card-title>
-              <mat-card-subtitle>Users</mat-card-subtitle>
-            </mat-card-header>
-            <mat-card-content>
-              25000
-            </mat-card-content>
-            <mat-card-footer>
-              <p>Increased by 80% </p>
-            </mat-card-footer>
-          </mat-card>
-    </div>
+        <mat-card class="users" fxFlex="0 1 calc(33.3% - 32px)"
+        fxFlex.lt-md="0 1 calc(50% - 32px)"
+        fxFlex.lt-sm="100%">
+           <mat-card-header>
+            <mat-card-title>
+                <img class="books" src="../../assets/images/team.png">
+            </mat-card-title>
+            <mat-card-subtitle>Users</mat-card-subtitle>
+          </mat-card-header>
+          <mat-card-content>
+            25000
+          </mat-card-content>
+          <mat-card-footer>
+            <p>Increased by 80% </p>
+          </mat-card-footer>
+        </mat-card>
+  </div>
+</section>
+  
 
 
