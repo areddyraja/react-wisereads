@@ -9,13 +9,18 @@ body {
     font-family: 'Montserrat', sans-serif;
 }
 
-
-a:hover,
-a.active,
-a.selected {
+// cards
+    
+a:hover,a.active,a.selected
+  {
     background-color: transparent !important;
 }
 
+.cards-item{
+    .mat-card-header-text {
+      margin: 0 !important;
+    }
+  }
 .div:focus,
 .div.active {
     background-color: transparent !important;
