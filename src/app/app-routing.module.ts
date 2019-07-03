@@ -1,19 +1,19 @@
 
 import { NgModule, Component } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
-import { DashboardComponent } from './dashboard/dashboard.component';
-import { CardsComponent } from './cards/cards.component';
-import { BookListComponent } from './book-list/book-list.component';
-import { LoginComponent } from './login/login.component';
+import { DashboardComponent } from './component/dashboard/dashboard.component';
+import { CardsComponent } from './component/cards/cards.component';
+import { BookListComponent } from './component/book-list/book-list.component';
+import { LoginComponent } from './component/login/login.component';
 import { SigninService } from './services/authGuard.service';
-import { HomeLayoutComponent } from './layout/home-layout.component';
-import { LoginLayoutComponent } from './layout/login-layout.component';
-import { AddUserComponent } from './add-user/add-user.component';
-import { InventoryComponent } from './inventory/inventory.component';
-import { SingleBookComponent } from './single-book/single-book.component';
-import { UsersListComponent } from './users-list/users-list.component';
-import { CheckOutBooksComponent } from './check-out-books/check-out-books.component';
-import { HomeComponent } from './home/home.component';
+import { HomeLayoutComponent } from './component/layout/home-layout.component';
+import { LoginLayoutComponent } from './component/layout/login-layout.component';
+import { AddUserComponent } from './component/add-user/add-user.component';
+import { InventoryComponent } from './component/inventory/inventory.component';
+import { SingleBookComponent } from './component/single-book/single-book.component';
+import { UsersListComponent } from './component/users-list/users-list.component';
+import { CheckOutBooksComponent } from './component/check-out-books/check-out-books.component';
+import { HomeComponent } from './component/home/home.component';
 
 const routes: Routes = [
   {
@@ -28,7 +28,7 @@ const routes: Routes = [
         path: 'checkout-books', component: CheckOutBooksComponent
       },
       {
-        path: 'add-book', loadChildren: './books/books.module#BooksModule'
+        path: 'add-book', loadChildren: './component/books/books.module#BooksModule'
       },
       {
         path: 'book_list', component: BookListComponent

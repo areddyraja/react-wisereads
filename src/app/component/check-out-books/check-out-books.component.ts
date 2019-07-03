@@ -1,8 +1,8 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
-import { SaveUserService } from '../services/save-user.service';
+import { SaveUserService } from '../../services/save-user.service';
 import { MatTableDataSource, MatPaginator } from '@angular/material';
 import { ToastrService } from 'ngx-toastr';
-import { CheckOutBookService } from '../services/check-out-book.service';
+import { CheckOutBookService } from '../../services/check-out-book.service';
 
 @Component({
   selector: 'app-check-out-books',

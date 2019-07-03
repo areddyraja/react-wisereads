@@ -1,8 +1,8 @@
-import { InventoryService } from './../services/inventory.service';
+import { InventoryService } from './../../services/inventory.service';
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { MatPaginator, MatSort, MatTableDataSource } from '@angular/material';
 import { FormBuilder } from '@angular/forms';
-import { BooksService } from '../services/books.service';
+import { BooksService } from '../../services/books.service';
 import { HttpClientModule} from '@angular/common/http';
 
 @Component({

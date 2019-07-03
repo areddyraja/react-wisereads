@@ -1,5 +1,5 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
-import { SaveUserService } from '../services/save-user.service';
+import { SaveUserService } from '../../services/save-user.service';
 import { MatTableDataSource, MatPaginator } from '@angular/material';
 
 @Component({

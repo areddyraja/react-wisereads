@@ -1,5 +1,5 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { BooksService } from './../services/books.service';
+import { BooksService } from '../../services/books.service';
 import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
 import {MatPaginator} from '@angular/material/paginator';
 import {MatTableDataSource} from '@angular/material/table';

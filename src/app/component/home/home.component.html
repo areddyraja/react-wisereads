@@ -1,0 +1,130 @@
+<section class="container-fluid">
+    <div class="top-header">
+        <a routerLink="/login"><i class="fa fa-sign-in" aria-hidden="true"></i>&nbsp;&nbsp;Login</a>
+        <h3 >Wisereads</h3>
+    </div>
+      
+    <ngu-carousel #myCarousel [inputs]="carouselTile" [dataSource]="carouselItems">
+        <div *nguCarouselDef="let item;" class="item">
+          <div class="tile" [style.background]="'url('+ item.url +')'" style="min-height: 600px; width:100%;">
+            <span class="title">{{item.title}}</span>
+          </div>
+        </div>
+        <button NguCarouselNext class="rightRs">></button>
+        <button NguCarouselPrev class="leftRs"><</button>
+    </ngu-carousel>
+
+    <div class="mt-5">
+      <div class="container">
+        <div class="text-center">
+            <h1 class="text-center">About Us</h1>
+            <p class="text-center about">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et Lorem ipsum</p>
+            <div class="row mt-5">
+              <div class="col-md-6 col-lg-6">
+                <div class="img1">
+                    <img src="../../assets/slider-image/food.jpg" class="img-fluid">
+                </div>
+                <!-- <div class="img2">
+                    <img src="../../assets/slider-image/food2.jpg"  class="img-fluid">
+                </div> -->
+               
+              </div>
+              <div class="col-lg-6 col-md-6">
+                <h3 class="text-left">Our food should be our medicine,Our medicine organics should be our food your health</h3>
+                <p class="text-left">delectus reiciendis maiores alias consequatur aut.maiores alias Lorem ipsum dolor sit amet, consectetur adipiscing elit sed do eiusmod delectus reiciendis maiores alias consequatur aut.maiores alias Lorem ipsum dolor sit amet, consectetur delectus reiciendis maiores alias consequatur aut.maiores alias Lorem ipsum dolor sit amet, consectetur adipiscing elit sed do eiusmod delectus reiciendis maiores alias consequatur aut.maiores alias Lorem ipsum dolor sit amet, consectetur</p>
+              </div>
+            </div>
+        </div>
+        
+      </div>
+     </div> 
+  
+    <!-- blog -->
+    <div class="container-fluid blog ">
+      <div class="text-center">
+          <h3 style="color:#f8a640">Our Blog</h3>
+          <h1>Latest News & Events</h1>
+      </div>
+     
+      <div class="row mt-5">
+        <div class="col-lg-6 col-md-6 blog-img-1">
+          <h1>Arrived Fresh Tea</h1>
+        </div>
+        <div class="col-lg-6 col-md-6 blog-right-grids">
+            <h3>Health Benefits Of A Herbal Tea</h3>
+            <p>delectus reiciendis maiores alias consequatur aut.maiores alias Lorem ipsum dolor sit amet, consectetur adipiscing elit sed do eiusmod delectus reiciendis maiores alias consequatur aut.maiores alias Lorem ipsum dolor sit amet, consectetur delectus reiciendis maiores alias consequatur aut.maiores alias Lorem ipsum dolor sit amet, consectetur adipiscing elit sed do eiusmod delectus reiciendis maiores alias consequatur aut.maiores alias Lorem ipsum dolor sit amet, consectetur</p>
+            <button class="btn blog_more-buttn">Read More</button>
+        </div>
+  
+          <div class="col-lg-6 col-md-6 blog-right-grids text-md-right">
+              <h3>6 After-School Snacks The Kid Will Love</h3>
+              <p>delectus reiciendis maiores alias consequatur aut.maiores alias Lorem ipsum dolor sit amet, consectetur adipiscing elit sed do eiusmod delectus reiciendis maiores alias consequatur aut.maiores alias Lorem ipsum dolor sit amet, consectetur delectus reiciendis maiores alias consequatur aut.maiores alias Lorem ipsum dolor sit amet, consectetur adipiscing elit sed do eiusmod delectus reiciendis maiores alias consequatur aut.maiores alias Lorem ipsum dolor sit amet, consectetur</p>
+              <button class="btn blog_more-buttn">Read More</button>
+          </div>
+          <div class="col-lg-6 col-md-6 blog-img-2">
+              <h1>Taste with Health </h1>
+            </div>
+      </div>
+    </div>
+
+    
+    <footer class="container-fluid mt-5">
+      <div class="row">
+          <div class="col-lg-4 col-md-4 office-address">
+              <h3>Address</h3>
+              <ul>
+                  <li>
+                      <h6>Address</h6>
+                      <p>Melbourne,south Brisbane, QLD 4101,Aurstralia.</p>
+                  </li>
+                  <li>
+                      <h6>Phone</h6>
+                      <p>+ 1 (234) 567 8901</p>
+                  </li>
+                  <li>
+                      <h6>Email</h6>
+                      <p>info@example.com</p>
+                  </li>
+              </ul>
+              
+          </div>
+          <div class="col-lg-4 col-md-4 office-address">
+                  <h3>Twitter Us</h3>
+                  <ul>
+                      <li>
+                          <p>sit amet consectetur adipiscing</p>
+                          <p>info@example.com</p>
+                          <h6>Posted 3 days ago.</h6>
+                      </li>
+                      <li>
+                              <p>sit amet consectetur adipiscing</p>
+                              <p>info@example.com</p>
+                              <h6>Posted 3 days ago.</h6>
+                      </li>
+                      
+                  </ul>
+          </div>
+          <div class="col-lg-4 col-md-4 office-address">
+                  <h3>NewsLetter</h3>
+                  <form action="#" method="post" class="d-flex newsletter">
+                          <input type="email" name="Your Email" class="form-control" placeholder="Your Email" required="">
+                          <button class="btn1">
+                            <span><i class="fas fa-envelope-open"></i></span>
+                          </button>
+                  </form>
+                  <p class="pt-4">vehicula velit sagittis vehicula. Duis posuere ex in mollis iaculis. Suspendisse tincidunt velit sagittis vehicula</p>
+          </div>
+      </div>
+     
+    </footer>
+    
+    <div class="below-footer py-md-4 py-3">
+          <h6>© 2019 Organic Store. All Rights Reserved | Design by Omniwyse</h6>
+    </div>
+    
+
+
+          
+</section>
+
+    

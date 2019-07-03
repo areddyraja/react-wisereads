@@ -3,7 +3,7 @@ import { BreakpointObserver, Breakpoints } from '@angular/cdk/layout';
 import { Observable, Subject } from 'rxjs';
 import { map } from 'rxjs/operators';
 import { Router } from '@angular/router';
-import { SearchService } from '../services/search.service';
+import { SearchService } from '../../services/search.service';
 import { FormControl, FormGroup } from '@angular/forms';
 
 @Component({

@@ -4,6 +4,8 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 // import { NgxCarousel } from 'ngx-carousel';
 import { NguCarousel, NguCarouselConfig } from '@ngu/carousel';
+import { CarouselConfig } from 'ngx-bootstrap/carousel';
+import { Meta, Title } from '@angular/platform-browser';
 @Component({
   selector: 'app-home',
   templateUrl: './home.component.html',
@@ -41,8 +43,7 @@ export class HomeComponent implements OnInit {
       url: '../../assets/images/slider5.jpg'
     }];
 
-  constructor( ) {
-  }
+  constructor() {}
 
 
   ngOnInit() {

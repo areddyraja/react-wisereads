@@ -3,7 +3,7 @@ import { BreakpointObserver, Breakpoints } from '@angular/cdk/layout';
 import { Observable, Subject } from 'rxjs';
 import { map } from 'rxjs/operators';
 import { Router } from '@angular/router';
-import { SearchService } from '../services/search.service';
+import { SearchService } from '../../services/search.service';
 
 @Component({
   selector: 'app-search',
@@ -12,14 +12,13 @@ import { SearchService } from '../services/search.service';
 })
 export class SearchComponent implements OnInit {
 
-  results: Object;
+  results: object;
   myTextVal: string;
   searchTerm$ = new Subject<string>();
-      
   constructor(private breakpointObserver: BreakpointObserver, private router: Router, private searchService: SearchService ) {
     this.searchService.search(this.searchTerm$)
-      .subscribe((results :any) => {
-        console.log('search:',results);
+      .subscribe((results: any) => {
+        console.log('search:', results);
         this.results = results.resultsMap.books;
       });
   }

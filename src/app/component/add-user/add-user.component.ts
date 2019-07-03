@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { SaveUserService } from '../services/save-user.service';
+import { SaveUserService } from '../../services/save-user.service';
 import { Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 
@@ -88,7 +88,7 @@ export class AddUserComponent implements OnInit {
       this.addUser.userStatusId = id.user_status_id;
     }
   }
-  cancel(){
+  cancel() {
     this.router.navigateByUrl('/app-users-list');
   }
 }

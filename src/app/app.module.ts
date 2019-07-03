@@ -18,20 +18,20 @@ import { NgxMatSelectSearchModule } from 'ngx-mat-select-search';
 import { NguCarouselModule } from '@ngu/carousel';
 import { NgxCarouselModule } from 'ngx-carousel';
 
-import { CardsComponent } from './cards/cards.component';
-import { DashboardComponent } from './dashboard/dashboard.component';
-import { BookListComponent } from './book-list/book-list.component';
-import { AddUserComponent } from './add-user/add-user.component';
-import { HomeLayoutComponent } from './layout/home-layout.component';
-import { LoginLayoutComponent } from './layout/login-layout.component';
-import { LoginComponent } from './login/login.component';
-import { AuthorizationInterceptor } from './auth/authorization.interceptors';
-import { InventoryComponent } from './inventory/inventory.component';
-import { SearchComponent } from './search/search.component';
-import { SingleBookComponent } from './single-book/single-book.component';
-import { UsersListComponent } from './users-list/users-list.component';
-import { CheckOutBooksComponent } from './check-out-books/check-out-books.component';
-import { HomeComponent } from './home/home.component';
+import { CardsComponent } from './component/cards/cards.component';
+import { DashboardComponent } from './component/dashboard/dashboard.component';
+import { BookListComponent } from './component/book-list/book-list.component';
+import { AddUserComponent } from './component/add-user/add-user.component';
+import { HomeLayoutComponent } from './component/layout/home-layout.component';
+import { LoginLayoutComponent } from './component/layout/login-layout.component';
+import { LoginComponent } from './component/login/login.component';
+import { AuthorizationInterceptor } from './component/auth/authorization.interceptors';
+import { InventoryComponent } from './component/inventory/inventory.component';
+import { SearchComponent } from './component/search/search.component';
+import { SingleBookComponent } from './component/single-book/single-book.component';
+import { UsersListComponent } from './component/users-list/users-list.component';
+import { CheckOutBooksComponent } from './component/check-out-books/check-out-books.component';
+import { HomeComponent } from './component/home/home.component';
 import { CarouselModule } from 'ngx-bootstrap';
 @NgModule({
   declarations: [
@@ -94,7 +94,7 @@ import { CarouselModule } from 'ngx-bootstrap';
       MatDatepickerModule,
       MatNativeDateModule,
       MatExpansionModule,
-      CarouselModule.forRoot()
+      CarouselModule.forRoot(),
   ],
   providers: [
     MatDatepickerModule,
