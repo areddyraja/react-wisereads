@@ -31,14 +31,13 @@ export class BooksService {
         Authorization: 'Bearer ' + localStorage.getItem('Token'),
         })
       };
-    return this.http.get('http://13.127.158.42/api/books', httpOptions).pipe( map((res: Response) => {
+    return this.http.get(`${AppSettings.URL}/api/books`, httpOptions).pipe( map((res: Response) => {
       return res;
       }));
   }
 
-  baseUrl= 'http://13.127.158.42/api/books/'
 
-  getbooksdetails(id){
+  getbooksdetails(id) {
     const httpOptions = {
       headers: new HttpHeaders({
         'Content-Type': 'application/json',
@@ -46,7 +45,7 @@ export class BooksService {
         })
       };
     return this.http
-    .get<AddBooks[]>(this.baseUrl + id , httpOptions)
+    .get<AddBooks[]>(`${AppSettings.URL}/api/books` + id , httpOptions);
   }
 
   private extractData(res: Response) {
@@ -61,7 +60,7 @@ export class BooksService {
         Authorization: 'Bearer ' + localStorage.getItem('Token'),
         })
       };
-    return this.http.get(this.baseUrl  + id, httpOptions).pipe(
+    return this.http.get(`${AppSettings.URL}/api/books` + id, httpOptions).pipe(
       map(this.extractData));
   }
   

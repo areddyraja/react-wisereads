@@ -6,6 +6,7 @@ import {MatTableDataSource} from '@angular/material/table';
 import {MatSort} from '@angular/material/sort';
 import { AbstractControl, FormArray, FormBuilder, FormGroup } from '@angular/forms';
 import { BehaviorSubject } from 'rxjs';
+import { AppSettings } from 'src/app/apiUrl';
 
 @Component({
   selector: 'app-book-list',
@@ -43,7 +44,7 @@ export class BookListComponent implements OnInit {
       };
     const fd = new FormData();
     fd.append('file', this.selectedFile, this.selectedFile.name);
-    this.http.post('http://13.127.158.42/api/books/upload-books-file', fd, httpOptions). subscribe((data => {
+    this.http.post(`${AppSettings.URL}/api/books/upload-books-file`, fd, httpOptions). subscribe((data => {
       // console.log(data);
     }));
   }

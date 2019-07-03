@@ -3,6 +3,7 @@ import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
 import { map } from 'rxjs/operators';
 import { AppSettings } from '../../../src/app/apiUrl';
 import { Router } from '@angular/router';
+import { BehaviorSubject, Observable } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -10,9 +11,21 @@ import { Router } from '@angular/router';
 
 export class LoginService {
 
+  private currentUserSubject: BehaviorSubject<any>;
+  public currentUser: Observable<any>;
+
   constructor(
     private httpClient: HttpClient, private router: Router
-  ) { }
+  ) {
+    this.currentUserSubject = new BehaviorSubject<any>(JSON.parse(localStorage.getItem('currentUser')));
+    this.currentUser = this.currentUserSubject.asObservable();
+  }
+
+
+  public get currentUserValue() {
+    return this.currentUserSubject.value;
+  }
+
 
   logIn(user) {
     const usercredentials = btoa(user.email + ':' + user.password);
@@ -22,9 +35,17 @@ export class LoginService {
     const httpOptions = {
       params: new HttpParams().set(user.email, user.password),
     };
-    return this.httpClient.post(AppSettings.URL + 'login', user, httpOptions).pipe(map((res: Response) => {
-      console.log('response', res.headers);
+    return this.httpClient.post(AppSettings.URL + '/login', user, httpOptions).pipe(map((res: Response) => {
+      localStorage.setItem('currentUser', JSON.stringify(res));
+      this.currentUserSubject.next(res);
       return res;
     }));
+  }
+
+
+  logout() {
+    // remove user from local storage and set current user to null
+    localStorage.removeItem('currentUser');
+    this.currentUserSubject.next(null);
   }
 }

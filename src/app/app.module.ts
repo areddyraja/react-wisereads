@@ -33,6 +33,7 @@ import { UsersListComponent } from './component/users-list/users-list.component'
 import { CheckOutBooksComponent } from './component/check-out-books/check-out-books.component';
 import { HomeComponent } from './component/home/home.component';
 import { CarouselModule } from 'ngx-bootstrap';
+import { SigninComponent } from './component/signin/signin.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -49,6 +50,7 @@ import { CarouselModule } from 'ngx-bootstrap';
     UsersListComponent,
     CheckOutBooksComponent,
     HomeComponent,
+    SigninComponent,
   ],
   imports: [
     BrowserModule,

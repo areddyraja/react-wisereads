@@ -18,26 +18,26 @@ export class SaveUserService {
 
 
   loadComboDropDowns(body) {
-    return this.httpClient.post(AppSettings.URL + 'api/combo-box-tables', body, this.httpOptions).pipe(map((res: Response) => {
+    return this.httpClient.post(AppSettings.URL + '/api/combo-box-tables', body, this.httpOptions).pipe(map((res: Response) => {
       return res;
     }));
   }
 
   saveuser(adduser: any) {
-    return this.httpClient.post(AppSettings.URL + 'api/users', adduser, this.httpOptions).pipe(map((res: Response) => {
+    return this.httpClient.post(AppSettings.URL + '/api/users', adduser, this.httpOptions).pipe(map((res: Response) => {
       return res;
     }));
   }
 
 
   usersList() {
-    return this.httpClient.get(AppSettings.URL + 'api/users', this.httpOptions).pipe(map((res: Response) => {
+    return this.httpClient.get(AppSettings.URL + '/api/users', this.httpOptions).pipe(map((res: Response) => {
       return res;
     }));
   }
 
   checkOutBooksList() {
-    return this.httpClient.get(AppSettings.URL + 'api/checked-out-books', this.httpOptions).pipe(map((res: Response) => {
+    return this.httpClient.get(AppSettings.URL + '/api/checked-out-books', this.httpOptions).pipe(map((res: Response) => {
       return res;
     }));
   }

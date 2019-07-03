@@ -9,6 +9,7 @@ import 'rxjs/add/operator/switchMap';
 import { HttpHeaders, HttpClient } from '@angular/common/http';
 import { map } from 'rxjs/operators';
 import { debounceTime } from 'rxjs/internal/operators/debounceTime';
+import { AppSettings } from '../apiUrl';
 
 @Injectable({
   providedIn: 'root'
@@ -16,7 +17,7 @@ import { debounceTime } from 'rxjs/internal/operators/debounceTime';
 export class SearchService {
 
 
-  baseUrl = 'http://13.127.158.42/api/books/search/';
+  baseUrl = `${AppSettings.URL}/api/books/search/`;
 
   constructor(private http: HttpClient) { }
 

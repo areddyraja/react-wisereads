@@ -1,3 +1,4 @@
+import { LoginService } from './../../services/login.service';
 import { Component, OnInit, Input, HostListener } from '@angular/core';
 import { BreakpointObserver, Breakpoints } from '@angular/cdk/layout';
 import { Observable, Subject } from 'rxjs';
@@ -12,11 +13,15 @@ import { FormControl, FormGroup } from '@angular/forms';
   styleUrls: ['./dashboard.component.scss']
 })
 export class DashboardComponent implements OnInit {
+  currentUser: any;
 
   constructor(  private breakpointObserver: BreakpointObserver,
                 private router: Router,
                 private searchService: SearchService,
-            ) {}
+                private loginService: LoginService
+            ) {
+              this.loginService.currentUser.subscribe(x => this.currentUser = x);
+            }
 name: any;
 show: any;
 
@@ -55,9 +60,8 @@ show: any;
   }
 
   logOut() {
-    localStorage.clear();
-    sessionStorage.clear();
-    this.router.navigateByUrl('/home');
-  }
+    this.loginService.logout();
+    this.router.navigate(['/home']);
+}
 
 }

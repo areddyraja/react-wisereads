@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient, } from '@angular/common/http';
 import { HttpHeaders } from '@angular/common/http';
 import { map } from 'rxjs/operators';
+import { AppSettings } from '../apiUrl';
 
 
 @Injectable({
@@ -18,7 +19,7 @@ export class InventoryService {
         Authorization: 'Bearer ' + localStorage.getItem('Token'),
         })
       };
-    return this.http.get('http://13.127.158.42/api/inventory-books', httpOptions).pipe( map((res: Response) => {
+    return this.http.get(`${AppSettings.URL}/api/inventory-books`, httpOptions).pipe( map((res: Response) => {
       return res;
       }));
   }

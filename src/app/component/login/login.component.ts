@@ -10,11 +10,12 @@ import { ToastrService } from 'ngx-toastr';
   styleUrls: ['./login.component.scss']
 })
 export class LoginComponent implements OnInit {
-user: object = {
-  email: 'satish@omniwyse.com',
-  password: 'satish'
-};
-// user:Object={}
+// user: object = {
+//   email: 'satish@omniwyse.com',
+//   password: 'satish'
+// };
+user: object = {};
+
   constructor(
     private router: Router,
     private toastr: ToastrService,
@@ -43,7 +44,7 @@ user: object = {
       }
     },
       error => {
-        // this.toastr.error(error.error.message);
+        this.toastr.error('please enter valid email and password');
         console.log(error);
       });
   }
