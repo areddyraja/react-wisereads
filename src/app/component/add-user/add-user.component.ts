@@ -37,9 +37,11 @@ export class AddUserComponent implements OnInit {
     this.saveUserService.saveuser(this.addUser).subscribe(
       (data: any) => {
         console.log('addUser Object', this.addUser);
-        if (data) {
+        if (data && data.resultsMap && data.resultsMap.user) {
           this.toastr.success('Added User Successfully');
           this.router.navigateByUrl('/app-dashboard');
+        } else if (data.resultsMap.emailExistError) {
+          this.toastr.warning(data.resultsMap.emailExistError);
         }
       },
       error => {

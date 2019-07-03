@@ -46,7 +46,7 @@ show: any;
    this.name = localStorage.getItem('name');
    this.searchTerm.valueChanges.subscribe(
       term => {
-        if (term !== '' && term.length >= 3) {
+        if (term && term !== '' && term.length >= 3) {
           this.searchService.search(term).subscribe(
             (data: any) => {
               this.myBooks = data.resultsMap.books as any[];

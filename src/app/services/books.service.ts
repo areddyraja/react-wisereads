@@ -21,7 +21,7 @@ export class BooksService {
   private sub: any;
 
   AddBooks(books: AddBooks) {
-    return this.http.post<AddBooks[]>(`http://13.127.158.42/admin/api/books`, books);
+    return this.http.post<AddBooks[]>(`${AppSettings.URL}/admin/api/books`, books);
   }
 
   getbooks() {
@@ -45,7 +45,7 @@ export class BooksService {
         })
       };
     return this.http
-    .get<AddBooks[]>(`${AppSettings.URL}/api/books` + id , httpOptions);
+    .get<AddBooks[]>(`${AppSettings.URL}/api/books/` + id , httpOptions);
   }
 
   private extractData(res: Response) {
@@ -60,7 +60,7 @@ export class BooksService {
         Authorization: 'Bearer ' + localStorage.getItem('Token'),
         })
       };
-    return this.http.get(`${AppSettings.URL}/api/books` + id, httpOptions).pipe(
+    return this.http.get(`${AppSettings.URL}/api/books/` + id, httpOptions).pipe(
       map(this.extractData));
   }
   

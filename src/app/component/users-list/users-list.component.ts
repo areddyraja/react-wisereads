@@ -11,7 +11,7 @@ import { MatTableDataSource, MatPaginator } from '@angular/material';
 export class UsersListComponent implements OnInit {
   dataSource;
   ELEMENT_DATA = [];
-  displayedColumns: string[] = ['userId', 'userName', 'emailId', 'phone', 'gender', 'status', 'actions'];
+  displayedColumns: string[] = ['userId', 'userName', 'emailId', 'phone', 'gender', 'status'];
 
   constructor(private userService: SaveUserService) { }
 
