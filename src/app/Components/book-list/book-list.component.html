@@ -1,0 +1,83 @@
+<section class="container-fluid" >
+    <div class="row">
+        <div class="item item-1 col-lg-3 col-md-3 col-sm-12">
+            <img class="dashboard-img" src="../../assets/images/metrics (1).png">
+            <h1>Book List</h1>
+        </div>
+        <div *ngIf="isUser == 2 ||  isUser == 1" class="item item-2 col-lg-9 col-md-9 col-sm-12">
+            <div class="input-container">
+                <input type="file" id="real-input" (change)="onSelectFile($event)">
+            </div>
+            <button class="mr-2 action-button" (click)="onUpload()" mat-button mat-raised-button>Import Books</button>
+            <!-- <button class="action-button" mat-button mat-raised-button>Add Books</button> -->
+        </div>
+    </div>
+
+
+    <div class="example-container mat-elevation-z8">
+        <mat-table #table [dataSource]="dataSource" [class.isMobile]="isMobile">
+
+            <ng-container matColumnDef="bookid">
+                <mat-header-cell fxFlex="0 0 5%" *matHeaderCellDef> ID </mat-header-cell>
+                <mat-cell *matCellDef="let element" fxFlex="0 0 5%">
+                    <span class="mobile-label">Book ID:</span> {{element.bookId}}
+                </mat-cell>
+            </ng-container>
+
+
+            <ng-container matColumnDef="bookname">
+                <mat-header-cell *matHeaderCellDef [ngClass]="' bookname'"> Book Name </mat-header-cell>
+                <mat-cell *matCellDef="let element" [ngClass]="' bookname'">
+                    <span class="mobile-label">Book Name:</span>
+                    <div  title="{{element.title }}">
+                            {{element.title  | shorten: 35: '...'  }}
+                        </div> 
+                </mat-cell>
+            </ng-container>
+
+
+            <ng-container matColumnDef="author">
+                <mat-header-cell *matHeaderCellDef> Author </mat-header-cell>
+                <mat-cell *matCellDef="let element">
+                    <span class="mobile-label">Author:</span> {{element.author}}
+                </mat-cell>
+            </ng-container>
+
+
+            <ng-container matColumnDef="gnere">
+                <mat-header-cell *matHeaderCellDef fxFlex="0 0 10%"> Genre </mat-header-cell>
+                <mat-cell *matCellDef="let element" fxFlex="0 0 10%">
+                    <span class="mobile-label">Genre:</span> {{element.genre}}
+                </mat-cell>
+            </ng-container>
+
+            <ng-container matColumnDef="publisher">
+                <mat-header-cell *matHeaderCellDef> Publisher </mat-header-cell>
+                <mat-cell *matCellDef="let element">
+                    <span class="mobile-label">Publisher:</span> {{element.publisher}}
+                </mat-cell>
+            </ng-container>
+
+            <ng-container matColumnDef="owner">
+                <mat-header-cell *matHeaderCellDef> Owner</mat-header-cell>
+                <mat-cell *matCellDef="let element">
+                    <span class="mobile-label">Owner:</span> <a href="mailto:{{element.owner}}">{{element.owner}}</a>
+                </mat-cell>
+            </ng-container>
+
+            <!-- <ng-container matColumnDef="action">
+                <mat-header-cell *matHeaderCellDef fxFlex="0 0 10%"> Actions </mat-header-cell>
+                <mat-cell *matCellDef="let element" fxFlex="0 0 10%">
+                    <span class="mobile-label">Actions:</span>
+                    <button class="edit-button" mat-button mat-raised-button>Edit</button>
+
+                </mat-cell>
+            </ng-container> -->
+            <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+            <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+        </mat-table>
+
+        <mat-paginator  [pageSize]="[10]" showFirstLastButtons></mat-paginator>
+    </div>
+
+</section>

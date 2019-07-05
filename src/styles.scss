@@ -15,7 +15,9 @@ body {
 }
 
 // cards
-    
+a{
+   cursor: pointer;
+}
 a:hover,a.active,a.selected
   {
     background-color: transparent !important;
@@ -68,32 +70,15 @@ table {
 //     font-weight: 500;
 // }
 .mat-header-cell {
-    font-size: 16px;
+    font-size: 0.9em;
     font-weight: 600;
-    color: #707070;
+    color: #505050;
 }
 
 .mat-cell {
     font-size: 0.8em;
     font-weight: 300;
     color: #4b4b4b;
-    padding: 0 8px;
-}
-
-@media(max-width: 600px) {
-    .mobile-label {
-        width: 80px;
-        display: inline-block;
-        font-weight: bold;
-    }
-    .mat-header-row {
-        display: none;
-    }
-    .mat-row {
-        flex-direction: column;
-        align-items: start;
-        padding: 8px 24px;
-    }
 }
 
 .example-container {
@@ -112,21 +97,6 @@ table {
     display: none;
 }
 
-@media(max-width: 1024px) {
-    .mobile-label {
-        width: 80px;
-        display: inline-block;
-        font-weight: bold;
-    }
-    .mat-header-row {
-        display: none;
-    }
-    .mat-row {
-        flex-direction: column;
-        align-items: start;
-        padding: 8px 24px;
-    }
-}
 
 .example-card {
     .mat-card-header-text {
@@ -162,7 +132,6 @@ table {
 
 .main-container {
     height: calc(100vh - 100px);
-    margin-top: 100px;
     overflow: auto;
     padding: 40px 20px 0 20px;
 
@@ -171,14 +140,16 @@ table {
   opacity:3;
   
 }
-
-.ellipses {
-    white-space: nowrap;
-    width: 6em;
-    overflow: hidden;
-    text-overflow: ellipsis;
-    // border: 1px solid #000000;
-    cursor: pointer;
+@media(min-width:1024px){
+    .ellipses {
+        white-space: nowrap;
+        width: 6em;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        // border: 1px solid #000000;
+        cursor: pointer;
+    }
+    
 }
 
 .mat-form-field-wrapper {

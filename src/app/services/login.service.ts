@@ -29,13 +29,13 @@ export class LoginService {
 
   logIn(user) {
     const usercredentials = btoa(user.email + ':' + user.password);
-    localStorage.setItem('UserEmail', JSON.stringify(user));
-    localStorage.setItem('Token', usercredentials);
+    // localStorage.setItem('UserEmail', JSON.stringify(user));
+    // localStorage.setItem('Token', usercredentials);
 
     const httpOptions = {
       params: new HttpParams().set(user.email, user.password),
     };
-    return this.httpClient.post(AppSettings.URL + '/login', user, httpOptions).pipe(map((res: Response) => {
+    return this.httpClient.post(AppSettings.URL + '/login', user, httpOptions).pipe(map((res: any) => {
       localStorage.setItem('currentUser', JSON.stringify(res));
       this.currentUserSubject.next(res);
       return res;
@@ -45,7 +45,7 @@ export class LoginService {
 
   logout() {
     // remove user from local storage and set current user to null
-    localStorage.removeItem('currentUser');
+    localStorage.clear();
     this.currentUserSubject.next(null);
   }
 }

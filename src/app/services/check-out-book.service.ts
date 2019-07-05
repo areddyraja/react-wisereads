@@ -33,4 +33,14 @@ export class CheckOutBookService {
       return res;
     }));
   }
+
+
+  userBookList(id){
+    return this.httpClient.get(`${AppSettings.URL}/api/checked-out-books/user/` +  id ,this.httpOptions).pipe(map((res: Response) => {
+      return res;
+    }));
+  }
+
+  
+
 }

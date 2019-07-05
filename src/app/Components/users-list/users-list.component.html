@@ -1,0 +1,77 @@
+<section >
+<div fxLayout fxLayout.xs="column" fxLayoutAlign="center" fxLayoutGap="10px" fxLayoutGap.xs="0" >
+  <div class="item item-1" fxFlex="50%">
+    <img class="dashboard-img" src="../../assets/images/metrics (1).png">
+    <h1>Users List</h1>
+  </div>
+  <div class="item item-2" fxFlex="50%">
+    <!-- <button class="mr-2 action-button" mat-button mat-raised-button>Import Books</button> -->
+    <button class="action-button" routerLink='/app-add-user' mat-button mat-raised-button>Add User</button>
+  </div>
+</div>
+
+<div class="example-container mat-elevation-z8">
+  <mat-table #table [dataSource]="dataSource" [class.isMobile]="isMobile">
+
+    <ng-container matColumnDef="userId">
+      <mat-header-cell *matHeaderCellDef> User ID </mat-header-cell>
+      <mat-cell *matCellDef="let element">
+        {{element.userId}}
+      </mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="userName">
+      <mat-header-cell *matHeaderCellDef> User Name</mat-header-cell>
+      <mat-cell *matCellDef="let element">
+        {{element.firstName}} {{element.lastName}}
+      </mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="emailId">
+      <mat-header-cell *matHeaderCellDef> Email ID </mat-header-cell>
+      <mat-cell *matCellDef="let element">
+          <div class="ellipses" title="{{element.email}}">
+              {{element.email}}
+          </div>
+      </mat-cell>
+    </ng-container>
+
+
+    <ng-container matColumnDef="phone">
+      <mat-header-cell *matHeaderCellDef> Phone </mat-header-cell>
+      <mat-cell *matCellDef="let element">
+        {{element.contactNumber}}
+      </mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="gender">
+      <mat-header-cell *matHeaderCellDef> Gender</mat-header-cell>
+      <mat-cell *matCellDef="let element">
+        <span *ngIf="element.genderId==1">Male</span>
+        <span *ngIf="element.genderId==2">Female</span>
+      </mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="status">
+      <mat-header-cell *matHeaderCellDef> Status</mat-header-cell>
+      <mat-cell *matCellDef="let element">
+        <span *ngIf="element.userStatusId==1">Active</span>
+        <span *ngIf="element.userStatusId==2">Inactive</span>
+
+      </mat-cell>
+    </ng-container>
+
+    <!-- <ng-container matColumnDef="actions">
+      <mat-header-cell *matHeaderCellDef> Actions </mat-header-cell>
+      <mat-cell *matCellDef="let element">
+        <button class="edit-button" mat-button mat-raised-button>Edit</button>
+
+      </mat-cell>
+    </ng-container> -->
+    <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+    <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+  </mat-table>
+
+  <mat-paginator #paginator [pageSize]="[5]" showFirstLastButtons></mat-paginator>
+</div>
+</section>
