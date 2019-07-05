@@ -65,11 +65,11 @@ export class RegisterComponent implements OnInit {
           this.toastr.success('Registration Successfully');
           this.router.navigateByUrl('/app-dashboard');
         } else if (data.resultsMap.emailExistError) {
-          this.toastr.warning(data.resultsMap.emailExistError);
+          this.toastr.warning(data.message);
         }
       },
       error => {
-        this.toastr.warning(error.error.message);
+        this.toastr.warning('please enter valid details');
       }
     );
   }
