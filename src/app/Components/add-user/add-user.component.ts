@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { SaveUserService } from '../../services/save-user.service';
-import { Router } from '@angular/router';
+import { Router, ActivatedRoute } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 
 @Component({
@@ -23,31 +23,28 @@ export class AddUserComponent implements OnInit {
   comboBoxesDataGender: any;
   comboBoxesDataRole: any;
   comboBoxesDataStatus: any;
+  regId: string;
+  check:boolean=true;
   constructor(
     private saveUserService: SaveUserService,
     private router: Router,
+    private route: ActivatedRoute,
     private toastr: ToastrService
-  ) {}
+  ) {
+
+    this.route.params.subscribe(params => {
+      if (params) {
+        this.regId = params.id;
+      }
+    });
+
+  }
 
   ngOnInit() {
+    if (this.regId) {
+      this.loadEditUser(this.regId);
+    }
     this.loadComboBoxes();
-  }
-  saveUser() {
-    this.addUser.createdBy = localStorage.getItem('username');
-    this.saveUserService.saveuser(this.addUser).subscribe(
-      (data: any) => {
-        // console.log('addUser Object', this.addUser);
-        if (data && data.resultsMap && data.resultsMap.user) {
-          this.toastr.success('Added User Successfully');
-          this.router.navigateByUrl('/app-dashboard');
-        } else if (data.resultsMap.emailExistError) {
-          this.toastr.warning(data.resultsMap.emailExistError);
-        }
-      },
-      error => {
-        this.toastr.warning(error.error.message);
-      }
-    );
   }
 
   loadComboBoxes() {
@@ -65,6 +62,60 @@ export class AddUserComponent implements OnInit {
           this.comboBoxesDataGender = data.result.gender;
           this.comboBoxesDataRole = data.result.roles;
           this.comboBoxesDataStatus = data.result.userStatus;
+        }
+      },
+      error => {
+        this.toastr.warning(error.error.message);
+      }
+    );
+  }
+
+  loadEditUser(regId) {
+    this.check=false
+    this.saveUserService.loaduser(regId).subscribe(
+      (data: any) => {
+        this.addUser=data.result;
+        console.log("loadEditUser",this.addUser)
+        // if (data && data.resultsMap && data.resultsMap.user) {
+        //   this.toastr.success('Updated User Successfully');
+        //   this.router.navigateByUrl('/app-dashboard');
+        // } else if (data.resultsMap.emailExistError) {
+        //   this.toastr.warning(data.resultsMap.emailExistError);
+        // }
+      },
+      error => {
+        this.toastr.warning(error.error.message);
+      }
+    );
+  }
+  saveUser() {
+    this.addUser.createdBy = localStorage.getItem('username');
+    this.saveUserService.saveuser(this.addUser).subscribe(
+      (data: any) => {
+        // console.log('addUser Object', this.addUser);
+        if (data && data.resultsMap && data.resultsMap.user) {
+          this.toastr.success('Added User Successfully');
+          this.router.navigateByUrl('/app-dashboard');
+        } else if (data.resultsMap.emailExistError) {
+          this.toastr.warning(data.resultsMap.emailExistError);
+        }
+      },
+      error => {
+        // this.toastr.warning(error.error.message);
+      }
+    );
+  }
+
+  editUser() {
+    this.addUser.createdBy = localStorage.getItem('name');
+    this.saveUserService.edituser(this.addUser).subscribe(
+      (data: any) => {
+        // console.log('addUser Object', this.addUser);
+        if (data && data.resultsMap && data.resultsMap.user) {
+          this.toastr.success(data.message);
+          this.router.navigateByUrl('/app-dashboard');
+        } else if (data.resultsMap.emailExistError) {
+          this.toastr.warning(data.resultsMap.emailExistError);
         }
       },
       error => {

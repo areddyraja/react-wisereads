@@ -14,7 +14,7 @@ export class CheckOutBooksComponent implements OnInit {
   dropDownSearch;
   ELEMENT_DATA: any;
   displayedColumns: string[] = ['invId', 'orderId', 'bookName', 'userName', 'checkOutDate', 'dueDate', 'dueAmt', 'returnDate', 'status',
-  'totalAmtPaid'];
+  'totalAmtPaid','actions'];
   checkOut: any = {};
   public amountPaid: any = [];
   comboBoxesDataCheckedStatus: any;
@@ -119,4 +119,28 @@ export class CheckOutBooksComponent implements OnInit {
      this.loadUsersListSearch(this.dropDownSearch);
   }
 
+  submit(index, objData){
+    const obj = {
+      checkoutId: objData.checkoutId, orderId: objData.orderId, bookId: objData.bookId,
+      inventoryId: objData.inventoryId,
+      userId: objData.userId, amountPaid: this.amountPaid[index], createdBy: objData.createdBy, checkedItatusId: this.checkOut.checkedItatusId
+    };
+    this.checkOutBooksSerive.updateBookStatus(obj).subscribe((data: any) => {
+          this.ELEMENT_DATA = data;
+          // alert(data.message)
+          this.toastr.success('Status Updated Successfully');
+          // console.log('bookStatus', data);
+          this.loadUsersList();
+    }),
+      // tslint:disable-next-line:no-unused-expression
+      err => {
+        this.toastr.error(err.error.message);
+      };
+  }
+
+  checkedStatusId($event, id): void {
+    if ($event.source.selected) {
+      this.checkOut.checkedItatusId = id.checked_status_id
+    }
+  }
 }

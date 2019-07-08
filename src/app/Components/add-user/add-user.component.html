@@ -7,7 +7,8 @@
 >
   <div class="item item-1" fxFlex="50%">
     <img class="dashboard-img" src="../../assets/images/metrics (1).png" />
-    <h1>Add User</h1>
+    <h1 *ngIf="check">Add User</h1>
+    <h1 *ngIf="!check">Edit User</h1>
   </div>
 </div>
 
@@ -67,8 +68,8 @@
           />
         </mat-form-field>
   </div>
-  <div class="col-md-6">
-      <mat-form-field>
+  <div class="col-md-6" *ngIf="check">
+      <mat-form-field >
           <mat-select placeholder="Select Role" name="roleId" id="roleId"
           [(ngModel)]="addUser.roleId" #roleId="ngModel">
           <mat-option *ngFor="let id of comboBoxesDataRole" [value]="id.role_id"
@@ -123,7 +124,7 @@
             placeholder="Company Name"
             type="text"
             name="company"
-            [(ngModel)]="addUser.company"
+            [(ngModel)]="addUser.companyName"
             #company="ngModel"
             pattern="^[a-zA-Z0-9- ]{1,30}$"
             required
@@ -132,8 +133,8 @@
         </mat-form-field>
   </div>
 
-  <div class="col-md-6">
-      <mat-form-field>
+  <div class="col-md-6" >
+      <mat-form-field *ngIf="check">
           <input
             matInput
             placeholder="Password"
@@ -147,7 +148,7 @@
         </mat-form-field>
   </div>
 
-  <div class="col-md-6">
+  <div class="col-md-6" *ngIf="check">
       <mat-form-field>
           <input
             matInput
@@ -164,8 +165,11 @@
       <button mat-raised-button style="background-color: rgb(78, 75, 75) ;color: #ffffff; width: 8vw;height: 40px;" (click)="cancel()" 
           class="mat-raised-button mat-warn mat-cancel"> Cancel</button>
     
-      <button mat-raised-button style="background-color: #2fc7f5 ;color: #ffffff;width: 8vw;height: 40px;"(click)="saveUser()" 
+      <button mat-raised-button style="background-color: #2fc7f5 ;color: #ffffff;width: 8vw;height: 40px;" *ngIf="check" (click)="saveUser()" 
            class="mat-raised-button mat-primary">Save</button>
+
+           <button mat-raised-button style="background-color: #2fc7f5 ;color: #ffffff;width: 8vw;height: 40px;" *ngIf="!check" (click)="editUser()" 
+           class="mat-raised-button mat-primary">Update</button>
     
   </div>
 </div>

@@ -44,6 +44,10 @@ const routes: Routes = [
         path: 'app-add-user', component: AddUserComponent
       },
       {
+        path: 'editUser/:id',
+        component: AddUserComponent,
+      },
+      {
         path: 'inventory', component: InventoryComponent
       },
       {
