@@ -20,8 +20,18 @@ export class BooksService {
   id: any;
   private sub: any;
 
-  AddBooks(books: AddBooks) {
-    return this.http.post<AddBooks[]>(`${AppSettings.URL}/admin/api/books`, books);
+
+
+  AddBooks(books: any) {
+    const httpOptions = {
+      headers: new HttpHeaders({
+        'Content-Type': 'application/json',
+        Authorization: 'Bearer ' + localStorage.getItem('Token'),
+        })
+      };
+    return this.http.post(AppSettings.URL + '/api/books', books, httpOptions).pipe(map((res: Response) => {
+      return res;
+    }));
   }
 
   getbooks() {

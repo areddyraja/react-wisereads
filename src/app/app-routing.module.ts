@@ -17,6 +17,7 @@ import { HomeComponent } from './Components/home/home.component';
 import { BookListComponent } from './Components/book-list/book-list.component';
 import { RegisterComponent } from './Components/register/register.component';
 import { UserBooksDetailsComponent } from './Components/user-books-details/user-books-details.component';
+import { EditBookComponent } from './Components/edit-book/edit-book.component';
 
 const routes: Routes = [
   {
@@ -32,6 +33,9 @@ const routes: Routes = [
       },
       {
         path: 'add-book', loadChildren: './Components/books/books.module#BooksModule'
+      },
+      {
+        path: 'edit-book', component : EditBookComponent
       },
       {
         path: 'book_list', component: BookListComponent

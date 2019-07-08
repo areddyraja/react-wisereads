@@ -37,6 +37,7 @@ export class LoginService {
     };
     return this.httpClient.post(AppSettings.URL + '/login', user, httpOptions).pipe(map((res: any) => {
       localStorage.setItem('currentUser', JSON.stringify(res));
+      
       this.currentUserSubject.next(res);
       return res;
     }));

@@ -33,7 +33,7 @@ export class AddUserComponent implements OnInit {
     this.loadComboBoxes();
   }
   saveUser() {
-    this.addUser.createdBy = localStorage.getItem('name');
+    this.addUser.createdBy = localStorage.getItem('username');
     this.saveUserService.saveuser(this.addUser).subscribe(
       (data: any) => {
         // console.log('addUser Object', this.addUser);

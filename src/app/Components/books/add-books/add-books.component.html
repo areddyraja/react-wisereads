@@ -6,77 +6,151 @@
   </div>
 
   <div class="form">
-      <form [formGroup]="registerForm" (ngSubmit)="onSubmit()">
+      <form #addBookForm="ngForm" (ngSubmit)="addBookForm.form.valid && onSubmit()" novalidate>
       
           <div class="row form-group">
               <div class="col-md-6">
-                  <input type="text" placeholder="Book Name" formControlName="bookName" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.bookName.errors }" />
-                  <div *ngIf="submitted && f.bookName.errors" class="invalid-feedback">
-                      <div *ngIf="f.bookName.errors.required">Book Name is required</div>
+                  <input    type="text" 
+                            placeholder="Book Name" 
+                            name="title"
+                            [(ngModel)]="model.title"
+                             #title="ngModel"
+                            class="form-control" 
+                            [ngClass]="{ 'is-invalid': addBookForm.submitted && title.invalid }"
+                            required
+                            />
+                  <div *ngIf="addBookForm.submitted && title.invalid" class="invalid-feedback">
+                      <div *ngIf="title.errors.required">Book Name is required</div>
                   </div>
+                
               </div>
               <div class="col-md-6">
-                  <input type="text" placeholder="Publisher" formControlName="publisher" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.publisher.errors }" />
-                  <div *ngIf="submitted && f.publisher.errors" class="invalid-feedback">
-                      <div *ngIf="f.publisher.errors.required">Publisher is required</div>
-                  </div>
+                    <input type="text" 
+                            placeholder="Publisher" 
+                            [(ngModel)]="model.publisher"
+                             #publisher="ngModel"
+                             required
+                             name="publisher"
+                            class="form-control" 
+                            [ngClass]="{ 'is-invalid': addBookForm.submitted && publisher.invalid }"
+                    />
+                    <div *ngIf="addBookForm.submitted && publisher.invalid" class="invalid-feedback">
+                        <div *ngIf="publisher.errors.required">Publisher is required</div>
+                    </div>
               </div>
           </div>
 
           <div class="row form-group">
               <div class="col-md-6">
-              <input type="text" placeholder="ISBN Code" formControlName="isbnCode" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.isbnCode.errors }" />
-              <div *ngIf="submitted && f.isbnCode.errors" class="invalid-feedback">
-                  <div *ngIf="f.isbnCode.errors.required">ISBN Code is required</div>
-              </div>
+                <input type="text" 
+                        placeholder="ISBN Code" 
+                        [(ngModel)]="model.isbnCode"
+                        #isbnCode="ngModel"
+                        name="isbnCode"
+                        required
+                        class="form-control" 
+                        [ngClass]="{ 'is-invalid': addBookForm.submitted && isbnCode.invalid }"
+                        />
+                <div *ngIf="addBookForm.submitted && isbnCode.invalid" class="invalid-feedback">
+                    <div *ngIf="isbnCode.errors.required">ISBN Code is required</div>
+                </div>
               </div>
               <div class="col-md-6">
                   <div class="date">
-                          <input  [matDatepicker]="picker"  placeholder="Publication Date" formControlName="publicationDate" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.publicationDate.errors }" />
+                            <input  
+                                [matDatepicker]="picker"  
+                                placeholder="Publication Date" 
+                                [(ngModel)]="model.publicationDate"
+                                #publicationDate="ngModel"
+                                name="publicationDate"
+                                required
+                                class="form-control" 
+                                [ngClass]="{ 'is-invalid': addBookForm.submitted && publicationDate.invalid }"
+                            />
                           <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
                           <mat-datepicker #picker></mat-datepicker>
                   </div>
               
-              <div *ngIf="submitted && f.publicationDate.errors" class="invalid-feedback">
-                  <div *ngIf="f.publicationDate.errors.required">Publication Date is required</div>
-              </div>
-              </div>
-          </div>
-
-          <div class="row form-group">
-              <div class="col-md-6">
-              <input type="text" placeholder="Author Name" formControlName="authorName" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.authorName.errors }" />
-              <div *ngIf="submitted && f.authorName.errors" class="invalid-feedback">
-                  <div *ngIf="f.authorName .errors.required">Author Name is required</div>
-              </div>
-              </div>
-              <div class="col-md-6">
-              <input type="text" placeholder="Cover Page" formControlName="coverPage" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.coverPage.errors }" />
-              <div *ngIf="submitted && f.coverPage.errors" class="invalid-feedback">
-                  <div *ngIf="f.coverPage.errors.required">Cover Page is required</div>
-              </div>
+                    <div *ngIf="addBookForm.submitted && publicationDate.invalid" class="invalid-feedback">
+                        <div *ngIf="publicationDate.errors.required">Publication Date is required</div>
+                    </div>
               </div>
           </div>
 
           <div class="row form-group">
               <div class="col-md-6">
-              <textarea type="text" placeholder="Description" formControlName="description" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.description.errors }" ></textarea>
-              <div *ngIf="submitted && f.description.errors" class="invalid-feedback">
-                  <div *ngIf="f.description .errors.required">Description is required</div>
+                    <input type="text" 
+                            placeholder="Author Name" 
+                            [(ngModel)]="model.author"
+                            #author="ngModel"
+                            required
+                            name="author"
+                            class="form-control" 
+                            [ngClass]="{ 'is-invalid': addBookForm.submitted && author.invalid }" 
+                    />
+                    <div *ngIf="addBookForm.submitted && author.invalid" class="invalid-feedback">
+                        <div *ngIf="author.errors.required">Author Name is required</div>
+                    </div>
               </div>
+              <div class="col-md-6">
+                    <input type="text" 
+                            placeholder="Cover Page" 
+                            [(ngModel)]="model.bookCoverPage"
+                            #bookCoverPage="ngModel"
+                            name="bookCoverPage"
+                            required
+                            class="form-control" 
+                            [ngClass]="{ 'is-invalid': addBookForm.submitted && bookCoverPage.invalid }" 
+                    />
+                    <div *ngIf="addBookForm.submitted && bookCoverPage.invalid" class="invalid-feedback">
+                        <div *ngIf="bookCoverPage.errors.required">Cover Page is required</div>
+                    </div>
+              </div>
+          </div>
+
+          <div class="row form-group">
+              <div class="col-md-6">
+                    <textarea type="text" 
+                                placeholder="Description" 
+                                [(ngModel)]="model.bookDescription"
+                                #bookDescription="ngModel"
+                                required
+                                name="bookDescription"
+                                class="form-control" 
+                                [ngClass]="{ 'is-invalid': addBookForm.submitted && bookDescription.invalid }"  >
+                    </textarea>
+                    <div *ngIf="addBookForm.submitted && bookDescription.invalid" class="invalid-feedback">
+                        <div *ngIf="bookDescription .errors.required">Description is required</div>
+                    </div>
               </div>
               <div class="col-md-6">
                   <div class="row">
                       <div class="col-md-12">
-                              <input type="text" placeholder="No. of Pages" formControlName="Pages" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.Pages.errors }" />
-                              <div *ngIf="submitted && f.Pages.errors" class="invalid-feedback">
-                                  <div *ngIf="f.Pages.errors.required">No. of Pages is required</div>
-                              </div>
+                                <input type="text" 
+                                        placeholder="No. of Pages" 
+                                        [(ngModel)]="model.numberOfPages"
+                                        #numberOfPages="ngModel"
+                                        required
+                                        name="numberOfPages"
+                                        class="form-control" 
+                                        [ngClass]="{ 'is-invalid': addBookForm.submitted && numberOfPages.invalid }"  
+                                        />
+                                <div *ngIf="addBookForm.submitted && numberOfPages.invalid" class="invalid-feedback">
+                                    <div *ngIf="numberOfPages.errors.required">No. of Pages is required</div>
+                                </div>
                       </div>
                       <div class="col-md-12 mt-3">
-                              <input type="text" placeholder="Sample Page Url" formControlName="samplePageUrl" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.samplePageUrl.errors }" />
-                              <div *ngIf="submitted && f.samplePageUrl.errors" class="invalid-feedback">
-                                  <div *ngIf="f.samplePageUrl.errors.required">Sample Page Url is required</div>
+                              <input type="text" 
+                                    placeholder="Sample Page Url" 
+                                    [(ngModel)]="model.samplePageUrl"
+                                    #samplePageUrl="ngModel"
+                                    required
+                                    name="samplePageUrl"
+                                    class="form-control" 
+                                    [ngClass]="{ 'is-invalid': addBookForm.submitted && samplePageUrl.invalid }"  
+                                    />
+                              <div *ngIf="addBookForm.submitted && samplePageUrl.invalid" class="invalid-feedback">
+                                  <div *ngIf="samplePageUrl.errors.required">Sample Page Url is required</div>
                               </div>
                       </div>
                   </div>
@@ -85,62 +159,136 @@
 
           <div class="row form-group">
                   <div class="col-md-6">
-                  <input type="text" placeholder="Select Genre" formControlName="genre" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.genre.errors }" />
-                  <div *ngIf="submitted && f.genre.errors" class="invalid-feedback">
-                      <div *ngIf="f.genre .errors.required">Select Genre is required</div>
-                  </div>
+                        <select placeholder="Select bookGenre" 
+                                name="bookGenre" 
+                                id="genreId" 
+                                [(ngModel)]="model.genreId"
+                                #genreId="ngModel"
+                                required
+                                name="genreId"
+                                class="form-control" 
+                                [ngClass]="{ 'is-invalid': addBookForm.submitted && genreId.invalid }"   
+                        >
+                                <option value="undefined" hidden>-- Select --</option>
+                                <option *ngFor="let id of comboBoxesbookGenre" [value]="id.genre_id"
+                                (onSelectionChange)="comboGenr($event,id)">{{id.genre}}
+                                </option>
+                        </select>
+                        <div *ngIf="addBookForm.submitted && genreId.invalid" class="invalid-feedback">
+                            <div *ngIf="genreId .errors.required">Select Genre is required</div>
+                        </div>
                   </div>
                   <div class="col-md-6">
-                  <input type="text" placeholder="Image Url1" formControlName="imageUrl1" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.imageUrl1.errors }" />
-                  <div *ngIf="submitted && f.imageUrl1.errors" class="invalid-feedback">
-                      <div *ngIf="f.imageUrl1.errors.required">Image Url1 is required</div>
-                  </div>
+                        <input type="text" 
+                                placeholder="Image Url1" 
+                                [(ngModel)]="model.imagesUrl1"
+                                #imagesUrl1="ngModel"
+                                required
+                                name="imagesUrl1"
+                                class="form-control" 
+                                [ngClass]="{ 'is-invalid': addBookForm.submitted && imagesUrl1.invalid }"   
+                        />
+                        <div *ngIf="addBookForm.submitted && imagesUrl1.invalid" class="invalid-feedback">
+                            <div *ngIf="imagesUrl1.errors.required">Image Url1 is required</div>
+                        </div>
                   </div>
           </div>
 
           <div class="row form-group">
                   <div class="col-md-6">
-                  <input type="text" placeholder="Edition" formControlName="edition" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.edition.errors }" />
-                  <div *ngIf="submitted && f.edition.errors" class="invalid-feedback">
-                      <div *ngIf="f.edition .errors.required">Edition is required</div>
-                  </div>
+                        <input type="text" 
+                                placeholder="Edition" 
+                                [(ngModel)]="model.edition"
+                                #edition="ngModel"
+                                required
+                                name="edition"
+                                class="form-control" 
+                                [ngClass]="{ 'is-invalid': addBookForm.submitted && edition.invalid }"  
+                        />
+                        <div *ngIf="addBookForm.submitted && edition.invalid" class="invalid-feedback">
+                            <div *ngIf="edition .errors.required">Edition is required</div>
+                        </div>
                   </div>
                   <div class="col-md-6">
-                  <input type="text" placeholder="Image Url2" formControlName="imageUrl2" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.imageUrl2.errors }" />
-                  <div *ngIf="submitted && f.imageUrl2.errors" class="invalid-feedback">
-                      <div *ngIf="f.imageUrl2.errors.required">Image Url2 is required</div>
-                  </div>
+                        <input type="text" 
+                                placeholder="Image Url2" 
+                                [(ngModel)]="model.imagesUrl2"
+                                #imagesUrl2="ngModel"
+                                required
+                                name="imagesUrl2"
+                                class="form-control" 
+                                [ngClass]="{ 'is-invalid': addBookForm.submitted && imagesUrl2.invalid }"  
+                        />
+                        <div *ngIf="addBookForm.submitted && imagesUrl2.invalid" class="invalid-feedback">
+                            <div *ngIf="imagesUrl2.errors.required">Image Url2 is required</div>
+                        </div>
                   </div>
           </div>
 
 
           <div class="row form-group">
                   <div class="col-md-6">
-                  <input type="text" placeholder="Book Owner" formControlName="bookOwner" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.bookOwner.errors }" />
-                  <div *ngIf="submitted && f.bookOwner.errors" class="invalid-feedback">
-                      <div *ngIf="f.bookOwner.errors.required">Book Owner is required</div>
-                  </div>
+                        <select placeholder="Select Owner" 
+                                name="ownerId" 
+                                id="ownerId" 
+                                [(ngModel)]="model.ownerId"
+                                #ownerId="ngModel"
+                                required
+                                name="ownerId"
+                                class="form-control" 
+                                [ngClass]="{ 'is-invalid': addBookForm.submitted && ownerId.invalid }"   
+                         >
+                            <option value="undefined" hidden>-- Select --</option>
+                            <option  value="1">omniwyse</option>
+                        </select>
+                        <div *ngIf="addBookForm.submitted && ownerId.invalid" class="invalid-feedback">
+                            <div *ngIf="ownerId .errors.required">Owner is required</div>
+                        </div>
                   </div>
                   <div class="col-md-6">
-                  <input type="text" placeholder="Rental Value" formControlName="rentalValue" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.rentalValue.errors }" />
-                  <div *ngIf="submitted && f.rentalValue.errors" class="invalid-feedback">
-                      <div *ngIf="f.rentalValue.errors.required">Rental Value is required</div>
-                  </div>
+                        <input type="text" 
+                                placeholder="Rental Value" 
+                                [(ngModel)]="model.rentPerDay"
+                                #rentPerDay="ngModel"
+                                required
+                                name="rentPerDay"
+                                class="form-control" 
+                                [ngClass]="{ 'is-invalid': addBookForm.submitted && rentPerDay.invalid }" 
+                        />
+                        <div *ngIf="addBookForm.submitted && rentPerDay.invalid" class="invalid-feedback">
+                            <div *ngIf="rentPerDay.errors.required">Rental Value is required</div>
+                        </div>
                   </div>
           </div>
 
           <div class="row form-group">
                   <div class="col-md-6">
-                  <input type="text" placeholder="Price" formControlName="price" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.price.errors }" />
-                  <div *ngIf="submitted && f.price.errors" class="invalid-feedback">
-                      <div *ngIf="f.price.errors.required">Price is required</div>
-                  </div>
+                        <input type="text" 
+                                placeholder="Price" 
+                                [(ngModel)]="model.bookPrice"
+                                #bookPrice="ngModel"
+                                required
+                                name="bookPrice"
+                                class="form-control" 
+                                [ngClass]="{ 'is-invalid': addBookForm.submitted && bookPrice.invalid }" 
+                        />
+                        <div *ngIf="addBookForm.submitted && bookPrice.invalid" class="invalid-feedback">
+                            <div *ngIf="bookPrice.errors.required">Book Price is required</div>
+                        </div>
                   </div>
                   <div class="col-md-6">
-                  <input type="text" placeholder="No.of Copies" formControlName="noofCopies" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.noofCopies.errors }" />
-                  <div *ngIf="submitted && f.noofCopies.errors" class="invalid-feedback">
-                      <div *ngIf="f.noofCopies.errors.required">No.of Copies is required</div>
-                  </div>
+                        <input type="text" 
+                                placeholder="No.of Copies" 
+                                [(ngModel)]="model.Stock"
+                                #Stock="ngModel"
+                                required
+                                name="Stock"
+                                class="form-control" 
+                                [ngClass]="{ 'is-invalid': addBookForm.submitted && Stock.invalid }" 
+                            />
+                        <div *ngIf="addBookForm.submitted && Stock.invalid" class="invalid-feedback">
+                            <div *ngIf="Stock.errors.required">No.of Copies is required</div>
+                        </div>
                   </div>
           </div>
 

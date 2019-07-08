@@ -1,3 +1,4 @@
+import { AddBooks } from './../../models/add-books';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { BooksService } from '../../services/books.service';
 import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
@@ -8,6 +9,7 @@ import { AbstractControl, FormArray, FormBuilder, FormGroup } from '@angular/for
 import { BehaviorSubject } from 'rxjs';
 import { AppSettings } from 'src/app/apiUrl';
 import { ToastrService } from 'ngx-toastr';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-book-list',
@@ -18,8 +20,9 @@ import { ToastrService } from 'ngx-toastr';
 
 export class BookListComponent implements OnInit {
 
-  displayedColumns: string[] = ['bookid', 'bookname', 'author', 'gnere', 'publisher', 'owner'];
+  displayedColumns: string[] = ['bookid', 'bookname', 'author', 'gnere', 'publisher', 'owner','action'];
   isUser: any;
+  isRole: any;
   dataSource;
   ELEMENT_DATA = [];
   file: File = null;
@@ -29,6 +32,7 @@ export class BookListComponent implements OnInit {
   constructor(private fb: FormBuilder,
               private bookservice: BooksService,
               private http: HttpClient,
+              private router: Router,
               private toastr: ToastrService) {}
 
   selectedFile: File = null;
@@ -59,6 +63,9 @@ export class BookListComponent implements OnInit {
     );
   }
 
+  editBook() {
+   
+  }
 
   getbooks() {
     this.bookservice.getbooks().subscribe((data: any) => {

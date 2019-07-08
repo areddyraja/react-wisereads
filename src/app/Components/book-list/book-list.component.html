@@ -9,7 +9,7 @@
                 <input type="file" id="real-input" (change)="onSelectFile($event)">
             </div>
             <button class="mr-2 action-button" (click)="onUpload()" mat-button mat-raised-button>Import Books</button>
-            <!-- <button class="action-button" mat-button mat-raised-button>Add Books</button> -->
+            <button class="action-button" routerLink="/add-book" mat-button mat-raised-button>Add Books</button>
         </div>
     </div>
 
@@ -65,14 +65,13 @@
                 </mat-cell>
             </ng-container>
 
-            <!-- <ng-container matColumnDef="action">
+            <ng-container matColumnDef="action">
                 <mat-header-cell *matHeaderCellDef fxFlex="0 0 10%"> Actions </mat-header-cell>
                 <mat-cell *matCellDef="let element" fxFlex="0 0 10%">
                     <span class="mobile-label">Actions:</span>
-                    <button class="edit-button" mat-button mat-raised-button>Edit</button>
-
+                    <button class="edit-button"  (click)="editBook()" mat-button mat-raised-button>Edit</button>
                 </mat-cell>
-            </ng-container> -->
+            </ng-container>
             <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
             <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
         </mat-table>

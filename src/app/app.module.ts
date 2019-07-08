@@ -19,6 +19,7 @@ import { NguCarouselModule } from '@ngu/carousel';
 import { NgxCarouselModule } from 'ngx-carousel';
 import {NgPipesModule} from 'ngx-pipes';
 
+
 import { CardsComponent } from './Components/cards/cards.component';
 import { DashboardComponent } from './Components/dashboard/dashboard.component';
 import { BookListComponent } from './Components/book-list/book-list.component';
@@ -36,8 +37,8 @@ import { HomeComponent } from './Components/home/home.component';
 import { CarouselModule } from 'ngx-bootstrap';
 import { JwtInterceptor, ErrorInterceptor } from './_helpers';
 import { RegisterComponent } from './Components/register/register.component';
-import { BsDatepickerModule } from 'ngx-bootstrap/datepicker';
 import { UserBooksDetailsComponent } from './Components/user-books-details/user-books-details.component';
+import { EditBookComponent } from './Components/edit-book/edit-book.component';
 
 @NgModule({
   declarations: [
@@ -57,6 +58,7 @@ import { UserBooksDetailsComponent } from './Components/user-books-details/user-
     HomeComponent,
     RegisterComponent,
     UserBooksDetailsComponent,
+    EditBookComponent,
 
   ],
   imports: [
@@ -105,7 +107,6 @@ import { UserBooksDetailsComponent } from './Components/user-books-details/user-
       MatNativeDateModule,
       MatExpansionModule,
       CarouselModule.forRoot(),
-      BsDatepickerModule.forRoot(),
   ],
   providers: [
     MatDatepickerModule,
