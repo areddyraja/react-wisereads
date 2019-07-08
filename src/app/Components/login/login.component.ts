@@ -34,9 +34,9 @@ user: object = {};
     this.loginService.logIn(this.user).subscribe((data: any) => {
       console.log(data, data.success);
       localStorage.setItem('Token', data.resultsMap.sessionToken);
-      localStorage.setItem('roleId', data.resultsMap.userRoles[0].roleId);
-      localStorage.setItem('UserId', data.resultsMap.userRoles[0].userId);
-      localStorage.setItem('username',data.resultsMap.userRoles[0].createdBy);
+      localStorage.setItem('roleId', data.resultsMap.userDetails.userRoles[0].roleId);
+      localStorage.setItem('UserId', data.resultsMap.userDetails.userRoles[0].userId);
+      localStorage.setItem('username',data.resultsMap.userDetails.userRoles[0].createdBy);
       if (data.success === true) {
           this.router.navigateByUrl('/app-dashboard');
         // location.assign('/app-dashboard')

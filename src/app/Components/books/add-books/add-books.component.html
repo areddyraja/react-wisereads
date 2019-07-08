@@ -6,7 +6,7 @@
   </div>
 
   <div class="form">
-      <form #addBookForm="ngForm" (ngSubmit)="addBookForm.form.valid && onSubmit()" novalidate>
+      <form #addBookForm="ngForm" (ngSubmit)="addBookForm.form.valid" novalidate>
       
           <div class="row form-group">
               <div class="col-md-6">
@@ -277,10 +277,10 @@
                         </div>
                   </div>
                   <div class="col-md-6">
-                        <input type="text" 
+                        <input type="number" 
                                 placeholder="No.of Copies" 
-                                [(ngModel)]="model.Stock"
-                                #Stock="ngModel"
+                                [(ngModel)]="model.stock"
+                                #stock="ngModel"
                                 required
                                 name="Stock"
                                 class="form-control" 
@@ -294,7 +294,15 @@
 
           
           <div class="form-group">
-              <button class="btn btn-primary">Register</button>
+                <button mat-raised-button style="background-color: rgb(78, 75, 75) ;color: #ffffff; width: 8vw;height: 40px;" (click)="cancel()" 
+                class="mat-raised-button mat-warn mat-cancel"> Cancel</button>
+          
+            <button mat-raised-button style="background-color: #2fc7f5 ;color: #ffffff;width: 8vw;height: 40px;" *ngIf="check" (click)="onSubmit()"
+                 class="mat-raised-button mat-primary">Save</button>
+      
+                 <button mat-raised-button style="background-color: #2fc7f5 ;color: #ffffff;width: 8vw;height: 40px;" *ngIf="!check" (click)="editBooks()" 
+                 class="mat-raised-button mat-primary">Update</button>
+          
           </div>
       </form>
   </div>

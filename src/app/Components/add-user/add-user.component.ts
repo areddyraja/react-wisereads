@@ -25,6 +25,7 @@ export class AddUserComponent implements OnInit {
   comboBoxesDataStatus: any;
   regId: string;
   check:boolean=true;
+
   constructor(
     private saveUserService: SaveUserService,
     private router: Router,
@@ -71,7 +72,7 @@ export class AddUserComponent implements OnInit {
   }
 
   loadEditUser(regId) {
-    this.check=false
+    this.check = false
     this.saveUserService.loaduser(regId).subscribe(
       (data: any) => {
         this.addUser=data.result;
@@ -88,6 +89,8 @@ export class AddUserComponent implements OnInit {
       }
     );
   }
+
+
   saveUser() {
     this.addUser.createdBy = localStorage.getItem('username');
     this.saveUserService.saveuser(this.addUser).subscribe(

@@ -35,7 +35,7 @@ const routes: Routes = [
         path: 'add-book', loadChildren: './Components/books/books.module#BooksModule'
       },
       {
-        path: 'edit-book', component : EditBookComponent
+        path: 'edit-book/:id', loadChildren: './Components/books/books.module#BooksModule'
       },
       {
         path: 'book_list', component: BookListComponent

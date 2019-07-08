@@ -63,10 +63,6 @@ export class BookListComponent implements OnInit {
     );
   }
 
-  editBook() {
-   
-  }
-
   getbooks() {
     this.bookservice.getbooks().subscribe((data: any) => {
       // console.log(data);
@@ -81,6 +77,10 @@ export class BookListComponent implements OnInit {
   ngOnInit() {
     this.isUser = localStorage.getItem('roleId');
     this.getbooks();
+  }
+
+  editBook(regId: string): void {
+    this.router.navigate(['edit-book', regId]);
   }
 
 }

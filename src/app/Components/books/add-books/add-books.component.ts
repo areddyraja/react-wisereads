@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 
 import { BooksService } from '../../../services/books.service';
-import { Router } from '@angular/router';
+import { Router, ActivatedRoute } from '@angular/router';
 import { SaveUserService } from 'src/app/services/save-user.service';
 import { ToastrService } from 'ngx-toastr';
 
@@ -18,35 +18,30 @@ export class AddBooksComponent implements OnInit {
   addBookForm: FormGroup;
   comboBoxesbookGenre: any;
   model: any = {};
-
+  regId: string;
+  check = true;
   constructor(  private formBuilder: FormBuilder, 
                 private books: BooksService, 
                 private router: Router,
                 private saveUserService: SaveUserService,
-                private toastr: ToastrService) { }
+                private route: ActivatedRoute,
+                private toastr: ToastrService) 
+                { 
+                  this.route.params.subscribe(params => {
+                    if (params) {
+                      this.regId = params.id;
+                      // console.log(this.regId)
+                    }
+                  });
+                }
 
   ngOnInit() {
-  //   this.addBookForm = this.formBuilder.group({
-  //     bookName: ['', Validators.required],
-  //     publisher: ['', Validators.required],
-  //     isbnCode: ['', [Validators.required]],
-  //     publicationDate: ['', [Validators.required]],
-  //     authorName: ['', Validators.required],
-  //     coverPage: ['', Validators.required],
-  //     description: ['', Validators.required],
-  //     Pages: ['', Validators.required],
-  //     samplePageUrl: ['', Validators.required],
-  //     genreId: ['', Validators.required],
-  //     imageUrl1: ['', Validators.required],
-  //     edition: ['', Validators.required],
-  //     imageUrl2: ['', Validators.required],
-  //     bookOwner: ['', Validators.required],
-  //     rentalValue: ['', Validators.required],
-  //     price: ['', Validators.required],
-  //     noofCopies: ['', Validators.required],
-  // });
+  
+    if (this.regId) {
+      this.loadEditBook(this.regId);
+    }
 
-  this.loadComboBoxes();
+    this.loadComboBoxes();
   }
 
   // onSubmit() {
@@ -78,6 +73,46 @@ export class AddBooksComponent implements OnInit {
     );
   }
 
+  loadEditBook(regId) {
+    this.check = false
+    this.books.loadbook(regId).subscribe(
+      (data: any) => {
+        console.log(data)
+        this.model = data.resultsMap.book;
+        console.log("loadEditUser",this.model)
+        // if (data && data.resultsMap && data.resultsMap.user) {
+        //   this.toastr.success('Updated User Successfully');
+        //   this.router.navigateByUrl('/app-dashboard');
+        // } else if (data.resultsMap.emailExistError) {
+        //   this.toastr.warning(data.resultsMap.emailExistError);
+        // }
+      },
+      error => {
+        this.toastr.warning(error.error.message);
+      }
+    );
+  }
+
+  editBooks() {
+    this.model.createdBy = localStorage.getItem('name');
+    this.books.editbook(this.model).subscribe(
+      (data: any) => {
+        // console.log('addUser Object', this.addUser);
+        console.log('edit books',data)
+        // if (data && data.resultsMap && data.resultsMap.user) {
+        //   this.toastr.success(data.message);
+        //   this.router.navigateByUrl('/app-dashboard');
+        // } else if (data.resultsMap.emailExistError) {
+        //   this.toastr.warning(data.resultsMap.emailExistError);
+        // }
+      },
+      error => {
+        console.log(error);
+        // this.toastr.warning(error.error.message);
+      }
+    );
+  }
+
   loadComboBoxes() {
     const body = [
       'roles',
@@ -102,7 +137,9 @@ export class AddBooksComponent implements OnInit {
     }
   }
 
-
+  cancel() {
+    this.router.navigateByUrl('/app-users-list');
+  }
 
 
     // onSubmit() {
