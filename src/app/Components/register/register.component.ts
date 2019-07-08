@@ -60,16 +60,17 @@ export class RegisterComponent implements OnInit {
     this.addUser.roleId = '4';
     this.saveUserService.saveuser(this.addUser).subscribe(
       (data: any) => {
-        // console.log('addUser Object', this.addUser);
+        console.log('register', data);
+        console.log(data.message)
         if (data && data.resultsMap && data.resultsMap.user) {
           this.toastr.success('Registration Successfully');
           this.router.navigateByUrl('/app-dashboard');
-        } else if (data.resultsMap.emailExistError) {
-          this.toastr.warning(data.message);
-        }
+        } 
       },
       error => {
-        this.toastr.warning('please enter valid details');
+        console.log(error)
+        if(error)
+        this.toastr.warning(error);
       }
     );
   }

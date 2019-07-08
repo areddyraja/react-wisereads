@@ -98,7 +98,7 @@ import { UserBooksDetailsComponent } from './Components/user-books-details/user-
     ToastrModule.forRoot(
       {
         preventDuplicates: true,
-        timeOut: 1500,
+        timeOut: 3000,
       }),
       MatSelectModule,
       MatDatepickerModule,

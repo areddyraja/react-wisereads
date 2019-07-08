@@ -39,7 +39,7 @@
                 <p class="Login">Register</p>
             </div>
             <div class="form1">
-      
+              
                 <form class="registration-form"  [formGroup]="registerForm" >
                     <div class="row" >
                       <div class="col-md-6 mt-4">
@@ -93,7 +93,7 @@
                                     </option>
                             </select>
                             <div *ngIf="submitted && f.genderId.errors" class="invalid-feedback">
-                                <div *ngIf="f.genderId.errors.required">please select Gender</div>
+                                <div *ngIf="f.genderId.errors.required">Please select Gender</div>
                             </div>
                       </div>
         
@@ -129,7 +129,7 @@
                             [ngClass]="{ 'is-invalid': submitted && f.address.errors }"
                           ></textarea>
                           <div *ngIf="submitted && f.address.errors" class="invalid-feedback">
-                                <div *ngIf="f.address.errors.required">address is required</div>
+                                <div *ngIf="f.address.errors.required">Address is required</div>
                           </div>
                   </div>
                       <div class="col-md-6 mt-4">
@@ -149,7 +149,7 @@
                                     [ngClass]="{ 'is-invalid': submitted && f.company.errors }"
                                   />
                                   <div *ngIf="submitted && f.company.errors" class="invalid-feedback">
-                                        <div *ngIf="f.company.errors.required">company is required</div>
+                                        <div *ngIf="f.company.errors.required">Company Name is required</div>
                                   </div>
                         
                           </div>
@@ -168,7 +168,7 @@
                               [ngClass]="{ 'is-invalid': submitted && f.email.errors }"
                             />
                             <div *ngIf="submitted && f.email.errors" class="invalid-feedback">
-                                  <div *ngIf="f.email.errors.required">email is required</div>
+                                  <div *ngIf="f.email.errors.required">Email is required</div>
                             </div>
                           </div>
                         </div>
@@ -180,7 +180,7 @@
                               <input
                                 class="login-fields"
                                 placeholder="Password"
-                                type="text"
+                                type="password"
                                 name="password"
                                 [(ngModel)]="addUser.password"
                                 required
@@ -189,7 +189,8 @@
                                 [ngClass]="{ 'is-invalid': submitted && f.password.errors }"
                               />
                               <div *ngIf="submitted && f.password.errors" class="invalid-feedback">
-                                    <div *ngIf="f.password.errors.required">company is required</div>
+                                    <div *ngIf="f.password.errors.required">Passwords is required</div>
+                                    <div *ngIf="f.password.errors.minlength">Password must be at least 6 characters</div>
                               </div>
                       </div>
         
@@ -197,7 +198,7 @@
                               <input
                                 class="login-fields"
                                 placeholder="Confirm Password"
-                                type="text"
+                                type="password"
                                 name="confirmPassword"
                                 required
                                 formControlName="confirmPassword" 
