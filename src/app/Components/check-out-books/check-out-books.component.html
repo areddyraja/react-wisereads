@@ -82,7 +82,7 @@
       <mat-cell *matCellDef="let element;let i = index">
 
         <mat-select [disabled]="element.checkedItatusId=='4'" name="checked_status_id" id="checked_status_id" [value]="element.checkedItatusId">
-          <mat-option *ngFor="let id of comboBoxesDataCheckedStatus" [value]="id.checked_status_id" (click)="updateBookStatus(i,element,id.checked_status_id)">{{id.checked_status}}
+          <mat-option *ngFor="let id of comboBoxesDataCheckedStatus" [value]="id.checked_status_id" (onSelectionChange)="checkedStatusId($event,id)" >{{id.checked_status}}
           </mat-option>
         </mat-select>
 
@@ -93,18 +93,27 @@
       <mat-header-cell *matHeaderCellDef> Total Amt paid </mat-header-cell>
         <mat-cell *matCellDef="let element; let i = index">
           <ng-container *ngIf="element.checkedItatusId=='3'">
-              <mat-form-field >
-                  <input style="text-align: center;" matInput type="text" name="amountPaid" [(ngModel)]="amountPaid[i]"
+              <mat-form-field class="mff">
+                  <input style="text-align: left;" matInput type="text" name="amountPaid" [(ngModel)]="amountPaid[i]"
                     pattern="^[a-zA-Z0-9- ]{1,30}$" required maxlength="6" (keydown)="check($event)" />
               </mat-form-field>
           </ng-container>
          <ng-container>
-          <span *ngIf='element.amountPaid!=null'>{{element.amountPaid</span> 
+          <span *ngIf='element.amountPaid!=null'>{{element.amountPaid}}</span> 
             <span *ngIf='element.amountPaid==null'>-</span>
          </ng-container>
          
         </mat-cell>
     </ng-container>
+
+    <ng-container matColumnDef="actions">
+      <mat-header-cell *matHeaderCellDef> Actions </mat-header-cell>
+      <mat-cell *matCellDef="let element;let i = index">
+        <!-- <button  class="edit-button" (click)="submit(i,element)" mat-button mat-raised-button>Submit</button> -->
+
+      </mat-cell>
+    </ng-container>
+
     <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
     <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
   </mat-table>

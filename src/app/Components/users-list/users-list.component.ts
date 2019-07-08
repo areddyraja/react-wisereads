@@ -1,6 +1,7 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { SaveUserService } from '../../services/save-user.service';
 import { MatTableDataSource, MatPaginator } from '@angular/material';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-users-list',
@@ -11,9 +12,10 @@ import { MatTableDataSource, MatPaginator } from '@angular/material';
 export class UsersListComponent implements OnInit {
   dataSource;
   ELEMENT_DATA = [];
-  displayedColumns: string[] = ['userId', 'userName', 'emailId', 'phone', 'gender', 'status'];
+  displayedColumns: string[] = ['userId', 'userName', 'emailId', 'phone', 'gender', 'status','actions'];
 
-  constructor(private userService: SaveUserService) { }
+  constructor(private userService: SaveUserService,
+    private router: Router,) { }
 
   @ViewChild(MatPaginator) paginator: MatPaginator;
 
@@ -37,5 +39,9 @@ export class UsersListComponent implements OnInit {
         // this.toastr.error(err.error.message);
         console.log(err);
       };
+  }
+
+  editUser(regId: string): void {
+    this.router.navigate(['editUser', regId]);
   }
 }

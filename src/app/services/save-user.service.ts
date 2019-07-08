@@ -29,6 +29,17 @@ export class SaveUserService {
     }));
   }
 
+  loaduser(regId) {
+    return this.httpClient.get(AppSettings.URL + `/api/users/${regId}`, this.httpOptions).pipe(map((res: Response) => {
+      return res;
+    }));
+  }
+
+  edituser(edituser: any) {
+    return this.httpClient.put(AppSettings.URL + `/api/users/${edituser.userId}`, edituser, this.httpOptions).pipe(map((res: Response) => {
+      return res;
+    }));
+  }
 
   usersList() {
     return this.httpClient.get(AppSettings.URL + '/api/users', this.httpOptions).pipe(map((res: Response) => {
