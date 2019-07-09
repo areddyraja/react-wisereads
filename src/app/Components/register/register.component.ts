@@ -55,22 +55,24 @@ export class RegisterComponent implements OnInit {
     if (this.registerForm.invalid) {
             return;
     }
-    this.addUser.createdBy = '';
+    this.addUser.createdBy = this.addUser.firstName;
     this.addUser.userStatusId = '1';
     this.addUser.roleId = '4';
     this.saveUserService.saveuser(this.addUser).subscribe(
       (data: any) => {
-        console.log('register', data);
+        // console.log('register', data);
         console.log(data.message)
         if (data && data.resultsMap && data.resultsMap.user) {
           this.toastr.success('Registration Successfully');
           this.router.navigateByUrl('/app-dashboard');
         } 
+        
+          this.toastr.warning("Email already registered");
+      
       },
       error => {
-        console.log(error)
-        if(error)
-        this.toastr.warning(error);
+        // console.log(error.message)
+        this.toastr.warning("Email already registered");
       }
     );
   }

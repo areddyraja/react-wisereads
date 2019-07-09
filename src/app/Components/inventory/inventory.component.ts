@@ -12,9 +12,10 @@ import { HttpClientModule} from '@angular/common/http';
 })
 export class InventoryComponent implements OnInit {
 
-  displayedColumns: string[] = ['invid', 'bookid', 'bookname', 'owner', 'bookvalue', 'rantalvalue', 'availability', 'influencer'];
+  displayedColumns: string[] = ['invid', 'bookid', 'bookname', 'owner', 'bookvalue', 'rantalvalue', 'availability',   'influencer',];
 
   dataSource;
+  userId:any;
   ELEMENT_DATA = [];
 
   @ViewChild(MatPaginator) paginator: MatPaginator;
@@ -36,6 +37,8 @@ export class InventoryComponent implements OnInit {
 
 
   ngOnInit() {
+
+    this.userId = localStorage.getItem('roleId')
     this.getinventory();
   }
 

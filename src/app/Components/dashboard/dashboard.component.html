@@ -8,10 +8,19 @@
     </mat-toolbar>
     <mat-nav-list class="menu-items">
       <a mat-list-item style="cursor: pointer" routerLink="/cards" [routerLinkActive]="['is-active']">Dashboard</a>
-      <a mat-list-item style="cursor: pointer" routerLink="/book_list" [routerLinkActive]="['is-active']">Book List</a>
+      
       <!-- <a mat-list-item >Recommended Books</a> -->
-      <a mat-list-item *ngIf="isUser == 4" style="cursor: pointer" (click)="userbooks()" [routerLinkActive]="['is-active']">Checkout & Checkin List</a>
+      <div  *ngIf="isUser == 4">
+
+            <a mat-list-item  style="cursor: pointer" routerLink="/inventory" [routerLinkActive]="['is-active']">Book List</a>
+
+            <a mat-list-item style="cursor: pointer" (click)="userbooks()" [routerLinkActive]="['is-active']">Checkout & Checkin List</a>
+
+      </div>
+    
       <div *ngIf="isUser == 2 || isUser == 1">
+            <a mat-list-item style="cursor: pointer" routerLink="/book_list" [routerLinkActive]="['is-active']">Book List</a>
+
             <a mat-list-item  style="cursor: pointer" routerLink="/inventory" [routerLinkActive]="['is-active']">Inventory</a>
             
             <a mat-list-item style="cursor: pointer" routerLink="/checkout-books" [routerLinkActive]="['is-active']">Checkout & Checkin List</a>

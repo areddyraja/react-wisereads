@@ -44,18 +44,6 @@ export class AddBooksComponent implements OnInit {
     this.loadComboBoxes();
   }
 
-  // onSubmit() {
-    
-  //   this.submitted = true;
-
-  //   this.model.createdBy = localStorage.getItem('username');
-  //   console.log(this.model);
-  //   this.books.AddBooks(this.model).subscribe(
-  //     (data: any) => {
-  //         // console.log(data);
-  //     },
-  //   );
-  // }
 
   onSubmit() {
     this.model.createdBy = localStorage.getItem('username');
@@ -80,13 +68,6 @@ export class AddBooksComponent implements OnInit {
         console.log(data)
         this.model = data.resultsMap.book;
         this.model.publicationDate = data.resultsMap.book ? new Date(data.resultsMap.book.publicationDate) : '';
-        console.log("loadEditUser",this.model)
-        // if (data && data.resultsMap && data.resultsMap.user) {
-        //   this.toastr.success('Updated User Successfully');
-        //   this.router.navigateByUrl('/app-dashboard');
-        // } else if (data.resultsMap.emailExistError) {
-        //   this.toastr.warning(data.resultsMap.emailExistError);
-        // }
       },
       error => {
         this.toastr.warning(error.error.message);
@@ -100,7 +81,7 @@ export class AddBooksComponent implements OnInit {
     this.books.editbook(this.model).subscribe(
       (data: any) => {
         // console.log('addUser Object', this.addUser);
-        console.log('edit books',data)
+        // console.log('edit books',data)
         if (data.resultsMap.book) {
           this.toastr.success(data.message);
           this.router.navigateByUrl('/book_list');
@@ -129,7 +110,7 @@ export class AddBooksComponent implements OnInit {
       (data: any) => {
         if (data) {
           this.comboBoxesbookGenre = data.result.bookGenre;
-          console.log('comboDropDowns', this.comboBoxesbookGenre);
+          // console.log('comboDropDowns', this.comboBoxesbookGenre);
         }
       },
     );
@@ -145,17 +126,6 @@ export class AddBooksComponent implements OnInit {
     this.router.navigateByUrl('/app-users-list');
   }
 
-
-    // onSubmit() {
-    //     this.submitted = true;
-
-    //     // stop here if form is invalid
-    //     if (this.registerForm.invalid) {
-    //         return;
-    //     }
-    //     console.log(this.registerForm.value);
-    //     alert('SUCCESS!! :-)\n\n' + JSON.stringify(this.registerForm.value));
-    // }
 }
 
 
