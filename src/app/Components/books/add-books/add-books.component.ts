@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { FormBuilder, FormGroup, Validators, NgForm } from '@angular/forms';
 
 import { BooksService } from '../../../services/books.service';
 import { Router, ActivatedRoute } from '@angular/router';
@@ -79,6 +79,7 @@ export class AddBooksComponent implements OnInit {
       (data: any) => {
         console.log(data)
         this.model = data.resultsMap.book;
+        this.model.publicationDate = data.resultsMap.book ? new Date(data.resultsMap.book.publicationDate) : '';
         console.log("loadEditUser",this.model)
         // if (data && data.resultsMap && data.resultsMap.user) {
         //   this.toastr.success('Updated User Successfully');
@@ -93,24 +94,27 @@ export class AddBooksComponent implements OnInit {
     );
   }
 
-  editBooks() {
-    this.model.createdBy = localStorage.getItem('name');
+  editBooks(myForm: NgForm) {
+    if(myForm.valid) {
+    this.model.createdBy = localStorage.getItem('username');
     this.books.editbook(this.model).subscribe(
       (data: any) => {
         // console.log('addUser Object', this.addUser);
         console.log('edit books',data)
-        // if (data && data.resultsMap && data.resultsMap.user) {
-        //   this.toastr.success(data.message);
-        //   this.router.navigateByUrl('/app-dashboard');
-        // } else if (data.resultsMap.emailExistError) {
-        //   this.toastr.warning(data.resultsMap.emailExistError);
-        // }
+        if (data.resultsMap.book) {
+          this.toastr.success(data.message);
+          this.router.navigateByUrl('/book_list');
+        } else
+        {
+          this.toastr.warning(data.message);
+        }
       },
       error => {
         console.log(error);
-        // this.toastr.warning(error.error.message);
+        this.toastr.warning(error.error.message);
       }
     );
+    }
   }
 
   loadComboBoxes() {

@@ -6,7 +6,7 @@
   </div>
 
   <div class="form">
-      <form #addBookForm="ngForm" (ngSubmit)="addBookForm.form.valid" novalidate>
+      <form name="myForm" #addBookForm="ngForm"  novalidate>
       
           <div class="row form-group">
               <div class="col-md-6">
@@ -282,12 +282,12 @@
                                 [(ngModel)]="model.stock"
                                 #stock="ngModel"
                                 required
-                                name="Stock"
+                                name="stock"
                                 class="form-control" 
-                                [ngClass]="{ 'is-invalid': addBookForm.submitted && Stock.invalid }" 
+                                [ngClass]="{ 'is-invalid': addBookForm.submitted && stock.invalid }" 
                             />
-                        <div *ngIf="addBookForm.submitted && Stock.invalid" class="invalid-feedback">
-                            <div *ngIf="Stock.errors.required">No.of Copies is required</div>
+                        <div *ngIf="addBookForm.submitted && stock.invalid" class="invalid-feedback">
+                            <div *ngIf="stock.errors.required">No.of Copies is required</div>
                         </div>
                   </div>
           </div>
@@ -295,12 +295,12 @@
           
           <div class="form-group">
                 <button mat-raised-button style="background-color: rgb(78, 75, 75) ;color: #ffffff; width: 8vw;height: 40px;" (click)="cancel()" 
-                class="mat-raised-button mat-warn mat-cancel"> Cancel</button>
+                class=" mr-3 mat-raised-button mat-warn mat-cancel"> Cancel</button>
           
-            <button mat-raised-button style="background-color: #2fc7f5 ;color: #ffffff;width: 8vw;height: 40px;" *ngIf="check" (click)="onSubmit()"
-                 class="mat-raised-button mat-primary">Save</button>
+                <button mat-raised-button style="background-color: #2fc7f5 ;color: #ffffff;width: 8vw;height: 40px;" *ngIf="check" (click)="onSubmit()"
+                 class="mr-3 mat-raised-button mat-primary">Save</button>
       
-                 <button mat-raised-button style="background-color: #2fc7f5 ;color: #ffffff;width: 8vw;height: 40px;" *ngIf="!check" (click)="editBooks()" 
+                 <button mat-raised-button style="background-color: #2fc7f5 ;color: #ffffff;width: 8vw;height: 40px;" *ngIf="!check" (click)="editBooks(addBookForm)" 
                  class="mat-raised-button mat-primary">Update</button>
           
           </div>
