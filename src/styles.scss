@@ -2,11 +2,7 @@
 
 @import url('https://fonts.googleapis.com/css?family=Montserrat&display=swap');
 @import '~@angular/material/theming';
-
-
 @import '~ngx-toastr/toastr.css';
-
-
 $custom-typography: mat-typography-config($font-family: '"Montserrat", sans-serif;');
 @include mat-core($custom-typography);
 body {
@@ -15,19 +11,22 @@ body {
 }
 
 // cards
-a{
-   cursor: pointer;
+a {
+    cursor: pointer;
 }
-a:hover,a.active,a.selected
-  {
+
+a:hover,
+a.active,
+a.selected {
     background-color: transparent !important;
 }
 
-.cards-item{
+.cards-item {
     .mat-card-header-text {
-      margin: 0 !important;
+        margin: 0 !important;
     }
-  }
+}
+
 .div:focus,
 .div.active {
     background-color: transparent !important;
@@ -97,7 +96,6 @@ table {
     display: none;
 }
 
-
 .example-card {
     .mat-card-header-text {
         margin: 0 !important;
@@ -134,13 +132,13 @@ table {
     height: calc(100vh - 100px);
     overflow: auto;
     padding: 40px 20px 0 20px;
+}
 
+#toast-container>div {
+    opacity: 3;
 }
-#toast-container > div {
-  opacity:3;
-  
-}
-@media(min-width:1024px){
+
+@media(min-width:1024px) {
     .ellipses {
         white-space: nowrap;
         width: 6em;
@@ -149,9 +147,12 @@ table {
         // border: 1px solid #000000;
         cursor: pointer;
     }
-    
 }
 
 .mat-form-field-wrapper {
-    width: 30vw !important; 
+    width: 30vw !important;
+}
+
+.ngucarousel-items .item {
+    padding: 0!important;
 }
