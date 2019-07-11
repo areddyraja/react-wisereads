@@ -17,16 +17,23 @@ export class HomeComponent implements OnInit {
   // public Config: NgxCarousel;
 
   public carouselTile: NguCarouselConfig = {
+    // grid: { xs: 1, sm: 1, md: 1, lg: 1, all: 0 },
+    // slide: 1,
+    // speed: 250,
+    // point: {
+    //   visible: true
+    // },
+    // load: 2,
+    // loop: true,
+    // velocity: 0,
+    // touch: true,
+    easing: 'cubic-bezier(0, 0, 0.2, 1)',
     grid: { xs: 1, sm: 1, md: 1, lg: 1, all: 0 },
-    slide: 1,
-    speed: 250,
-    point: {
-      visible: true
-    },
-    load: 2,
-    velocity: 0,
+    load: 3,
+    interval: {timing: 3000, initialDelay: 1000},
+    loop: true,
     touch: true,
-    easing: 'cubic-bezier(0, 0, 0.2, 1)'
+    velocity: 0.2
   };
 
   carouselItems = [
@@ -36,6 +43,7 @@ export class HomeComponent implements OnInit {
     },
     {
       title: 'Immersing yourself in the book world',
+
       url: '../../assets/images/slider4.jpg'
     },
     {

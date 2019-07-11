@@ -5,9 +5,8 @@
 
     <p class="About-WiseReads">About WiseReads</p>
     <div class="content-box">
-        <p class="content">Wisereads is proud to introduce one of the most awaited and affordable book rental platform for
-                individuals, kids, students, and corporates across the country. Wisereads Book Rental Library provides
-                hassle-free availability of books at a very affordable price.
+        <p class="content">Wisereads is proud to introduce one of the most awaited and affordable book rental platform for individuals, kids, students, and corporates across the country. Wisereads Book Rental Library provides hassle-free availability of books at a very
+            affordable price.
         </p>
 
         <mat-card class="example-card">
@@ -41,7 +40,7 @@
         <div class="wiseReads-box">
             <!-- <img mat-card-image src="https://material.angular.io/assets/img/examples/shiba2.jpg" alt="Photo of a Shiba Inu"> -->
             <div class="login-heading">
-                
+
                 <img src="../../../assets/images/wiseReads.svg" style="width: 230px;border-radius: 0PX;">
                 <p class="Login">Login</p>
             </div>
@@ -53,12 +52,12 @@
 
 
                     <input class="login-fields" placeholder="Password" type="password" name="password" [(value)]="user.password" [(ngModel)]="user.password" #password="ngModel" required>
-
+                    <div class="login-btn">
+                        <button [disabled]="!LoginForm.form.valid" mat-raised-button (click)="signIn()" style="background-color: #2fc7f5 ;color: #ffffff">LOGIN <i class="fa fa-sign-in"></i></button>
+                    </div>
                     <!-- </div> -->
                 </form>
-                <div class="login-btn">
-                    <button [disabled]="!LoginForm.form.valid" mat-raised-button (click)="signIn()" style="background-color: #2fc7f5 ;color: #ffffff">LOGIN <i class="fa fa-sign-in"></i></button>
-                </div>
+
             </div>
 
         </div>

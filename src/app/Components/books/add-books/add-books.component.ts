@@ -123,7 +123,7 @@ export class AddBooksComponent implements OnInit {
   }
 
   cancel() {
-    this.router.navigateByUrl('/app-users-list');
+    this.router.navigateByUrl('/book_list');
   }
 
 }
