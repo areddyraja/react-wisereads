@@ -8,7 +8,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { AngularFontAwesomeModule } from 'angular-font-awesome';
 import { LayoutModule } from '@angular/cdk/layout';
 // tslint:disable-next-line:max-line-length
-import { MatToolbarModule, MatAutocompleteModule, MatDialogModule, MatSidenavModule, MatNativeDateModule, MatSelectModule, MatDatepickerModule, MatFormFieldModule, MatIconModule, MatSortModule, MatListModule, MatCardModule, MatInputModule, MatTableModule, MatButtonModule, MatPaginatorModule, MatExpansionModule } from '@angular/material';
+import { MatToolbarModule, MatAutocompleteModule, MatDialogModule, MatSidenavModule, MatNativeDateModule, MatSelectModule, MatDatepickerModule, MatFormFieldModule, MatIconModule, MatSortModule, MatListModule, MatCardModule, MatInputModule, MatTableModule, MatButtonModule, MatPaginatorModule, MatExpansionModule, MatTooltipModule } from '@angular/material';
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { FormsModule } from '@angular/forms';
 import { ReactiveFormsModule } from '@angular/forms';
@@ -17,23 +17,29 @@ import { NgxDatatableModule } from '@swimlane/ngx-datatable';
 import { NgxMatSelectSearchModule } from 'ngx-mat-select-search';
 import { NguCarouselModule } from '@ngu/carousel';
 import { NgxCarouselModule } from 'ngx-carousel';
+import {NgPipesModule} from 'ngx-pipes';
 
-import { CardsComponent } from './component/cards/cards.component';
-import { DashboardComponent } from './component/dashboard/dashboard.component';
-import { BookListComponent } from './component/book-list/book-list.component';
-import { AddUserComponent } from './component/add-user/add-user.component';
-import { HomeLayoutComponent } from './component/layout/home-layout.component';
-import { LoginLayoutComponent } from './component/layout/login-layout.component';
-import { LoginComponent } from './component/login/login.component';
-import { AuthorizationInterceptor } from './component/auth/authorization.interceptors';
-import { InventoryComponent } from './component/inventory/inventory.component';
-import { SearchComponent } from './component/search/search.component';
-import { SingleBookComponent } from './component/single-book/single-book.component';
-import { UsersListComponent } from './component/users-list/users-list.component';
-import { CheckOutBooksComponent } from './component/check-out-books/check-out-books.component';
-import { HomeComponent } from './component/home/home.component';
+
+import { CardsComponent } from './Components/cards/cards.component';
+import { DashboardComponent } from './Components/dashboard/dashboard.component';
+import { BookListComponent } from './Components/book-list/book-list.component';
+import { AddUserComponent } from './Components/add-user/add-user.component';
+import { HomeLayoutComponent } from './Components/layout/home-layout.component';
+import { LoginLayoutComponent } from './Components/layout/login-layout.component';
+import { LoginComponent } from './Components/login/login.component';
+import { AuthorizationInterceptor } from './Components/auth/authorization.interceptors';
+import { InventoryComponent } from './Components/inventory/inventory.component';
+import { SearchComponent } from './Components/search/search.component';
+import { SingleBookComponent } from './Components/single-book/single-book.component';
+import { UsersListComponent } from './Components/users-list/users-list.component';
+import { CheckOutBooksComponent } from './Components/check-out-books/check-out-books.component';
+import { HomeComponent } from './Components/home/home.component';
 import { CarouselModule } from 'ngx-bootstrap';
-import { SigninComponent } from './component/signin/signin.component';
+import { JwtInterceptor, ErrorInterceptor } from './_helpers';
+import { RegisterComponent } from './Components/register/register.component';
+import { UserBooksDetailsComponent } from './Components/user-books-details/user-books-details.component';
+import { EditBookComponent } from './Components/edit-book/edit-book.component';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -50,7 +56,10 @@ import { SigninComponent } from './component/signin/signin.component';
     UsersListComponent,
     CheckOutBooksComponent,
     HomeComponent,
-    SigninComponent,
+    RegisterComponent,
+    UserBooksDetailsComponent,
+    EditBookComponent,
+
   ],
   imports: [
     BrowserModule,
@@ -59,6 +68,7 @@ import { SigninComponent } from './component/signin/signin.component';
     MatDialogModule,
     BrowserAnimationsModule,
     LayoutModule,
+    NgPipesModule,
     MatToolbarModule,
     MatButtonModule,
     MatSidenavModule,
@@ -90,21 +100,19 @@ import { SigninComponent } from './component/signin/signin.component';
     ToastrModule.forRoot(
       {
         preventDuplicates: true,
-        timeOut: 1500,
+        timeOut: 3000,
       }),
       MatSelectModule,
       MatDatepickerModule,
       MatNativeDateModule,
       MatExpansionModule,
+      MatTooltipModule,
       CarouselModule.forRoot(),
   ],
   providers: [
     MatDatepickerModule,
-    // {
-    //   provide: HTTP_INTERCEPTORS,
-    //   useClass: AuthorizationInterceptor,
-    //   multi: true
-    // },
+    { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true },
+    { provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true },
   ],
   bootstrap: [AppComponent]
 })

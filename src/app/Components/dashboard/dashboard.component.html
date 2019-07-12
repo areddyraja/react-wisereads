@@ -1,0 +1,91 @@
+<mat-sidenav-container class="sidenav-container">
+  <mat-sidenav #drawer class="sidenav" fixedInViewport
+      [attr.role]="(isHandset$ | async) ? 'dialog' : 'navigation'"
+      [mode]="(isHandset$ | async) ? 'over' : 'side'"
+      [opened]="(isHandset$ | async) === false">
+    <mat-toolbar class="main-name">
+            <img src="../../../assets/images/wiseReads.svg" style="width: 300px;height: 44px;    box-shadow: none;">
+    </mat-toolbar>
+    <mat-nav-list class="menu-items">
+      <a mat-list-item style="cursor: pointer" routerLink="/cards" [routerLinkActive]="['is-active']">Dashboard</a>
+      
+      <!-- <a mat-list-item >Recommended Books</a> -->
+      <div  *ngIf="isUser == 4">
+
+            <a mat-list-item  style="cursor: pointer" routerLink="/inventory" [routerLinkActive]="['is-active']">Book List</a>
+
+            <a mat-list-item style="cursor: pointer" (click)="userbooks()" [routerLinkActive]="['is-active']">Checkout & Checkin List</a>
+
+      </div>
+    
+      <div *ngIf="isUser == 2 || isUser == 1">
+            <a mat-list-item style="cursor: pointer" routerLink="/book_list" [routerLinkActive]="['is-active']">Book List</a>
+
+            <a mat-list-item  style="cursor: pointer" routerLink="/inventory" [routerLinkActive]="['is-active']">Inventory</a>
+            
+            <a mat-list-item style="cursor: pointer" routerLink="/checkout-books" [routerLinkActive]="['is-active']">Checkout & Checkin List</a>
+
+            <a mat-list-item >Owners</a>
+
+            <a mat-list-item routerLink="/app-users-list" [routerLinkActive]="['is-active']">Users</a>
+    
+            <!-- <a mat-list-item class="mt-4" style="cursor: pointer" routerLink="/add-book" [routerLinkActive]="['is-active']">
+                <button class="add-bookbtn" mat-button mat-raised-button>Add Books</button>
+            </a> -->
+      </div>
+     
+        </mat-nav-list>
+    </mat-sidenav>
+    <mat-sidenav-content>
+        <mat-toolbar class="menu-bar">
+            <button type="button" aria-label="Toggle sidenav" mat-icon-button (click)="drawer.toggle()" *ngIf="isHandset$ | async">
+        <mat-icon aria-label="Side nav toggle icon">menu</mat-icon>
+      </button>
+     
+      <div fxLayout="row" fxLayout.xs="column" fxLayoutGap="10px"
+      fxLayoutGap.xs="0" style="width: 100vw;">
+           
+            <div class="" fxFlex="30%">
+                   
+                <form>
+                    <div class="">
+                        <i class="fa fa-search"></i>
+                        <input class="search-input" type="text" placeholder="Search Book / User / Genre / Author"
+                            [formControl]="searchTerm" 
+                            #box (keyup)="onKeyUp(box)"
+                            [matAutocomplete]="auto" 
+                        >  
+                        <mat-autocomplete #auto="matAutocomplete">
+                                
+                                <ng-container *ngIf="myBooks.length > 0">
+                                    <mat-option *ngFor="let books of myBooks" [value]="books.value">
+                                        <a [routerLink]="['/book-detail', books.bookId]" >
+                                            {{ books.title }}
+                                        </a>
+                                    </mat-option>
+                                    
+                                </ng-container>
+                                <ng-container *ngIf="myBooks.length == 0 && box.value.length >= 3" >
+                                        <mat-option class="option-result">
+                                           <p class="noresult">No Reuslt Found</p>
+                                        </mat-option> 
+                                </ng-container>
+                                
+                        </mat-autocomplete>
+              
+                    </div>
+                </form>
+            </div>
+
+            <div class="logout-section" fxFlex="70%">
+                <a class="float-right" (click)="logOut()" mat-list-item routerLinkActive="active" >
+                    <i class="fa fa-sign-out"></i> <span>Logout</span>
+                </a>
+            </div>
+    </div>
+        </mat-toolbar>
+        <div class="p-5" class="main-container">
+            <router-outlet></router-outlet>
+        </div>
+    </mat-sidenav-content>
+</mat-sidenav-container>

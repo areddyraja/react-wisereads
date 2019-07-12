@@ -19,33 +19,43 @@ export class BooksService {
   constructor(private http: HttpClient,private route: ActivatedRoute) { }
   id: any;
   private sub: any;
+  httpOptions = {
+    headers: new HttpHeaders({
+      'Content-Type': 'application/json',
+      'Authorization': 'Bearer ' + localStorage.getItem('Token'),
+    }),
+  };
 
-  AddBooks(books: AddBooks) {
-    return this.http.post<AddBooks[]>(`${AppSettings.URL}/admin/api/books`, books);
+
+
+  AddBooks(books: any) {
+    return this.http.post(AppSettings.URL + '/api/books', books, this.httpOptions).pipe(map((res: Response) => {
+      return res;
+    }));
+  }
+
+  editbook(editbook: any) {
+      return this.http.put(AppSettings.URL + `/api/books/${editbook.bookId}`, editbook, this.httpOptions).pipe(map((res: Response) => {
+        return res;
+      }));
+    }
+
+  loadbook(regId) {
+    return this.http.get(AppSettings.URL + `/api/books/${regId}`, this.httpOptions).pipe(map((res: Response) => {
+      return res;
+    }));
   }
 
   getbooks() {
-    const httpOptions = {
-      headers: new HttpHeaders({
-        'Content-Type': 'application/json',
-        Authorization: 'Bearer ' + localStorage.getItem('Token'),
-        })
-      };
-    return this.http.get(`${AppSettings.URL}/api/books`, httpOptions).pipe( map((res: Response) => {
+    return this.http.get(`${AppSettings.URL}/api/books`, this.httpOptions).pipe( map((res: Response) => {
       return res;
       }));
   }
 
 
   getbooksdetails(id) {
-    const httpOptions = {
-      headers: new HttpHeaders({
-        'Content-Type': 'application/json',
-        Authorization: 'Bearer ' + localStorage.getItem('Token'),
-        })
-      };
     return this.http
-    .get<AddBooks[]>(`${AppSettings.URL}/api/books/` + id , httpOptions);
+    .get<AddBooks[]>(`${AppSettings.URL}/api/books/` + id , this.httpOptions);
   }
 
   private extractData(res: Response) {
@@ -54,27 +64,8 @@ export class BooksService {
   }
 
   getProduct(id): Observable<any> {
-    const httpOptions = {
-      headers: new HttpHeaders({
-        'Content-Type': 'application/json',
-        Authorization: 'Bearer ' + localStorage.getItem('Token'),
-        })
-      };
-    return this.http.get(`${AppSettings.URL}/api/books/` + id, httpOptions).pipe(
+    return this.http.get(`${AppSettings.URL}/api/books/` + id, this.httpOptions).pipe(
       map(this.extractData));
   }
   
-  // uploadfile(file: any) {
-  //   const httpOptions = {
-  //     headers: new HttpHeaders({
-  //       'Content-Type': undefined,
-  //       Authorization: 'Basic ' + localStorage.getItem('Token'),
-  //       })
-  //     };
-  //   const formData: FormData = new FormData();
-
-  //   formData.append('file', file, file.name);
-
-  //   return this.http.post(AppSettings.URL + 'api/books/upload-books-file', formData, httpOptions);
-  // }
 }

@@ -1,17 +1,21 @@
 export class AddBooks {
-
     title: string;
     author: string;
     publisher: string;
-    genreId: string;
-    isbnCode: string;
+    genreId: number;
+    isbnCode: number;
     edition: string;
-    year: string;
     bookCoverPage: string;
     samplePageUrl: string;
     imagesUrl1: string;
     imagesUrl2: string;
-    bookCondition: string;
     bookPrice: number;
     bookDescription: string;
+    createdBy: string;
+    rentPerDay: number;
+    Stock:number;
+    numberOfPages:number
+    publicationDate: string
 }
+
+

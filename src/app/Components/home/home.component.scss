@@ -1,0 +1,119 @@
+.item {
+    padding: 10px;
+    box-sizing: border-box;
+}
+
+.tile {
+    background-color: #ccc;
+    color: #fff;
+    font-size: 28px;
+    font-weight: 800;
+    width: 400px;
+    background-repeat: no-repeat;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 30vw !important;
+    background-size: cover !important;
+}
+
+.leftRs {
+    position: absolute;
+    margin: auto;
+    top: 0;
+    bottom: 0;
+    width: 50px;
+    height: 50px;
+    border-radius: 999px;
+    left: 20px;
+}
+
+.rightRs {
+    position: absolute;
+    margin: auto;
+    top: 0;
+    bottom: 0;
+    width: 50px;
+    height: 50px;
+    border-radius: 999px;
+    right: 20px;
+}
+
+.header-section {
+    display: flex;
+    background-color: #f6f6f6;
+    width: 100%;
+    z-index: 9999;
+    box-shadow: 0 0 3px #000;
+    position: relative;
+    .wisereads-logo {
+        display: flex;
+    }
+    .fa-sign-in {
+        color: #0b4f82;
+    }
+    .link-section {
+        margin-left: auto;
+        padding: 3vh;
+    }
+    a {
+        padding: 10px;
+        font-size: 18px;
+        color: #0b4f82;
+    }
+}
+
+.main-service {
+    padding: 7.5em 3em;
+    color: #fff;
+}
+
+.about-img {
+    background: url(../../../assets/images/students.jpg) no-repeat center;
+    h1 {
+        background: #ffffff70;
+        margin: 5em 3em;
+        padding: 50px;
+        text-align: center;
+    }
+}
+
+.about-img2 {
+    background: url(../../../assets/images/kids.jpg) no-repeat center;
+    border: 1px solid #ffffff70;
+    h1 {
+        background: #ffffff70;
+        margin: 5em 3em;
+        padding: 50px;
+        text-align: center;
+    }
+}
+
+.blog-right-grids {
+    padding: 7em 5em;
+}
+
+.blog-right-grids p {
+    font-size: 14px;
+    color: #888888;
+    line-height: 25px;
+}
+
+.below-footer {
+    background-color: #000;
+    min-height: 60px;
+}
+
+.below-footer h6 {
+    text-align: center;
+    padding-top: 4vh;
+    color: #ffff;
+}
+
+.wisereads-logo {
+    img {
+        padding: 10px 0 10px 50px;
+        width: 300px;
+        height: inherit!important;
+    }
+}

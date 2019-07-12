@@ -1,20 +1,23 @@
 
 import { NgModule, Component } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
-import { DashboardComponent } from './component/dashboard/dashboard.component';
-import { CardsComponent } from './component/cards/cards.component';
-import { BookListComponent } from './component/book-list/book-list.component';
-import { LoginComponent } from './component/login/login.component';
-import { SigninService } from './services/authGuard.service';
-import { HomeLayoutComponent } from './component/layout/home-layout.component';
-import { LoginLayoutComponent } from './component/layout/login-layout.component';
-import { AddUserComponent } from './component/add-user/add-user.component';
-import { InventoryComponent } from './component/inventory/inventory.component';
-import { SingleBookComponent } from './component/single-book/single-book.component';
-import { UsersListComponent } from './component/users-list/users-list.component';
-import { CheckOutBooksComponent } from './component/check-out-books/check-out-books.component';
-import { HomeComponent } from './component/home/home.component';
-import { SigninComponent } from './component/signin/signin.component';
+import { DashboardComponent } from './Components/dashboard/dashboard.component';
+import { CardsComponent } from './Components/cards/cards.component';
+
+import { LoginComponent } from './Components/login/login.component';
+import { SigninService } from './_helpers/authGuard.service';
+import { HomeLayoutComponent } from './Components/layout/home-layout.component';
+import { LoginLayoutComponent } from './Components/layout/login-layout.component';
+import { AddUserComponent } from './Components/add-user/add-user.component';
+import { InventoryComponent } from './Components/inventory/inventory.component';
+import { SingleBookComponent } from './Components/single-book/single-book.component';
+import { UsersListComponent } from './Components/users-list/users-list.component';
+import { CheckOutBooksComponent } from './Components/check-out-books/check-out-books.component';
+import { HomeComponent } from './Components/home/home.component';
+import { BookListComponent } from './Components/book-list/book-list.component';
+import { RegisterComponent } from './Components/register/register.component';
+import { UserBooksDetailsComponent } from './Components/user-books-details/user-books-details.component';
+import { EditBookComponent } from './Components/edit-book/edit-book.component';
 
 const routes: Routes = [
   {
@@ -29,13 +32,20 @@ const routes: Routes = [
         path: 'checkout-books', component: CheckOutBooksComponent
       },
       {
-        path: 'add-book', loadChildren: './component/books/books.module#BooksModule'
+        path: 'add-book', loadChildren: './Components/books/books.module#BooksModule'
+      },
+      {
+        path: 'edit-book/:id', loadChildren: './Components/books/books.module#BooksModule'
       },
       {
         path: 'book_list', component: BookListComponent
       },
       {
         path: 'app-add-user', component: AddUserComponent
+      },
+      {
+        path: 'editUser/:id',
+        component: AddUserComponent,
       },
       {
         path: 'inventory', component: InventoryComponent
@@ -48,6 +58,9 @@ const routes: Routes = [
       },
       {
         path: 'app-check-out-books', component: CheckOutBooksComponent
+      },
+      {
+        path: 'user-book-details/:id', component: UserBooksDetailsComponent
       }
     ]
   },
@@ -62,6 +75,10 @@ const routes: Routes = [
       {
         path: 'login',
         component: LoginComponent
+      },
+      {
+        path: 'register',
+        component: RegisterComponent
       }
     ]
   },

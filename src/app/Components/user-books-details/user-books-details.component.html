@@ -1,0 +1,96 @@
+<div fxLayout fxLayout.xs="column" fxLayoutAlign="left" fxLayoutGap="10px" fxLayoutGap.xs="0">
+    <div class="item item-1" fxFlex="50%">
+      <img class="dashboard-img" src="../../assets/images/metrics (1).png">
+      <h1>Checkout Books</h1>
+    </div>
+    <mat-select  placeholder="Select Status" name="checked_status_id" id="checked_status_id" class="fliter-box">
+        <mat-option *ngFor="let id of comboBoxesDataCheckedStatus" [value]="id.checked_status_id" (click)="applyFilter(id.checked_status_id)">{{id.checked_status}}
+        </mat-option>
+    </mat-select>
+  </div>
+  
+  
+  <div class="example-container mat-elevation-z8">
+    <mat-table #table [dataSource]="dataSource" [class.isMobile]="isMobile">
+  
+
+      <ng-container matColumnDef="orderId" >
+        <mat-header-cell *matHeaderCellDef class="order" [ngClass]="'Ordercolumn'"> Order ID</mat-header-cell>
+        <mat-cell *matCellDef="let element"  [ngClass]="'Ordercolumn'">
+            <span class="mobile-label">Order ID:</span>
+          {{element.orderId}}
+        </mat-cell>
+      </ng-container>
+  
+      <ng-container matColumnDef="bookName">
+        <mat-header-cell *matHeaderCellDef [ngClass]="' bookname'"> Book Name </mat-header-cell>
+        <mat-cell *matCellDef="let element" [ngClass]="' bookname'">
+            <div title="{{element.title }}">
+                <span class="mobile-label">Book Name:</span> 
+                {{element.title | shorten: 40: '...' }}
+            </div>
+          
+        </mat-cell>
+      </ng-container>
+  
+ 
+      <ng-container matColumnDef="checkOutDate" >
+        <mat-header-cell *matHeaderCellDef [ngClass]="'gapbtwcol'"> Checkout Date</mat-header-cell>
+        <mat-cell *matCellDef="let element" [ngClass]="'gapbtwcol'">
+            <span class="mobile-label">CheckOut Date:</span> 
+          {{element.checkedOutDate| date:'dd/MM/yyyy'}}
+        </mat-cell>
+      </ng-container>
+  
+      <ng-container matColumnDef="dueDate">
+        <mat-header-cell *matHeaderCellDef [ngClass]="'gapbtwcol'"> Due Date </mat-header-cell>
+        <mat-cell *matCellDef="let element" [ngClass]="'gapbtwcol'">
+            <span class="mobile-label">Due Date:</span> 
+          <span *ngIf='element.expReturnDate!=null'>{{element.expReturnDate| date:'dd/MM/yyyy'}}</span>
+          <span *ngIf='element.expReturnDate==null'> -</span>
+        </mat-cell>
+      </ng-container>
+  
+      <ng-container matColumnDef="dueAmt">
+        <mat-header-cell *matHeaderCellDef [ngClass]="'DueAmt'"> Due Amt </mat-header-cell>
+        <mat-cell *matCellDef="let element" [ngClass]="'DueAmt'">
+            <span class="mobile-label">Due Amt:</span> 
+          {{element.totalAmount}}
+        </mat-cell>
+      </ng-container>
+  
+      <ng-container matColumnDef="returnDate">
+        <mat-header-cell *matHeaderCellDef [ngClass]="'gapbtwcol'"> Return Date </mat-header-cell>
+        <mat-cell *matCellDef="let element" [ngClass]="'gapbtwcol'">
+            <span class="mobile-label">Return Date:</span>
+          <span *ngIf='element.returnedDate!=null'>{{element.returnedDate| date:'dd/MM/yyyy'}} </span>   
+          <span *ngIf='element.returnedDate==null'> -</span>
+        </mat-cell>
+      </ng-container>
+  
+      <ng-container matColumnDef="status">
+        <mat-header-cell *matHeaderCellDef [ngClass]="'gapbtwcol'"> Status</mat-header-cell>
+        <mat-cell *matCellDef="let element;let i = index" [ngClass]="'gapbtwcol'">
+            <span class="mobile-label">Status:</span> 
+          <mat-select [disabled]="element.checkedItatusId=='4'" name="checked_status_id" id="checked_status_id" [value]="element.checkedItatusId">
+            <mat-option *ngFor="let id of comboBoxesDataCheckedStatus" [value]="id.checked_status_id" (click)="updateBookStatus(i,element,id.checked_status_id)">{{id.checked_status}}
+            </mat-option>
+          </mat-select>
+  
+        </mat-cell>
+      </ng-container>
+  
+      <ng-container matColumnDef="totalAmtPaid">
+        <mat-header-cell *matHeaderCellDef [ngClass]="'gapbtwcol'"> Total Amt paid </mat-header-cell>
+        <mat-cell *matCellDef="let element" [ngClass]="'gapbtwcol'">
+            <span class="mobile-label">Total Amt paid:</span>
+            <span *ngIf='element.amountPaid!=null'>{{element.amountPaid}} </span>   
+            <span *ngIf='element.amountPaid==null' class="text-center"> -</span>
+          </mat-cell>
+      </ng-container>
+      <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+      <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+    </mat-table>
+  
+    <mat-paginator #paginator [pageSize]="[5]" showFirstLastButtons></mat-paginator>
+  </div>
