@@ -1,0 +1,36 @@
+.below-footer {
+  background-color: #000;
+  min-height: 60px;
+}
+
+.container {
+  max-width: 1383px;
+}
+.align {
+  margin-top: -23px;
+  margin-left: 18px;
+}
+
+.footer_align {
+  margin-top: 18px;
+}
+
+.footer-list {
+  list-style: none;
+  margin-left: -37px;
+}
+
+.footer-main {
+  background-color: #1b1c1f;
+  color: #6b6f76;
+}
+
+.grid-ul {
+  margin-left: -22px;
+}
+
+.agile-info {
+  color: #6b6f76;
+  padding-bottom: 8px;
+  text-align: center;
+}
