@@ -28,7 +28,7 @@ export const validateRegistration = values => {
       }
     } else {
       let errorVal;
-      if (key == "email") {
+      if (key === "email") {
         errorVal = validateEmail(values[key]);
       } else if (key === "contactNumber") {
         errorVal = validateMobile(values[key]);
