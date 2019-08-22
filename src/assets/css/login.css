@@ -170,9 +170,3 @@ body {
   color: #ffffff;
   width: 94%;
 }
-
-.errorMessages {
-  color: red;
-  text-align: left;
-  margin-left: 8px;
-}

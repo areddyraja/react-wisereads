@@ -1,5 +1,5 @@
 import { observable, action, computed } from "mobx";
-import LoginService from "../services/loginservice";
+import LoginService from "../services/loginService";
 import { INVALID_CRED_MSG, BOOTSTRAP_ALERT_CLASS } from "../stores/constants";
 
 class LoginStore {

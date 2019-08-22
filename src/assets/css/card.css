@@ -3,3 +3,7 @@
   width: 190px;
   cursor: pointer;
 }
+
+.MuiTypography-h5 {
+  font-size: 1rem;
+}

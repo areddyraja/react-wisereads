@@ -1,0 +1,61 @@
+.book-details {
+  box-shadow: 0 3px 6px 0 rgba(157, 206, 255, 0.16);
+  background-color: #ffffff;
+  padding: 45px;
+  padding-top: 80px;
+}
+.container-fluid {
+  width: 200%;
+}
+
+.book-title {
+  font-size: 24px;
+  font-weight: 500;
+  font-style: normal;
+  font-stretch: normal;
+  line-height: 1.5;
+  letter-spacing: normal;
+  text-align: left;
+  color: #3bccf6;
+  padding-bottom: 30px;
+}
+
+.book-img {
+  width: 182px;
+  height: 245px;
+}
+
+.book-desc {
+  font-size: 18px;
+  font-weight: 300;
+  font-style: normal;
+  font-stretch: normal;
+  line-height: 1.67;
+  letter-spacing: normal;
+  text-align: left;
+  color: #7e7e7e;
+  margin-left: 20px;
+}
+
+.book-cont li {
+  font-size: 18px;
+  font-weight: 500;
+  font-style: normal;
+  font-stretch: normal;
+  line-height: 2.5;
+  letter-spacing: normal;
+  text-align: left;
+  color: #707070;
+}
+
+.book-cont li span {
+  color: #000000;
+  font-weight: 500;
+}
+
+.book-footer .checkout {
+  background-image: linear-gradient(to bottom, #c694f9, #ab64f4);
+  color: #fff;
+  font-size: 18px;
+  height: 45px;
+}

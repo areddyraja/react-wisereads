@@ -1,0 +1,31 @@
+.About-WiseReads {
+  font-family: Montserrat;
+  font-size: 1.5em;
+  font-weight: 600;
+  text-align: left;
+  color: #ffffff;
+  padding: 2vw 0 1vw 2vw;
+  margin: 0;
+}
+
+.content-box {
+  padding-left: 2vw;
+  padding-right: 2vw;
+  height: calc(100% - 5vw);
+}
+
+.content {
+  font-family: Montserrat;
+  font-size: 16px;
+  font-weight: 500;
+  font-style: normal;
+  font-stretch: normal;
+  line-height: 1.88;
+  letter-spacing: normal;
+  text-align: left;
+}
+
+.example-card {
+  max-width: 400px;
+  margin-top: 168px;
+}

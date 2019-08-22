@@ -1,18 +1,10 @@
 import React from "react";
 import ReactDOM from "react-dom";
-import "./index.css";
 import "bootstrap/dist/css/bootstrap.css";
 import App from "./App";
 import * as serviceWorker from "./serviceWorker";
 
-import { Provider } from "mobx-react";
-/* import Home from "./components/jsx/Home"; */
-
-const Root = (
-  <Provider>
-    <App />
-  </Provider>
-);
+const Root = <App />;
 
 ReactDOM.render(Root, document.getElementById("root"));
 

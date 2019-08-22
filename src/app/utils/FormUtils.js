@@ -1,7 +1,7 @@
 import { EMAIL_PATTERN, MOBILE_NUM_PATTERN } from "../stores/constants";
 
 export const capitalizeFirstLetter = value => {
-  return value.substring(0, 1).toUpperCase() + value.substring(1);
+  return value.substring(0, 1).toUpperCase() + value.substring(1).toLowerCase();
 };
 
 export const validateEmail = value => {

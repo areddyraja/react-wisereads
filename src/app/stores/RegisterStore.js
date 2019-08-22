@@ -1,6 +1,6 @@
 import { observable, action, computed, ObservableMap } from "mobx";
-import RegisterService from "../services/registrationservice";
-import CommonService from "../services/commonservice";
+import RegisterService from "../services/registrationService";
+import CommonService from "../services/commonService";
 import { INVALID_CRED_MSG, BOOTSTRAP_ALERT_CLASS } from "../stores/constants";
 
 class LoginStore {

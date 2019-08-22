@@ -1,5 +1,4 @@
 import React from "react";
-import wisereadsLogo from "../../../assets/images/wiseReads.svg";
 import "../../../assets/css/header.css";
 import { Link } from "react-router-dom";
 import "../../../assets/css/footer.css";
@@ -62,24 +61,24 @@ export default () => (
               >
                 <li>
                   <span aria-hidden="true" />
-                  <a Link="/">Home</a>
+                  <Link to="/#">Home</Link>
                 </li>
                 <li>
                   <span aria-hidden="true" />
-                  <a Link="/app-about-us">About Us</a>
+                  <Link to="/#">About Us</Link>
                 </li>
 
                 <li>
                   <span aria-hidden="true" />
-                  <a Link="/">Terms & Conditions</a>
+                  <Link to="/#">Terms & Conditions</Link>
                 </li>
                 <li>
                   <span aria-hidden="true" />
-                  <a Link="/">Privacy Policy</a>
+                  <Link to="/#">Privacy Policy</Link>
                 </li>
                 <li>
                   <span aria-hidden="true" />
-                  <a Link="/app-faq">FAQ`s</a>
+                  <Link to="/app-faq">FAQ`s</Link>
                 </li>
               </ul>
             </div>
@@ -89,8 +88,10 @@ export default () => (
                 <div className="w3l-icon">
                   <span className="fa fa-map-marker" aria-hidden="true" />
                 </div>
+                <br />
                 <p className="align">
                   Q2, A2, 7th Floor
+                  <br />
                   <span>Cyber Towers Hi-tech City, Hyderabad 500081</span>
                 </p>
                 <div className="clearfix" />
@@ -99,6 +100,7 @@ export default () => (
                 <div className="w3l-icon">
                   <span className="fa fa-phone" aria-hidden="true" />
                 </div>
+                <br />
                 <p className="align">+914029801891</p>
                 <div className="clearfix" />
               </div>
@@ -115,16 +117,16 @@ export default () => (
             <div className="col-md-3 col-xs-6 w3ls_address_mail_footer_grids w3_agile_footer_grid footer_align">
               <h3>Other Links</h3>
               <div>
-                <a Link="/">Request Book</a>
+                <Link to="/#">Request Book</Link>
               </div>
               <div>
-                <a Link="/">Rent yout Book</a>
+                <Link to="/#">Rent yout Book</Link>
               </div>
               <div>
-                <a Link="/">Feedback</a>
+                <Link to="/#">Feedback</Link>
               </div>
               <div>
-                <a Link="/">Refer a friend</a>
+                <Link to="/#">Refer a friend</Link>
               </div>
               <div>
                 <a href="https://play.google.com/store/apps/details?id=com.omni.wisereads&hl=en">

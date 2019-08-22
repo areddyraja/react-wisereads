@@ -2,89 +2,139 @@ import React, { useState, useEffect } from "react";
 import AboutWiseReads from "../commons/AboutWisereads";
 import WiseReadsLogo from "../../../assets/images/wiseReads.svg";
 import "../../../assets/css/registration.css";
-import useRegisterForm from "../../hooks/login/useFormValidation";
-import { validateRegistration } from "../../hooks/register/registerFormValidations";
-import RegisterService from "../../services/registrationservice";
+import RegisterService from "../../services/registrationService";
 import { BOOTSTRAP_ALERT_CLASS } from "../../stores/constants";
-import { Redirect } from "react-router-dom";
+import { Redirect, Link } from "react-router-dom";
+import ErrorMessage from "../commons/ErrorMessage";
+import "../../../assets/css/common.css";
+import { getComboBoxes } from "../../services/commonService";
+import { registrationSchema } from "../../utils/formYupSchemas";
+import { onSubmitForm, validateOnInputChange } from "../../utils/validateForm";
 
+/**
+ * Register component is used to register a new user into the application
+ */
 const Register = () => {
-  const genderList = [
-    {
-      gender_id: 1,
-      gender: "male"
-    },
-    {
-      gender_id: 2,
-      gender: "female"
-    }
-  ];
-
+  const [genderList, setGenderList] = useState([]);
   const [registerMsg, setRegisterMsg] = useState("");
   const [registerMsgClass, setRegisterClass] = useState("");
   const [registerSuccess, setRegisterSuccess] = useState(false);
+  const [errors, setErrors] = useState({});
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [user, setUser] = useState({
+    firstName: "",
+    lastName: "",
+    email: "",
+    address: "",
+    contactNumber: "",
+    genderId: "",
+    userStatusId: "",
+    password: "",
+    confirmPassword: "",
+    roleId: "",
+    companyName: ""
+  });
 
-  const registerNewUser = () => {
-    const user = { ...values };
-    setRegisterMsg("");
-    setRegisterClass("");
-    delete user["confirmPassword"];
-    user.roleId = 4;
-    user.userStatusId = 1;
-    user.createdBy = user.email;
-    console.log(JSON.stringify(user));
-    RegisterService.registerNewUser(user)
-      .then(response => {
-        console.log(JSON.stringify(response));
-        const {
-          data: { message }
-        } = response;
-        //setRegisterMsg(message);
-        setRegisterMsg(message + ", Please login to continue...");
-        setRegisterClass(BOOTSTRAP_ALERT_CLASS + "success");
+  const handleInput = async event => {
+    setUser({ ...user, [event.target.name]: event.target.value });
+    setErrors(await validateOnInputChange(event, registrationSchema, errors));
+  };
 
-        setTimeout(() => {
-          setRegisterSuccess(true);
-        }, 1500);
-      })
-      .catch(error => {
-        setRegisterMsg(error["data"]["errors"]["email"]["emailAlreadyExists"]);
-        setRegisterClass(BOOTSTRAP_ALERT_CLASS + "danger");
-        console.log(JSON.stringify(error));
-      });
+  //It handles the form submission and validates each mandatory field of the form
+  const handleSubmit = async event => {
+    event.preventDefault();
+    setIsSubmitting(true);
+    setErrors(await onSubmitForm(registrationSchema, user));
   };
 
   useEffect(() => {
-    if (registerSuccess) {
-      redirectToHome();
+    if (localStorage.getItem("isRegistered")) {
+      localStorage.removeItem("isRegistered");
     }
+    getComboBoxes(["gender"])
+      .then(response => {
+        const {
+          data: {
+            result: { gender }
+          }
+        } = response;
+        setGenderList(gender);
+      })
+      .catch(error => {
+        console.log(JSON.stringify(error));
+      });
+  }, []);
+
+  useEffect(() => {
+    if (Object.keys(errors).length === 0 && isSubmitting) {
+      const userObj = { ...user };
+      setRegisterMsg("");
+      setRegisterClass("");
+      delete userObj["confirmPassword"];
+      userObj.roleId = 4;
+      userObj.userStatusId = 1;
+      userObj.createdBy = userObj.email;
+      console.log(JSON.stringify(userObj));
+      RegisterService.registerNewUser(userObj)
+        .then(response => {
+          console.log(JSON.stringify(response));
+          const {
+            data: { message }
+          } = response;
+          setRegisterMsg(message + ", Please login to continue...");
+          setRegisterClass(BOOTSTRAP_ALERT_CLASS + "success");
+          localStorage.setItem("isRegistered", true);
+          setTimeout(() => {
+            setRegisterMsg("");
+            setRegisterClass("");
+            setRegisterSuccess(true);
+          }, 1500);
+        })
+        .catch(error => {
+          const {
+            data: {
+              errors: {
+                email: { emailAlreadyExists }
+              }
+            }
+          } = error;
+          setRegisterMsg(emailAlreadyExists);
+          setRegisterClass(BOOTSTRAP_ALERT_CLASS + "danger");
+          setTimeout(() => {
+            setRegisterMsg("");
+            setRegisterClass("");
+          }, 1500);
+          console.log(JSON.stringify(error));
+        });
+    }
+    setIsSubmitting(false);
+  }, [errors]);
+
+  useEffect(() => {
+    if (registerSuccess) redirectToHome();
   }, [registerSuccess]);
 
-  const { values, errors, handleSubmit, handleInput } = useRegisterForm(
-    {
-      firstName: "",
-      lastName: "",
-      email: "",
-      address: "",
-      contactNumber: "",
-      genderId: "",
-      userStatusId: "",
-      password: "",
-      confirmPassword: "",
-      roleId: "",
-      companyName: ""
-    },
-    registerNewUser,
-    validateRegistration
-  );
-  const redirectToHome = () => {
-    console.log("In redirect to lgoin");
+  const redirectToLogin = () => {
+    console.log("In redirect login");
     return <Redirect to="/login" />;
   };
 
-  if (registerSuccess) {
+  const redirectToHome = () => {
+    return <Redirect to="/home" />;
+  };
+
+  //TODO
+  //Need to change these conditions to state and change this isRegistered
+  if (localStorage.getItem("isRegistered")) {
+    return redirectToLogin();
+  }
+
+  //TODO
+  //Need to change these conditions to state and change this isRegistered
+  if (localStorage.getItem("userToken")) {
     return redirectToHome();
   }
+
   return (
     <div>
       <div className="split-left">
@@ -109,162 +159,159 @@ const Register = () => {
                 <div className="row">
                   <div className="col-md-6 mt-4">
                     <input
-                      placeholder="First Name"
+                      placeholder="First Name *"
                       type="text"
                       name="firstName"
-                      className="form-control"
+                      className={`form-control ${
+                        errors.firstName ? "error-highlight" : ""
+                      }`}
                       onChange={handleInput}
                       onBlur={handleInput}
-                      value={values.firstName || ""}
+                      value={user.firstName || ""}
                     />
-                    <div className="errorMessages">
-                      <div>{errors.firstName && errors.firstName}</div>
-                    </div>
+                    <ErrorMessage message={errors.firstName} />
                   </div>
                   <div className="col-md-6 mt-4">
                     <input
                       placeholder="Last Name"
                       type="text"
                       name="lastName"
-                      className="form-control"
+                      className={`form-control ${
+                        errors.lastName ? "error-highlight" : ""
+                      }`}
                       onChange={handleInput}
                       onBlur={handleInput}
-                      value={values.lastName || ""}
+                      value={user.lastName || ""}
                     />
-                    <div className="errorMessages">
-                      <div>{errors.lastName && errors.lastName}</div>
-                    </div>
+                    <ErrorMessage message={errors.lastName} />
                   </div>
                   <div className="col-md-6 mt-4">
                     <select
                       placeholder="Select Gender"
                       name="genderId"
                       id="genderId"
-                      className="form-control"
+                      className={`form-control ${
+                        errors.genderId ? "error-highlight" : ""
+                      }`}
                       onChange={handleInput}
                       onBlur={handleInput}
-                      value={values.genderId || ""}
+                      value={user.genderId || ""}
                     >
                       <option value="" hidden>
                         -- Select gender --
                       </option>
                       {genderList.map(gender => {
                         return (
-                          <option value={gender.gender_id}>
+                          <option
+                            key={gender.gender_id}
+                            value={gender.gender_id}
+                          >
                             {gender.gender}
                           </option>
                         );
                       })}
                     </select>
-                    <div className="errorMessages">
-                      <div>{errors.genderId && errors.genderId}</div>
-                    </div>
+                    <ErrorMessage message={errors.genderId} />
                   </div>
 
                   <div className="col-md-6 mt-4">
                     <input
                       placeholder="Phone Number"
                       name="contactNumber"
-                      className="form-control"
-                      pattern="^[0-9-]{10}$"
+                      className={`form-control ${
+                        errors.contactNumber ? "error-highlight" : ""
+                      }`}
                       onChange={handleInput}
                       onBlur={handleInput}
-                      value={values.contactNumber || ""}
+                      value={user.contactNumber || ""}
                     />
-                    <div className="errorMessages">
-                      <div>{errors.contactNumber && errors.contactNumber}</div>
-                    </div>
+                    <ErrorMessage message={errors.contactNumber} />
                   </div>
                   <div className="col-md-6 mt-4">
                     <textarea
                       placeholder="House Address"
                       type="text"
                       name="address"
-                      className="form-control reg-address"
+                      className={`form-control reg-address ${
+                        errors.address ? "error-highlight" : ""
+                      }`}
                       onChange={handleInput}
                       onBlur={handleInput}
-                      value={values.address || ""}
+                      value={user.address || ""}
                     />
-                    <div className="errorMessages">
-                      <div>{errors.address && errors.address}</div>
-                    </div>
+                    <ErrorMessage message={errors.address} />
                   </div>
 
                   <div className="col-md-6 mt-4">
                     <div className="row">
                       <div className="col-md-12 ">
                         <input
-                          className="form-control"
+                          className={`form-control ${
+                            errors.companyName ? "error-highlight" : ""
+                          }`}
                           placeholder="Company Name"
                           type="text"
                           name="companyName"
                           onChange={handleInput}
                           onBlur={handleInput}
-                          value={values.companyName || ""}
+                          value={user.companyName || ""}
                         />
-                        <div className="errorMessages">
-                          <div>{errors.companyName && errors.companyName}</div>
-                        </div>
+                        <ErrorMessage message={errors.companyName} />
                       </div>
 
                       <div className="col-md-12 mt-4">
                         <input
-                          className="form-control"
+                          className={`form-control ${
+                            errors.email ? "error-highlight" : ""
+                          }`}
                           placeholder="Email"
                           type="text"
                           name="email"
                           onChange={handleInput}
                           onBlur={handleInput}
-                          value={values.email || ""}
+                          value={user.email || ""}
                         />
-                        <div className="errorMessages">
-                          <div>{errors.email && errors.email}</div>
-                        </div>
+                        <ErrorMessage message={errors.email} />
                       </div>
                     </div>
                   </div>
 
                   <div className="col-md-6 mt-4">
                     <input
-                      className="form-control"
+                      className={`form-control ${
+                        errors.password ? "error-highlight" : ""
+                      }`}
                       placeholder="Password"
                       type="password"
                       name="password"
-                      formControlName="password"
                       onChange={handleInput}
                       onBlur={handleInput}
-                      value={values.password || ""}
+                      value={user.password || ""}
                     />
-                    <div className="errorMessages">
-                      <div>{errors.password && errors.password}</div>
-                    </div>
+                    <ErrorMessage message={errors.password} />
                   </div>
 
                   <div className="col-md-6 mt-4">
                     <input
-                      className="form-control"
+                      className={`form-control ${
+                        errors.confirmPassword ? "error-highlight" : ""
+                      }`}
                       placeholder="Confirm Password"
                       type="password"
                       name="confirmPassword"
                       onChange={handleInput}
                       onBlur={handleInput}
-                      value={values.confirmPassword || ""}
+                      value={user.confirmPassword || ""}
                     />
-                    <div className="errorMessages">
-                      <div>
-                        {errors.confirmPassword && errors.confirmPassword}
-                      </div>
-                    </div>
+                    <ErrorMessage message={errors.confirmPassword} />
                   </div>
 
                   <div className="col-md-12 mt-4 already-user-login">
-                    <a routerLink="/login">
-                      {" "}
-                      Already a user: Login&nbsp;&nbsp;
+                    <Link to="/login">
+                      Already a user ? Login here! &nbsp;&nbsp;
                       <i className="fa fa-sign-in" aria-hidden="true" />
-                    </a>
+                    </Link>
                     <button
-                      mat-raised-button
                       className="mat-raised-button mat-primary register-btn"
                       type="submit"
                     >

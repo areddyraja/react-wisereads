@@ -1,25 +1,30 @@
-import React, { Component } from "react";
+import React from "react";
 import HomePageCarousel from "./HomePageCarousel";
 import Header from "./header";
 import Footer from "./footer";
 import SlickCarouselBooks from "../commons/SlickCarousel";
 
-class Home extends Component {
-  render() {
-    return (
-      <div>
+export const Home = () => {
+  //console.log(useContext(BooksContext));
+
+  return (
+    <div>
+      <div style={{ width: "203%" }}>
         <Header />
-        <div style={{ width: "202%" }}>
+        <div>
           <HomePageCarousel />
+        </div>
+        <div style={{ marginLeft: "63px", width: "91%" }}>
           <br />
           <SlickCarouselBooks />
-          <br />
-          <br />
+        </div>
+        <br />
+        <div>
           <Footer />
         </div>
       </div>
-    );
-  }
-}
+    </div>
+  );
+};
 
 export default Home;

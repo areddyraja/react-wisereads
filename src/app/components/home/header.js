@@ -2,26 +2,29 @@ import React from "react";
 import wisereadsLogo from "../../../assets/images/wiseReads.svg";
 import "../../../assets/css/header.css";
 import { Link } from "react-router-dom";
+import SearchBook from "../commons/BookSearch";
 
-export default () => (
-  <div className="wisereads-logo">
+const Header = () => {
+  //console.log("In header component", useContext(BooksContext));
+  return (
     <div className="wisereads-logo">
-      <img
-        alt="Wise reads logo"
-        src={wisereadsLogo}
-        style={{ width: "300px", height: 44, boxShadow: "" }}
-      />
-    </div>
-    <div className="search-bar">
-      <input className="search-input" type="text" placeholder="Search Book" />
-      <i className="fa fa-search" />
-    </div>
-    {!localStorage.userToken && (
-      <div className="link-section">
-        <Link to={"/register"}>Register</Link>
-        <Link to={"/login"}>Login</Link>
+      <div className="wisereads-logo">
+        <img
+          alt="Wise reads logo"
+          src={wisereadsLogo}
+          style={{ width: "300px", height: 44, boxShadow: "" }}
+        />
       </div>
-    )}
-    {}
-  </div>
-);
+      <SearchBook />
+      {!localStorage.userToken && (
+        <div className="link-section">
+          <Link to={"/register"}>Register</Link>
+          <Link to={"/login"}>Login</Link>
+        </div>
+      )}
+      {}
+    </div>
+  );
+};
+
+export default Header;

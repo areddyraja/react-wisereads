@@ -1,0 +1,9 @@
+.error-message {
+  color: rgb(217, 48, 37);
+  text-align: left;
+  margin-left: 8px;
+}
+
+.error-highlight {
+  border-color: rgb(217, 48, 37);
+}
