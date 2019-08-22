@@ -3,7 +3,7 @@ import AboutWiseReads from "../commons/AboutWisereads";
 import "../../../assets/css/login.css";
 import { Link } from "react-router-dom";
 import WiseReadsLogo from "../../../assets/images/wiseReads.svg";
-import LoginStore from "../../stores/LoginStore";
+//import LoginStore from "../../stores/LoginStore";
 import { Redirect } from "react-router-dom";
 import { validateLogin } from "../../hooks/login/loginFormValidation";
 import useLoginForm from "../../hooks/login/useFormValidation";
